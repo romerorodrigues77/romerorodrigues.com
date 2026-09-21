@@ -3,6 +3,20 @@
 Origem: diagnóstico técnico de romerorodrigues.com feito em 21/09/2026.
 Executor: Claude Code, neste repositório.
 
+**Premissa que muda tudo: o site nunca foi lançado publicamente.** Isto não é
+uma migração de SEO, é um *gate de lançamento*. A Fase 1 inteira entra **antes**
+do anúncio. Consequências práticas:
+
+- Não existe tráfego a proteger nem ranking a preservar. Pode mudar estrutura de
+  URL à vontade agora, sem custo.
+- O Google ainda não indexou a versão quebrada. Se a Fase 1 for antes do
+  lançamento, a primeira coisa que ele vê já é a versão certa, e você pula a
+  fase de reindexação.
+- Não há redirect de URL legada para fazer. O passado não existe.
+- A baseline de métricas começa limpa, no dia do lançamento.
+
+**Regra de ouro: não divulgue o site até a Fase 1 estar em produção.**
+
 Execute **uma fase por vez**. Abra um branch por fase, marque os checkboxes ao
 concluir cada item e pare no fim da fase para revisão. Não avance sozinho.
 
@@ -18,6 +32,7 @@ concluir cada item e pare no fim da fase para revisão. Não avance sozinho.
 | `?s=ideias` / `?s=projetos` | **Não são rotas.** São âncoras para `<section id="ideias">` e `<section id="projetos">`, ambas dentro da view home |
 | Portfólio | Gerado por `scripts/portfolio.py build` a partir de `data/portfolio.xlsx`, via `re.subn(..., count=1)` em blocos marcados do `index.html` |
 | Deploy | GitHub Actions → Azure Static Web Apps, `skip_app_build: true`, `output_location: "."`. **Todo arquivo na raiz do repo vira URL pública** |
+| Status | **Nunca lançado.** Sem tráfego, sem histórico de indexação, sem Search Console |
 | Config | `staticwebapp.config.json` só bloqueia `/data/*`, `/scripts/*`, `/CLAUDE.md`. Sem `navigationFallback`, sem redirects, sem headers |
 | Assets | 3,0 MB em `assets/img`, 101 logos em `assets/img/logos/`, fonte única em `assets/fonts` |
 
@@ -28,7 +43,6 @@ concluir cada item e pare no fim da fase para revisão. Não avance sozinho.
 - `<head>` servido: 3 tags (charset, viewport, `<title>Romero Rodrigues</title>`). Zero `<link>`
 - 0 JSON-LD, 0 Open Graph, 0 canonical, 0 hreflang
 - `www.romerorodrigues.com` e apex servem 200 idênticos, sem canonical
-- URLs do blog antigo (`/perfil/`, `/uma-historia-de-sucesso/`) ainda indexadas no Google e hoje 404
 - Sem GA4, sem Search Console, sem nenhuma analytics
 - 152 de 153 `<img>` sem `width`/`height`. Todas com `alt` (manter assim)
 - TTFB 1.165 ms, load 7.395 ms
@@ -141,26 +155,22 @@ devolve `null` e quebra.
 
 Mude o IIFE do router para:
 
-1. Se `location.hash` casar com `#/<rota>`, fazer `location.replace()` para a
-   URL real equivalente (`/trajetoria`, `/#ideias`, etc.). Isso preserva todo
-   link antigo já compartilhado e encerra o roteamento por hash.
-2. Fora desse caso, não fazer nada nas páginas geradas: o HTML já vem com a view
-   correta visível.
-3. No `index.html`, manter o comportamento atual para desenvolvimento local.
-4. Guardar o fallback da home com verificação de `null`.
+1. Nas páginas geradas, não fazer nada: o HTML já vem com a view correta
+   visível. Basta o guard de `null` para o roteador não estourar.
+2. No `index.html`, manter o comportamento atual para desenvolvimento local.
+3. Se `location.hash` casar com `#/<rota>`, fazer `location.replace()` para a
+   URL real (`/trajetoria`, `/#ideias`). Como o site nunca foi divulgado, isso
+   não é resgate de link antigo — é higiene, caso algum `#/` tenha escapado em
+   mensagem ou preview. Custa três linhas, faça.
 
 - [ ] Router patchado, sem erro de console em nenhuma das 5 páginas
 - [ ] `#/trajetoria` redireciona para `/trajetoria`
-- [ ] `#/?s=ideias` redireciona para `/#ideias`
 
 ### 1.4 `staticwebapp.config.json`
 
 Adicione, preservando as 3 regras de bloqueio que já existem:
 
 - rewrite de `/trajetoria` → `/trajetoria.html` (idem as outras 3 rotas)
-- 301 de `/perfil/*` → `/sobre`
-- 301 de `/uma-historia-de-sucesso` → `/trajetoria`
-- 301 de `/blog/*` → `/`
 - `content-type: text/plain; charset=utf-8` para `/robots.txt` e `/llms.txt`
 - `content-type: application/xml` para `/sitemap.xml`
 - `responseOverrides` 404 → `/404.html` com `statusCode: 404`
@@ -198,9 +208,9 @@ Em todas as 5 páginas, via `pages.py`. JSON no Anexo E. Pontos de atenção:
 - [ ] Bing Webmaster Tools verificado — a busca do ChatGPT usa índice do Bing
 - [ ] `sitemap.xml` submetido nos dois
 
-### Critério de aceite da Fase 1
+### Critério de aceite da Fase 1 — este é o gate de lançamento
 
-Todos os comandos abaixo passam contra produção:
+Todos os comandos abaixo passam contra produção **antes** de divulgar o site:
 
 ```
 curl -sI https://romerorodrigues.com/robots.txt   | head -1   # 200
@@ -211,7 +221,6 @@ curl -sI https://romerorodrigues.com/portfolio    | head -1   # 200
 curl -sI https://romerorodrigues.com/sobre        | head -1   # 200
 curl -sI https://romerorodrigues.com/links        | head -1   # 200
 curl -sI https://www.romerorodrigues.com/         | head -1   # 301
-curl -sI https://romerorodrigues.com/perfil/      | head -1   # 301
 curl -s  https://romerorodrigues.com/trajetoria | grep -c 'application/ld+json'   # >= 1
 curl -s  https://romerorodrigues.com/trajetoria | grep -c 'og:title'              # >= 1
 curl -s  https://romerorodrigues.com/trajetoria | grep -c 'rel="canonical"'       # >= 1
@@ -418,10 +427,6 @@ número à mão. Se isso complicar, tire o número do title.
     { "route": "/sobre", "rewrite": "/sobre.html" },
     { "route": "/links", "rewrite": "/links.html" },
 
-    { "route": "/perfil/*", "redirect": "/sobre", "statusCode": 301 },
-    { "route": "/uma-historia-de-sucesso", "redirect": "/trajetoria", "statusCode": 301 },
-    { "route": "/blog/*", "redirect": "/", "statusCode": 301 },
-
     { "route": "/robots.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
     { "route": "/llms.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
     { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
@@ -436,10 +441,6 @@ número à mão. Se isso complicar, tire o número do title.
   "mimeTypes": { ".webp": "image/webp" }
 }
 ```
-
-Confirme o mapeamento de `/perfil/*` contra o relatório de backlinks do domínio
-antes de considerar o item fechado. O catch-all é um paliativo; o mapeamento
-URL a URL é o que recupera a autoridade de verdade.
 
 ### E. JSON-LD Person
 
