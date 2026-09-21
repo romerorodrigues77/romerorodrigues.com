@@ -1,0 +1,98 @@
+{
+  "base": "https://romerorodrigues.com",
+  "og_padrao": "/assets/img/3f0319f5f2.jpg",
+  "medicao": {
+    "ga4": "G-1B9M6H97C7",
+    "google_site_verification": "Dq3eS_6u2DcJk3ezb001BaSbDdyWtD6SVXxl3fRvgxI",
+    "bing_site_verification": "F24363B989D4580BC281DACAD84CD4A3"
+  },
+  "rotas": {
+    "": {
+      "arquivo": "home.html",
+      "url": "/",
+      "title": "Romero Rodrigues — Fundador do Buscapé, investidor",
+      "description": "Fundei o Buscapé, vendi para a Naspers/Prosus e hoje invisto. Managing Partner da Headline Brasil, R$ 2,0 bi sob gestão e {total} empresas no portfólio.",
+      "og": "/assets/img/og/home.jpg"
+    },
+    "trajetoria": {
+      "arquivo": "trajetoria.html",
+      "url": "/trajetoria",
+      "title": "Trajetória de Romero Rodrigues: de 1998 a hoje",
+      "description": "Do primeiro negócio aos 21 anos à venda do Buscapé em 2009 e à Headline Brasil. Linha do tempo com os marcos, conselhos e exits.",
+      "og": "/assets/img/og/trajetoria.jpg"
+    },
+    "portfolio": {
+      "arquivo": "portfolio.html",
+      "url": "/portfolio",
+      "title": "Portfólio: as empresas investidas por Romero Rodrigues",
+      "description": "Todas as empresas em que investi como gestor, anjo ou conselheiro, com status atual: ativas, adquiridas, IPO e encerradas.",
+      "og": "/assets/img/og/portfolio.jpg"
+    },
+    "sobre": {
+      "arquivo": "sobre.html",
+      "url": "/sobre",
+      "title": "Sobre Romero Rodrigues e press kit",
+      "description": "Bios oficiais em português e inglês, fotos em alta e material de imprensa para eventos, podcasts e veículos.",
+      "og": "/assets/img/og/sobre.jpg"
+    },
+    "links": {
+      "arquivo": "links.html",
+      "url": "/links",
+      "title": "Links de Romero Rodrigues",
+      "description": "Todos os canais num só lugar: LinkedIn, X, YouTube, Instagram, Substack e formulário para enviar startups.",
+      "og": "/assets/img/og/links.jpg"
+    }
+  },
+  "pessoa": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://romerorodrigues.com/#romero",
+    "name": "Romero Rodrigues",
+    "alternateName": "Romero Venâncio Rodrigues Filho",
+    "url": "https://romerorodrigues.com/",
+    "image": "{og_home}",
+    "jobTitle": "Managing Partner",
+    "description": "Cofundador do Buscapé, vendido para a Naspers/Prosus em 2009 num valuation de US$ 374M. Managing Partner da Headline Brasil, com R$ 2,0 bilhões sob gestão e mais de 120 startups investidas.",
+    "nationality": {
+      "@type": "Country",
+      "name": "Brasil"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Escola Politécnica da Universidade de São Paulo"
+    },
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "Headline",
+        "url": "https://headline.com/"
+      },
+      {
+        "@type": "Organization",
+        "name": "XP Inc.",
+        "url": "https://www.xpi.com.br/"
+      }
+    ],
+    "founder": {
+      "@type": "Organization",
+      "name": "Buscapé"
+    },
+    "knowsAbout": [
+      "Venture capital",
+      "Startups",
+      "E-commerce",
+      "Inteligência artificial"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/romero/",
+      "https://x.com/romerorodrigues",
+      "https://www.instagram.com/romerorodrigues/",
+      "https://www.youtube.com/@romerorodrigues",
+      "https://www.tiktok.com/@romero.rodrigues",
+      "https://substack.com/@romerorodrigues",
+      "https://headline.com/team/romero-rodrigues/",
+      "https://en.wikipedia.org/wiki/Romero_Rodrigues",
+      "https://www.wikidata.org/wiki/Q7363167"
+    ]
+  }
+}
