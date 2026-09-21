@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "route": "/data/*", "statusCode": 404 },
+    { "route": "/scripts/*", "statusCode": 404 },
+    { "route": "/CLAUDE.md", "statusCode": 404 }
+  ]
+}
