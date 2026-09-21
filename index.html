@@ -464,14 +464,32 @@ a.tomb:hover, .tomb:has(a.tomb-site):hover { border-color: var(--ink); }
 </div>
 <script>
 (function(){
+  // Links antigos (#/rota, #/?s=secao) viram URLs reais (/rota, /#secao).
+  function legacy(){
+    var m = location.hash.match(/^#\/([\w-]*)\/?(?:\?s=([\w-]+))?$/);
+    if (!m) return;
+    location.replace("/" + m[1] + (m[2] ? "#" + m[2] : ""));
+  }
+  var dev = location.protocol === "file:" || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  // Páginas geradas (<html data-route>) e o site publicado já vêm com a view certa visível.
+  if (!dev || document.documentElement.hasAttribute("data-route")) {
+    window.addEventListener("hashchange", legacy); legacy(); return;
+  }
+  // Desenvolvimento local no index.html: todas as views na mesma página, roteamento por hash.
   function go(){
     var h = location.hash.replace(/^#\/?/, ""); var parts = h.split("?s="); var r = parts[0].replace(/\/$/, ""); var s = parts[1];
     var found = false;
     document.querySelectorAll(".view").forEach(function(v){ var on = v.getAttribute("data-route") === r; v.hidden = !on; if (on) { found = true; document.title = v.getAttribute("data-title"); } });
-    if (!found) { document.querySelector('.view[data-route=""]').hidden = false; }
+    if (!found) { var home = document.querySelector('.view[data-route=""]'); if (home) home.hidden = false; }
     if (s) { var t = document.querySelector('.view:not([hidden]) #' + s); if (t) { t.scrollIntoView(); return; } }
     window.scrollTo(0, 0);
   }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href^="/"]');
+    var m = a && a.getAttribute("href").match(/^\/([\w-]*)(?:#([\w-]+))?$/);
+    if (!m) return;
+    e.preventDefault(); location.hash = "#/" + m[1] + (m[2] ? "?s=" + m[2] : "");
+  });
   window.addEventListener("hashchange", go); go();
 })();</script>
 <script>(function () {
