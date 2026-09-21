@@ -2,7 +2,7 @@
   "base": "https://romerorodrigues.com",
   "og_padrao": "/assets/img/3f0319f5f2.jpg",
   "medicao": {
-    "ga4": "",
+    "ga4": "G-1B9M6H97C7",
     "google_site_verification": "",
     "bing_site_verification": ""
   },
@@ -53,17 +53,36 @@
     "image": "{og_home}",
     "jobTitle": "Managing Partner",
     "description": "Cofundador do Buscapé, vendido para a Naspers/Prosus em 2009 num valuation de US$ 374M. Managing Partner da Headline Brasil, com R$ 2,0 bilhões sob gestão e mais de 120 startups investidas.",
-    "nationality": { "@type": "Country", "name": "Brasil" },
+    "nationality": {
+      "@type": "Country",
+      "name": "Brasil"
+    },
     "alumniOf": {
       "@type": "CollegeOrUniversity",
       "name": "Escola Politécnica da Universidade de São Paulo"
     },
     "worksFor": [
-      { "@type": "Organization", "name": "Headline", "url": "https://headline.com/" },
-      { "@type": "Organization", "name": "XP Inc.", "url": "https://www.xpi.com.br/" }
+      {
+        "@type": "Organization",
+        "name": "Headline",
+        "url": "https://headline.com/"
+      },
+      {
+        "@type": "Organization",
+        "name": "XP Inc.",
+        "url": "https://www.xpi.com.br/"
+      }
     ],
-    "founder": { "@type": "Organization", "name": "Buscapé" },
-    "knowsAbout": ["Venture capital", "Startups", "E-commerce", "Inteligência artificial"],
+    "founder": {
+      "@type": "Organization",
+      "name": "Buscapé"
+    },
+    "knowsAbout": [
+      "Venture capital",
+      "Startups",
+      "E-commerce",
+      "Inteligência artificial"
+    ],
     "sameAs": [
       "https://www.linkedin.com/in/romero/",
       "https://x.com/romerorodrigues",
