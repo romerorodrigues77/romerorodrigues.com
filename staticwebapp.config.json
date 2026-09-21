@@ -1,10 +1,12 @@
 {
   "routes": [
-    { "route": "/data/*", "statusCode": 404 },
-    { "route": "/scripts/*", "statusCode": 404 },
-    { "route": "/CLAUDE.md", "statusCode": 404 },
-    { "route": "/SEO-IMPLEMENTATION.md", "statusCode": 404 },
+    { "route": "/data/*", "rewrite": "/404.html", "statusCode": 404 },
+    { "route": "/scripts/*", "rewrite": "/404.html", "statusCode": 404 },
+    { "route": "/CLAUDE.md", "rewrite": "/404.html", "statusCode": 404 },
+    { "route": "/SEO-IMPLEMENTATION.md", "rewrite": "/404.html", "statusCode": 404 },
 
+    { "route": "/", "rewrite": "/home.html" },
+    { "route": "/index.html", "rewrite": "/home.html" },
     { "route": "/trajetoria", "rewrite": "/trajetoria.html" },
     { "route": "/portfolio", "rewrite": "/portfolio.html" },
     { "route": "/sobre", "rewrite": "/sobre.html" },
