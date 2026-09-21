@@ -1,10 +1,12 @@
 {
   "routes": [
-    { "route": "/data/*", "rewrite": "/_bloqueado" },
-    { "route": "/scripts/*", "rewrite": "/_bloqueado" },
-    { "route": "/CLAUDE.md", "rewrite": "/_bloqueado" },
-    { "route": "/SEO-IMPLEMENTATION.md", "rewrite": "/_bloqueado" },
+    { "route": "/data/*", "allowedRoles": ["bloqueado"] },
+    { "route": "/scripts/*", "allowedRoles": ["bloqueado"] },
+    { "route": "/CLAUDE.md", "allowedRoles": ["bloqueado"] },
+    { "route": "/SEO-IMPLEMENTATION.md", "allowedRoles": ["bloqueado"] },
 
+    { "route": "/", "rewrite": "/home.html" },
+    { "route": "/index.html", "rewrite": "/home.html" },
     { "route": "/trajetoria", "rewrite": "/trajetoria.html" },
     { "route": "/portfolio", "rewrite": "/portfolio.html" },
     { "route": "/sobre", "rewrite": "/sobre.html" },
@@ -15,7 +17,7 @@
     { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
   ],
   "responseOverrides": {
-    "404": { "rewrite": "/_bloqueado" }
+    "404": { "allowedRoles": ["bloqueado"] }
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
