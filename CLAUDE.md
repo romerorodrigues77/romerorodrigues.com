@@ -10,7 +10,7 @@ Não edite os cards do portfólio direto no `index.html`: edite a planilha e rod
     python3 scripts/portfolio.py check   # valida, não altera nada
     python3 scripts/portfolio.py build   # regenera cards, carrossel da home, filtros e total de empresas
 
-`build` reescreve só esses blocos gerados. Logos ficam em `assets/img/` e a planilha guarda o nome do arquivo.
+`build` reescreve só esses blocos gerados. Logos ficam em `assets/img/logos/` com o nome da empresa (ex.: `pismo.png`) e a planilha guarda o nome do arquivo.
 Se o HTML do portfólio foi alterado à mão, `export --force` recria a planilha a partir dele (sobrescreve edições da planilha).
 
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*` e este arquivo no site publicado.

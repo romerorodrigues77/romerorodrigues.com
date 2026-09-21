@@ -26,7 +26,8 @@ except ImportError:
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML_PATH = os.path.join(ROOT, "index.html")
 XLSX_PATH = os.path.join(ROOT, "data", "portfolio.xlsx")
-IMG_DIR = os.path.join(ROOT, "assets", "img")
+LOGO_DIR = os.path.join(ROOT, "assets", "img", "logos")
+LOGO_SRC = "assets/img/logos/"
 SHEET = "Empresas"
 
 # Relações: código usado no HTML (data-cats / data-filter), cabeçalho na planilha,
@@ -56,7 +57,7 @@ COLUMNS = [
     ("ano", "Ano", 8, "Ano do início da relação."),
     ("status", "Status", 20, "Texto no canto do card: Ativa, Saída, Encerrada, Adquirida · 2021, Listada na B3, US$ 1 bi · 2024..."),
     ("site", "Site", 34, "URL do site. Vazio = card sem link."),
-    ("logo", "Logo", 17, "Arquivo em assets/img/. Vazio = mostra o nome em texto."),
+    ("logo", "Logo", 17, "Arquivo em assets/img/logos/. Vazio = mostra o nome em texto."),
     ("logo2", "Logo 2", 17, "Opcional. Segundo logo empilhado (ex.: Movile + iFood)."),
     ("logo_texto", "Logo em texto", 16, "Opcional. Texto mostrado antes do logo (ex.: Bcash). Sem logo, o nome já aparece em texto."),
     ("logo_alt", "Alt dos logos", 22, "Opcional. Textos alternativos separados por ';', na ordem dos logos. Vazio = Nome."),
@@ -148,8 +149,8 @@ def validate(rows):
         if not r["prioridade"]:
             warnings.append(f"{where}: sem prioridade, vai para o fim da lista")
         for k in ("logo", "logo2"):
-            if r[k] and not os.path.exists(os.path.join(IMG_DIR, r[k])):
-                errors.append(f"{where}: arquivo de {HEADERS[k]} não existe em assets/img/: {r[k]}")
+            if r[k] and not os.path.exists(os.path.join(LOGO_DIR, r[k])):
+                errors.append(f"{where}: arquivo de {HEADERS[k]} não existe em assets/img/logos/: {r[k]}")
         if r["logo2"] and not r["logo"]:
             errors.append(f"{where}: Logo 2 preenchido sem Logo")
         if bool(r["materia_url"]) != bool(r["materia_titulo"]):
@@ -182,7 +183,7 @@ def render_tomb(r):
         parts.append(f'<span class="tomb-word" aria-hidden="true">{esc(word)}</span>')
     for i, f in enumerate(files):
         alt = alts[i] if i < len(alts) and alts[i] else r["nome"]
-        parts.append(f'<img src="assets/img/{esc(f)}" alt="{esc(alt)}" loading="lazy">')
+        parts.append(f'<img src="{LOGO_SRC}{esc(f)}" alt="{esc(alt)}" loading="lazy">')
     logo_cls = "tomb-logo stack" if len(parts) > 1 else "tomb-logo"
     rels = [r["rotulo"] or auto_label(r["cats"])]
     if r["nota"]:
@@ -209,7 +210,7 @@ def render_marquee(items):
         attr = ' aria-hidden="true"' if hidden else ""
         tab = ' tabindex="-1"' if hidden else ""
         def li(r):
-            img = f'<img src="assets/img/{esc(r["logo"])}" alt="{esc(r["nome"])}">'
+            img = f'<img src="{LOGO_SRC}{esc(r["logo"])}" alt="{esc(r["nome"])}">'
             if r["site"]:
                 img = f'<a{tab} href="{esc(r["site"])}" target="_blank" rel="noopener">{img}</a>'
             return f"<li>{img}</li>"
@@ -270,7 +271,7 @@ def parse_html():
         cats = g(r'data-cats="([^"]*)"', it).split()
         shown = g(r'class="tomb-name">(.*?)<', it)
         rels = [html.unescape(x) for x in re.findall(r'class="tomb-rel">(.*?)<', it)]
-        imgs = [(html.unescape(a), html.unescape(b)) for a, b in re.findall(r'<img src="assets/img/([^"]+)" alt="([^"]*)"', it)]
+        imgs = [(html.unescape(a), html.unescape(b)) for a, b in re.findall(r'<img src="assets/img/(?:logos/)?([^"]+)" alt="([^"]*)"', it)]
         word = g(r'class="tomb-word"[^>]*>(.*?)<', it)
         alts = [b for _, b in imgs]
         r = {k: "" for k in KEYS}
@@ -374,7 +375,7 @@ def write_xlsx(rows, path):
         ("Relações (Fundação, Anjo, VC, Gestão, Conselho, Buscapé): marque x em quantas quiser.", False),
         ("  Elas definem os filtros e as contagens da página. O texto no card vem de Rótulo (opcional)", False),
         ("  ou, se vazio, é montado a partir das relações marcadas. A coluna Rótulo no site mostra o resultado.", False),
-        ("Logo: nome do arquivo em assets/img/. Para um logo novo, salve o arquivo lá e escreva o nome aqui.", False),
+        ("Logo: nome do arquivo em assets/img/logos/. Para um logo novo, salve o arquivo lá (ex.: empresa.png) e escreva o nome aqui.", False),
         ("Matéria: link, título e fonte · data aparecem como destaque no card.", False),
         ("Observações internas não vão para o site.", False),
         ("", False),
