@@ -5,8 +5,6 @@
     { "route": "/CLAUDE.md", "rewrite": "/_bloqueado" },
     { "route": "/SEO-IMPLEMENTATION.md", "rewrite": "/_bloqueado" },
 
-    { "route": "/", "rewrite": "/home.html" },
-    { "route": "/index.html", "rewrite": "/home.html" },
     { "route": "/trajetoria", "rewrite": "/trajetoria.html" },
     { "route": "/portfolio", "rewrite": "/portfolio.html" },
     { "route": "/sobre", "rewrite": "/sobre.html" },
