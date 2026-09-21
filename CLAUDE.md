@@ -30,5 +30,5 @@ JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:ST
 
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`
-(só `statusCode: 404` não basta: o Azure entrega o arquivo junto; rewrite para caminho inexistente desliga o 404 próprio),
+(só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
 e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (idem as outras rotas).

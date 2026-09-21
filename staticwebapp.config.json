@@ -17,7 +17,9 @@
     { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
   ],
   "responseOverrides": {
-    "404": { "allowedRoles": ["bloqueado"] }
+    "401": { "rewrite": "/404.html", "statusCode": 404 },
+    "403": { "rewrite": "/404.html", "statusCode": 404 },
+    "404": { "rewrite": "/404.html", "statusCode": 404 }
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
