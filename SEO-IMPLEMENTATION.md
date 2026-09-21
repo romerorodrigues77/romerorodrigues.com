@@ -83,12 +83,12 @@ autoridade. Sem isso nada mais no plano compensa.
 
 ### 1.1 Arquivos de controle
 
-- [ ] **`robots.txt` na raiz.** Permite tudo, declara o sitemap e explicita a
+- [x] **`robots.txt` na raiz.** Permite tudo, declara o sitemap e explicita a
       política de bots de IA (decisão tomada: permitir todos, o objetivo é ser
       citado). Conteúdo exato na seção Anexos, item A.
-- [ ] **`llms.txt` na raiz.** Conteúdo na seção Anexos, item B. Baixa prioridade
+- [x] **`llms.txt` na raiz.** Conteúdo na seção Anexos, item B. Baixa prioridade
       de efeito, custo quase zero, e o bloco de desambiguação tem valor real.
-- [ ] **`404.html` na raiz.** Em português, com o header e o footer do site
+- [x] **`404.html` na raiz.** Em português, com o header e o footer do site
       (copie a marcação existente do `index.html`, não invente layout) e links
       para home, trajetória e portfólio. Hoje quem erra a URL vê a página de erro
       genérica do Azure, em inglês, com branding da Microsoft.
@@ -139,12 +139,12 @@ Cuidados:
 - O `portfolio.py` só conhece o `index.html`. A ordem correta é sempre
   `portfolio.py build` **e depois** `pages.py build`. Documente isso.
 
-- [ ] `scripts/pages.py` criado, com `check` e `build`
-- [ ] `data/pages.json` criado com as 5 rotas
-- [ ] Marcadores `<!-- SEO:START -->` / `<!-- SEO:END -->` no `index.html`
-- [ ] `python3 scripts/pages.py build` gera os 4 arquivos e o `sitemap.xml`
-- [ ] Rodar `build` duas vezes seguidas não produz diff na segunda
-- [ ] `python3 scripts/portfolio.py check` continua passando
+- [x] `scripts/pages.py` criado, com `check` e `build`
+- [x] `data/pages.json` criado com as 5 rotas
+- [x] Marcadores `<!-- SEO:START -->` / `<!-- SEO:END -->` no `index.html`
+- [x] `python3 scripts/pages.py build` gera os 4 arquivos e o `sitemap.xml`
+- [x] Rodar `build` duas vezes seguidas não produz diff na segunda
+- [x] `python3 scripts/portfolio.py check` continua passando
 
 ### 1.3 Patch do router
 
@@ -163,8 +163,8 @@ Mude o IIFE do router para:
    não é resgate de link antigo — é higiene, caso algum `#/` tenha escapado em
    mensagem ou preview. Custa três linhas, faça.
 
-- [ ] Router patchado, sem erro de console em nenhuma das 5 páginas
-- [ ] `#/trajetoria` redireciona para `/trajetoria`
+- [x] Router patchado, sem erro de console em nenhuma das 5 páginas
+- [x] `#/trajetoria` redireciona para `/trajetoria`
 
 ### 1.4 `staticwebapp.config.json`
 
@@ -180,7 +180,7 @@ Adicione, preservando as 3 regras de bloqueio que já existem:
 
 JSON completo no Anexo D.
 
-- [ ] Config atualizado e validado como JSON
+- [x] Config atualizado e validado como JSON
 
 ### 1.5 Redirect de www
 
@@ -198,8 +198,13 @@ Em todas as 5 páginas, via `pages.py`. JSON no Anexo E. Pontos de atenção:
 - `@id` fixo em `https://romerorodrigues.com/#romero` para as outras entidades
   poderem referenciar
 - Acrescentar a URL do Wikidata em `sameAs` quando o item existir (Fase 2)
+  → **Feito na Fase 1:** o item já existe (Q7363167, ligado ao artigo em inglês).
+  Saíram do `sameAs` a Wikipédia em português (o artigo do empresário não existe,
+  só a página de desambiguação) e a Crunchbase (bloqueia acesso automatizado, não
+  deu para verificar). Volte com ela se o Romero confirmar o perfil.
 
-- [ ] JSON-LD presente e sem erro no Rich Results Test do Google
+- [x] JSON-LD presente nas 5 páginas (gerado por `pages.py`)
+- [ ] Sem erro no Rich Results Test do Google (só dá para rodar com o site no ar)
 
 ### 1.7 Medição
 
@@ -207,6 +212,12 @@ Em todas as 5 páginas, via `pages.py`. JSON no Anexo E. Pontos de atenção:
 - [ ] Search Console verificado (método de arquivo HTML na raiz ou meta tag)
 - [ ] Bing Webmaster Tools verificado — a busca do ChatGPT usa índice do Bing
 - [ ] `sitemap.xml` submetido nos dois
+
+`pages.py` já suporta os três: preencha `medicao.ga4` (ex.: `G-XXXXXXX`),
+`medicao.google_site_verification` e `medicao.bing_site_verification` em
+`data/pages.json` e rode `python3 scripts/pages.py build`. As metas de verificação
+saem só na home; o GA4, em todas as páginas e no 404. Falta o Romero criar as
+propriedades e passar os IDs.
 
 ### Critério de aceite da Fase 1 — este é o gate de lançamento
 
