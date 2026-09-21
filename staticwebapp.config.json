@@ -1,9 +1,9 @@
 {
   "routes": [
-    { "route": "/data/*", "rewrite": "/404.html", "statusCode": 404 },
-    { "route": "/scripts/*", "rewrite": "/404.html", "statusCode": 404 },
-    { "route": "/CLAUDE.md", "rewrite": "/404.html", "statusCode": 404 },
-    { "route": "/SEO-IMPLEMENTATION.md", "rewrite": "/404.html", "statusCode": 404 },
+    { "route": "/data/*", "rewrite": "/_bloqueado" },
+    { "route": "/scripts/*", "rewrite": "/_bloqueado" },
+    { "route": "/CLAUDE.md", "rewrite": "/_bloqueado" },
+    { "route": "/SEO-IMPLEMENTATION.md", "rewrite": "/_bloqueado" },
 
     { "route": "/", "rewrite": "/home.html" },
     { "route": "/index.html", "rewrite": "/home.html" },
@@ -17,7 +17,7 @@
     { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
   ],
   "responseOverrides": {
-    "404": { "rewrite": "/404.html", "statusCode": 404 }
+    "404": { "rewrite": "/_bloqueado" }
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",

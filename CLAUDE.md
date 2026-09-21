@@ -29,5 +29,5 @@ JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:ST
 `<!-- SEO:END -->` do `index.html` também é gerado.
 
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
-servindo o `404.html` no lugar deles (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
+reescrevendo-os para `/_bloqueado`, que não existe, e cai no `404.html` (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
 e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (idem as outras rotas).
