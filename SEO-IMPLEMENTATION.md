@@ -187,8 +187,8 @@ JSON completo no Anexo D.
 Não se resolve em arquivo. No painel do Azure Static Web Apps, defina
 `romerorodrigues.com` como domínio primário e `www` como redirect 301.
 
-- [ ] Feito no painel (tarefa manual do Romero — sinalize e não tente automatizar)
-- [ ] `curl -sI https://www.romerorodrigues.com/` devolve `301`
+- [x] Feito no painel (tarefa manual do Romero — sinalize e não tente automatizar)
+- [x] `curl -sI https://www.romerorodrigues.com/` devolve `301`
 
 ### 1.6 JSON-LD Person
 
@@ -208,7 +208,7 @@ Em todas as 5 páginas, via `pages.py`. JSON no Anexo E. Pontos de atenção:
 
 ### 1.7 Medição
 
-- [ ] GA4 instalado (snippet no `<head>` gerado, uma linha em `pages.py`)
+- [x] GA4 instalado (snippet no `<head>` gerado, uma linha em `pages.py`)
 - [ ] Search Console verificado (método de arquivo HTML na raiz ou meta tag)
 - [ ] Bing Webmaster Tools verificado — a busca do ChatGPT usa índice do Bing
 - [ ] `sitemap.xml` submetido nos dois
