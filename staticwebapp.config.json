@@ -2,6 +2,24 @@
   "routes": [
     { "route": "/data/*", "statusCode": 404 },
     { "route": "/scripts/*", "statusCode": 404 },
-    { "route": "/CLAUDE.md", "statusCode": 404 }
-  ]
+    { "route": "/CLAUDE.md", "statusCode": 404 },
+    { "route": "/SEO-IMPLEMENTATION.md", "statusCode": 404 },
+
+    { "route": "/trajetoria", "rewrite": "/trajetoria.html" },
+    { "route": "/portfolio", "rewrite": "/portfolio.html" },
+    { "route": "/sobre", "rewrite": "/sobre.html" },
+    { "route": "/links", "rewrite": "/links.html" },
+
+    { "route": "/robots.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
+    { "route": "/llms.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
+    { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
+  ],
+  "responseOverrides": {
+    "404": { "rewrite": "/404.html", "statusCode": 404 }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "mimeTypes": { ".webp": "image/webp" }
 }
