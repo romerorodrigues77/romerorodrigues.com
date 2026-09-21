@@ -46,7 +46,7 @@ FILTER_ORDER = ["fund", "anjo", "vc", "conselho", "corp", "gestao"]
 COLUMNS = [
     ("prioridade", "Prioridade", 11, "Ordem no site: menor aparece primeiro. Use saltos de 10 para poder encaixar empresas no meio."),
     ("publicar", "Publicar", 9, "x = aparece no site. Vazio = fica só na planilha."),
-    ("home", "Home", 8, "Número = aparece no carrossel da home, nessa ordem. Vazio = não aparece. Precisa de logo e site."),
+    ("home", "Home", 8, "Número = aparece no carrossel da home, nessa ordem. Vazio = não aparece. Precisa de logo; sem site, o logo fica sem link."),
     ("nome", "Nome", 26, "Nome usado na busca e no texto alternativo do logo."),
     ("nome_exibido", "Nome no card", 22, "Opcional. Vazio = igual ao Nome."),
     *[(code, header, 10, f"x = relação '{header}'. Pode marcar várias.") for code, header, _, _ in RELATIONS],
@@ -162,8 +162,8 @@ def validate(rows):
         if r["home"]:
             if num(r["home"], None) is None:
                 errors.append(f"{where}: Home deve ser número")
-            elif not (r["logo"] and r["site"]):
-                errors.append(f"{where}: para aparecer na home precisa de Logo e Site")
+            elif not r["logo"]:
+                errors.append(f"{where}: para aparecer na home precisa de Logo")
             elif r["home"] in home_pos:
                 warnings.append(f"{where}: mesma posição na home que {home_pos[r['home']]}")
             home_pos.setdefault(r["home"], r["nome"])
@@ -208,10 +208,12 @@ def render_marquee(items):
     def ul(hidden):
         attr = ' aria-hidden="true"' if hidden else ""
         tab = ' tabindex="-1"' if hidden else ""
-        lis = "".join(
-            f'<li><a{tab} href="{esc(r["site"])}" target="_blank" rel="noopener">'
-            f'<img src="assets/img/{esc(r["logo"])}" alt="{esc(r["nome"])}"></a></li>'
-            for r in items)
+        def li(r):
+            img = f'<img src="assets/img/{esc(r["logo"])}" alt="{esc(r["nome"])}">'
+            if r["site"]:
+                img = f'<a{tab} href="{esc(r["site"])}" target="_blank" rel="noopener">{img}</a>'
+            return f"<li>{img}</li>"
+        lis = "".join(li(r) for r in items)
         return f"<ul{attr}>{lis}</ul>"
     return ul(False) + ul(True)
 
