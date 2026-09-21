@@ -22,10 +22,12 @@ O `index.html` é o arquivo de autoria: tem as 5 views e roteia por hash só em 
     python3 scripts/pages.py build       # paginas reais, head SEO, sitemap
     python3 scripts/pages.py check       # valida, não altera nada
 
-`trajetoria.html`, `portfolio.html`, `sobre.html`, `links.html`, `404.html` e `sitemap.xml` são **gerados**.
+`home.html`, `trajetoria.html`, `portfolio.html`, `sobre.html`, `links.html`, `404.html` e `sitemap.xml` são **gerados**.
+Em produção `/` e `/index.html` servem o `home.html` (só a view da home); o `index.html` com as 5 views é só para autoria.
 Não edite à mão: edite `index.html` (ou `data/pages.json`, que guarda title, description, imagem OG,
 JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:START -->` e
 `<!-- SEO:END -->` do `index.html` também é gerado.
 
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
-e faz o rewrite de `/trajetoria` → `/trajetoria.html` (idem as outras rotas).
+servindo o `404.html` no lugar deles (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
+e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (idem as outras rotas).

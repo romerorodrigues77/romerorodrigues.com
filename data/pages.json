@@ -8,7 +8,7 @@
   },
   "rotas": {
     "": {
-      "arquivo": "index.html",
+      "arquivo": "home.html",
       "url": "/",
       "title": "Romero Rodrigues — Fundador do Buscapé, investidor",
       "description": "Fundei o Buscapé, vendi para a Naspers/Prosus e hoje invisto. Managing Partner da Headline Brasil, R$ 2,0 bi sob gestão e {total} empresas no portfólio.",

@@ -8,8 +8,8 @@ O index.html é o arquivo de autoria: tem as 5 views e continua funcionando sozi
 data/pages.json guarda title, description e imagem Open Graph de cada rota, o JSON-LD
 da pessoa e os IDs de medição.
 
-`build` escreve na raiz, um arquivo plano por rota (trajetoria.html, portfolio.html,
-sobre.html, links.html), cada um com o <head> do index.html, as tags SEO da rota e só
+`build` escreve na raiz, um arquivo plano por rota (home.html, trajetoria.html,
+portfolio.html, sobre.html, links.html), cada um com o <head> do index.html, as tags SEO da rota e só
 a view daquela rota. Também troca os links #/rota por /rota no index.html, reescreve o
 bloco entre <!-- SEO:START --> e <!-- SEO:END --> do index.html e gera 404.html e
 sitemap.xml. Os arquivos gerados não devem ser editados à mão.
@@ -244,8 +244,7 @@ def render(cfg):
         rota = cfg["rotas"][route]
         page = standalone(with_head(head, fill(rota["title"], ctx), seo_block(cfg, route, ctx), route=route), views[route], tail)
         prints[route] = hashlib.sha256(page.encode("utf-8")).hexdigest()[:12]
-        if route:
-            out[os.path.join(ROOT, rota["arquivo"])] = page
+        out[os.path.join(ROOT, rota["arquivo"])] = page
         h1 = len(re.findall(r"<h1[\s>]", views[route]))
         if h1 != 1:
             errors.append(f"/{route}: {h1} <h1> (deveria ser 1)")
