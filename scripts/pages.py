@@ -272,9 +272,9 @@ def main():
     if errors:
         sys.exit(f"{len(errors)} erro(s). Nada foi alterado.")
 
-    for rota in cfg["rotas"].values():
-        if not os.path.exists(os.path.join(ROOT, rota["og"].lstrip("/"))):
-            print(f"aviso: {rota['og']} não existe; usando {cfg['og_padrao']} como imagem Open Graph")
+    missing = [r["og"] for r in cfg["rotas"].values() if not os.path.exists(os.path.join(ROOT, r["og"].lstrip("/")))]
+    if missing:
+        print(f"aviso: {len(missing)} imagem(ns) Open Graph não existe(m) ainda; usando {cfg['og_padrao']}")
     stale = [p for p, text in out.items() if read(p) != text]
     names = ", ".join(os.path.relpath(p, ROOT) for p in stale)
     if a.cmd == "check":
