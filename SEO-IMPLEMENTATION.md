@@ -246,26 +246,42 @@ corretamente no LinkedIn Post Inspector e no validador de card do X.
 
 Só começa com a Fase 1 em produção e indexando.
 
-- [ ] **JSON-LD `ItemList` de `Organization` em `/portfolio`**, gerado por
+- [x] **JSON-LD `ItemList` de `Organization` em `/portfolio`**, gerado por
       `pages.py` a partir do mesmo `data/portfolio.xlsx` que já alimenta os
       cards. 124 empresas com `name`, `url` e descrição curta. Não duplicar a
       leitura da planilha: reutilize `read_xlsx` de `portfolio.py`.
-- [ ] **JSON-LD `WebSite`** na home e **`ProfilePage`** em `/sobre`.
-- [ ] **Bloco de perguntas e respostas em `/sobre`.** HTML semântico, cada
+- [x] **JSON-LD `WebSite`** na home e **`ProfilePage`** em `/sobre`.
+- [x] **Bloco de perguntas e respostas em `/sobre`.** HTML semântico, cada
       resposta começando pela afirmação completa. Rascunho no Anexo F — é
       rascunho, o Romero revisa o texto antes de commitar. Não use schema
       `FAQPage`: o Google restringiu o rich result a governo e saúde em 2023.
-- [ ] **`width` e `height` nas 153 imagens.** Leia as dimensões reais dos
+- [x] **`width` e `height` nas 153 imagens.** Leia as dimensões reais dos
       arquivos em `assets/`, não chute. 152 estão sem hoje, e isso é CLS em
       conexão lenta. Preserve todos os `alt` existentes.
-- [ ] **`<link rel="preload">` da fonte** em `assets/fonts/` e
+- [x] **`<link rel="preload">` da fonte** em `assets/fonts/` e
       `font-display: swap` no `@font-face`. Hoje a fonte leva 3,0 s.
-- [ ] **Favicon declarado.** Não há nenhum `<link rel="icon">` no site.
-- [ ] **Imagens Open Graph 1200x630**, uma por rota, em `assets/img/og/`.
+- [x] **Favicon declarado.** Não há nenhum `<link rel="icon">` no site.
+- [x] **Imagens Open Graph 1200x630**, uma por rota, em `assets/img/og/`.
 - [ ] **Versão em inglês** em `/en/*` com hreflang recíproco mais `x-default`.
       Decisão editorial já tomada: a versão EN mostra só a Headline, a PT mostra
       Headline e XP. As bios em inglês já existem no press kit do `/sobre`.
       Reciprocidade é obrigatória, senão o Google ignora as duas direções.
+
+Notas de execução da Fase 2:
+
+- São 152 imagens, não 153. As 138 dos cards e do carrossel ganham dimensões no
+  `portfolio.py` (lidas do PNG); `img` ganhou `height: auto` e `.tl .lg img`
+  ganhou `width: auto`, para os atributos só reservarem a proporção. Posição e
+  tamanho de todas as imagens conferidos contra produção em 1280 e 375 px.
+- `font-display: swap` já estava no `@font-face`; faltava só o preload.
+- Perguntas e respostas: texto do Anexo F aprovado pelo Romero, com a
+  formulação obrigatória do Buscapé e os R$ 2,0 bi sem atribuí-los só à
+  Headline Brasil (a bio EN dá US$ 516M para a Headline Brazil).
+- Open Graph: decisão do Romero, uma imagem para todas as rotas
+  (`assets/img/og/romero-rodrigues.jpg`). Favicon: recorte redondo do retrato.
+  Os dois saem de `scripts/imagens.py` (Pillow + Chrome headless, fora do build).
+- Versão em inglês: rascunho traduzido por Claude num PR separado, para revisão
+  do Romero frase a frase antes do merge.
 
 Tarefas fora do repositório, em paralelo (não são do Claude Code):
 

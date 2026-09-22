@@ -28,6 +28,9 @@ Não edite à mão: edite `index.html` (ou `data/pages.json`, que guarda title, 
 JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:START -->` e
 `<!-- SEO:END -->` do `index.html` também é gerado.
 
+Toda `<img>` precisa de `width` e `height` reais (`pages.py check` acusa). Nos logos do portfólio o `portfolio.py` já põe.
+Favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow + Google Chrome); rode só quando mudar a foto ou o texto.
+
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`
 (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
