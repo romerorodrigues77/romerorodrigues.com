@@ -28,6 +28,10 @@ Não edite à mão: edite `index.html` (ou `data/pages.json`, que guarda title, 
 JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:START -->` e
 `<!-- SEO:END -->` do `index.html` também é gerado.
 
+Versão em inglês: `/en`, `/en/journey`, `/en/portfolio`, `/en/about`, `/en/links`, geradas em `en/` a partir das mesmas
+views, com `data/en.json` (traduções frase a frase, o que manter, o que remover). A versão EN mostra só a Headline: o que é
+da XP sai. Mudou ou entrou texto em português? `pages.py check` acusa a tradução que falta; acrescente em `data/en.json`.
+
 Toda `<img>` precisa de `width` e `height` reais (`pages.py check` acusa). Nos logos do portfólio o `portfolio.py` já põe.
 Favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow + Google Chrome); rode só quando mudar a foto ou o texto.
 
