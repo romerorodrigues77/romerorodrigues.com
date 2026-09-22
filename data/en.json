@@ -1,5 +1,5 @@
 {
-  "_leia": "Versão em inglês gerada por scripts/pages.py a partir das views do index.html. 'textos' traduz cada trecho (chave em português, valor em inglês; {total} é o total de empresas da versão EN). 'manter' lista o que não se traduz; nomes de empresas vêm da planilha e já são mantidos. 'remover' tira elementos inteiros (tag + trecho que ele contém). A versão EN mostra só a Headline: o que é da XP sai. RASCUNHO traduzido por Claude, a revisar pelo Romero.",
+  "_leia": "Versão em inglês gerada por scripts/pages.py a partir das views do index.html. 'textos' traduz cada trecho (chave em português, valor em inglês; {total} é o total de empresas da versão EN). 'manter' lista o que não se traduz; nomes de empresas vêm da planilha e já são mantidos. 'remover' tira elementos inteiros (tag + trecho que ele contém). A versão EN mostra só a Headline: o que é da XP sai. Exceção: /en/press mantém as matérias sobre a parceria com a XP, porque cobertura de imprensa é registro histórico, não oferta; os títulos ficam como o veículo publicou. RASCUNHO traduzido por Claude, a revisar pelo Romero.",
   "rotas": {
     "": {
       "arquivo": "en/home.html",
@@ -18,6 +18,12 @@
       "url": "/en/portfolio",
       "title": "Portfolio: the companies Romero Rodrigues has invested in",
       "description": "Every company I have invested in as a fund manager, angel or board member, with its current status: active, acquired, IPO and closed."
+    },
+    "midia": {
+      "arquivo": "en/press.html",
+      "url": "/en/press",
+      "title": "Romero Rodrigues in the press",
+      "description": "Press coverage since 2009, from The New York Times to Valor: profiles, interviews, investment theses and Headline's deals."
     },
     "sobre": {
       "arquivo": "en/about.html",
@@ -232,6 +238,44 @@
     "Cap table aberto": "Open cap table",
     "Meu perfil": "My profile",
     "Site completo": "Full site",
-    "Trajetória e portfólio": "Journey and portfolio"
+    "Trajetória e portfólio": "Journey and portfolio",
+    "Na mídia": "Press",
+    "Na mídia · Romero Rodrigues": "Press · Romero Rodrigues",
+    "Ver todas as matérias": "See all press coverage",
+    "Cobertura em": "Covered by",
+    "assinantes": "subscribers",
+    "por Romero": "by Romero",
+    "vídeo": "video",
+    "áudio": "audio",
+    ", do New York Times ao Valor. Organizadas pelo que cada uma mostra: perfil, tese, movimento e portfólio.": ", from The New York Times to Valor. Organised by what each one shows: profile, thesis, moves and portfolio.",
+    "Filtrar por categoria": "Filter by category",
+    "Perfil": "Profile",
+    "Tese": "Thesis",
+    "Movimento": "Moves",
+    "Buscar veículo ou título": "Search outlet or title",
+    "Formato": "Format",
+    "Todos os formatos": "All formats",
+    "Texto": "Text",
+    "Vídeo": "Video",
+    "Áudio": "Audio",
+    "Idioma": "Language",
+    "Todos os idiomas": "All languages",
+    "Em português": "In Portuguese",
+    "Em inglês": "In English",
+    "Ano": "Year",
+    "Todos os anos": "All years",
+    "Ordenar": "Sort",
+    "Por categoria": "By category",
+    "Por data": "By date",
+    "resultados": "results",
+    "resultado": "result",
+    "Quem eu sou. Perfis, entrevistas biográficas e prêmios.": "Who I am. Profiles, biographical interviews and awards.",
+    "Como eu penso. Entrevistas e análises sobre mercado, venture capital e IA.": "How I think. Interviews and analysis on markets, venture capital and AI.",
+    "O que construí. Da venda do Buscapé à Redpoint, à Headline e às captações dos fundos.": "What I have built. From the sale of Buscapé to Redpoint, Headline and the funds it raised.",
+    "O fundo operando. Aportes, rodadas e saídas de empresas investidas, com o meu nome na matéria.": "The fund at work. Investments, rounds and exits of portfolio companies, with my name in the story.",
+    "Textos assinados": "Bylined pieces",
+    "O que escrevi para os veículos. Os demais textos estão no": "What I have written for the press. Everything else is on",
+    "Os links levam às matérias nos veículos originais; as marcadas como assinantes pedem assinatura. Para bios oficiais e fotos, veja o": "Links go to the stories on the original outlets; those marked subscribers are behind a paywall. For official bios and photos, see the",
+    "press kit": "press kit"
   }
 }

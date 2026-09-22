@@ -25,6 +25,12 @@
       "title": "Portfólio: as empresas investidas por Romero Rodrigues",
       "description": "Todas as empresas em que investi como gestor, anjo ou conselheiro, com status atual: ativas, adquiridas, IPO e encerradas."
     },
+    "midia": {
+      "arquivo": "midia.html",
+      "url": "/midia",
+      "title": "Romero Rodrigues na mídia",
+      "description": "Cobertura de imprensa desde 2009, do New York Times ao Valor: perfis, entrevistas, teses e os negócios da Headline."
+    },
     "sobre": {
       "arquivo": "sobre.html",
       "url": "/sobre",
@@ -87,7 +93,9 @@
       "https://substack.com/@romerorodrigues",
       "https://headline.com/team/romero-rodrigues/",
       "https://en.wikipedia.org/wiki/Romero_Rodrigues",
-      "https://www.wikidata.org/wiki/Q7363167"
+      "https://www.wikidata.org/wiki/Q7363167",
+      "https://www.crunchbase.com/person/romero-rodrigues",
+      "https://pitchbook.com/profiles/investor/233806-06"
     ]
   }
 }
