@@ -12,6 +12,13 @@
     { "route": "/sobre", "rewrite": "/sobre.html" },
     { "route": "/links", "rewrite": "/links.html" },
 
+    { "route": "/en", "rewrite": "/en/home.html" },
+    { "route": "/en/", "rewrite": "/en/home.html" },
+    { "route": "/en/journey", "rewrite": "/en/journey.html" },
+    { "route": "/en/portfolio", "rewrite": "/en/portfolio.html" },
+    { "route": "/en/about", "rewrite": "/en/about.html" },
+    { "route": "/en/links", "rewrite": "/en/links.html" },
+
     { "route": "/robots.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
     { "route": "/llms.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
     { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
