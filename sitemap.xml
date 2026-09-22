@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- gerado por scripts/pages.py — não edite à mão -->
-<!-- impressões: home.html=c4138134cef8 trajetoria.html=5eb5e1c1d71a portfolio.html=ba5a0bf1064d sobre.html=e5d4f61ecf67 links.html=3fe82016eb68 en/home.html=237528e3ba6c en/journey.html=e974e8d5241a en/portfolio.html=08fd495db26e en/about.html=29ed526781eb en/links.html=905ac081a66a -->
+<!-- impressões: home.html=c096cc2daeaf trajetoria.html=1f2cff5aac3f portfolio.html=ac45d805a8c2 midia.html=ccd1a5d0a719 sobre.html=c843692555d2 links.html=9bd6419d381b en/home.html=4ff8074c1a51 en/journey.html=0720f3dc2482 en/portfolio.html=7b95f10ddb72 en/press.html=736e09484b23 en/about.html=0cb48bd075b1 en/links.html=6bd39e818362 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://romerorodrigues.com/</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/trajetoria</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/portfolio</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/sobre</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/links</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/journey</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/portfolio</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/about</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/links</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://romerorodrigues.com/</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/trajetoria</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/portfolio</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/midia</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/sobre</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/links</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/journey</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/portfolio</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/press</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/about</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/links</loc><lastmod>2026-09-22</lastmod></url>
 </urlset>

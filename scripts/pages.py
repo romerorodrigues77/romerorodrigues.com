@@ -4,19 +4,20 @@
     python3 scripts/pages.py check    # valida, não altera nada (sai com erro se algo estiver desatualizado)
     python3 scripts/pages.py build    # gera as páginas, o 404.html e o sitemap.xml; atualiza o <head> do index.html
 
-O index.html é o arquivo de autoria: tem as 5 views e continua funcionando sozinho.
+O index.html é o arquivo de autoria: tem as 6 views e continua funcionando sozinho.
 data/pages.json guarda title, description e imagem Open Graph de cada rota, o JSON-LD
 da pessoa e os IDs de medição.
 
 `build` escreve na raiz, um arquivo plano por rota (home.html, trajetoria.html,
-portfolio.html, sobre.html, links.html), cada um com o <head> do index.html, as tags SEO da rota e só
+portfolio.html, midia.html, sobre.html, links.html), cada um com o <head> do index.html, as tags SEO da rota e só
 a view daquela rota. Também troca os links #/rota por /rota no index.html, reescreve o
 bloco entre <!-- SEO:START --> e <!-- SEO:END --> do index.html e gera 404.html e
 sitemap.xml. Os arquivos gerados não devem ser editados à mão.
 
-O portfolio.py só conhece o index.html. Ordem certa:
+O portfolio.py e o midia.py só conhecem o index.html. Ordem certa:
 
     python3 scripts/portfolio.py build
+    python3 scripts/midia.py build
     python3 scripts/pages.py build
 """
 import argparse
@@ -219,8 +220,31 @@ def portfolio_rows():
         return portfolio, portfolio.published(portfolio.read_xlsx(portfolio.XLSX_PATH))
 
 
+def midia_rows():
+    """(módulo, matérias publicadas, veículos), lidos da planilha pelo midia.py."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        import midia
+        rows, vehicles = midia.read_xlsx(midia.XLSX_PATH)
+        return midia, rows, vehicles
+
+
+def subject_of(cfg, ctx):
+    """As matérias marcadas em subjectOf na midia.xlsx, para o nó Person de todas as páginas."""
+    midia, rows, vehicles = ctx["_midia"]
+    person = {"@id": cfg["pessoa"]["@id"]}
+    nodes = []
+    for r in midia.published(rows):
+        if r["subjectof"]:
+            node = midia.creative_work(r, vehicles, person)
+            node.pop("about", None)  # subjectOf já diz que a peça é sobre a pessoa
+            nodes.append(node)
+    return nodes
+
+
 def extra_ld(cfg, route, ctx, lang="pt"):
-    """JSON-LD além do Person: WebSite na home, ProfilePage no sobre, ItemList no portfólio."""
+    """JSON-LD além do Person: WebSite na home, ProfilePage no sobre, ItemList no portfólio e na mídia."""
     base = cfg["base"]
     person = {"@id": cfg["pessoa"]["@id"]}
     website = {"@id": f"{base}/#website"}
@@ -256,6 +280,17 @@ def extra_ld(cfg, route, ctx, lang="pt"):
         return [{"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#empresas",
                  "name": frase[2], "inLanguage": code, "numberOfItems": len(items),
                  "itemListOrder": "https://schema.org/ItemListOrderAscending", "itemListElement": items}]
+    if route == "midia":
+        midia, rows, vehicles = ctx["_midia"]
+        items = [{"@type": "ListItem", "position": i, "item": midia.creative_work(r, vehicles, person)}
+                 for i, r in enumerate(midia.published(rows), 1)]
+        name = "Romero Rodrigues na mídia" if lang == "pt" else "Romero Rodrigues in the press"
+        return [{"@context": "https://schema.org", "@type": "CollectionPage", "@id": f"{url}#pagina", "url": url,
+                 "name": fill(rota["title"], ctx), "inLanguage": code, "isPartOf": website, "about": person,
+                 "mainEntity": {"@id": f"{url}#materias"}},
+                {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#materias", "name": name,
+                 "numberOfItems": len(items), "itemListOrder": "https://schema.org/ItemListOrderDescending",
+                 "itemListElement": items}]
     return []
 
 
@@ -401,6 +436,8 @@ def en_view(cfg, route, view, t, errors):
     view = recount(view)
     for pt, url in sorted(link_map(cfg).items(), key=lambda x: -len(x[0])):
         view = view.replace(f'href="{pt}"', f'href="{url}"')
+        if pt != "/":
+            view = view.replace(f'href="{pt}#', f'href="{url}#')
     view = view.replace('href="/#', 'href="/en#')
     pt_url = cfg["rotas"][route]["url"]
     view = view.replace(LANG_LINK, f'<a href="{pt_url}" hreflang="pt-BR" lang="pt-BR">Português</a>')
@@ -453,6 +490,16 @@ def render(cfg):
     if str(len(ctx["_portfolio"][1])) != ctx["total"]:
         errors.append(f"planilha tem {len(ctx['_portfolio'][1])} empresas publicadas e o index.html mostra "
                       f"{ctx['total']}: rode python3 scripts/portfolio.py build antes")
+    ctx["_midia"] = midia_rows()
+    midia, m_rows, m_vehicles = ctx["_midia"]
+    m_errors, _ = midia.validate(m_rows, m_vehicles)
+    if m_errors:
+        errors += [f"midia.xlsx: {e}" for e in m_errors]
+    elif midia.build(m_rows, m_vehicles, dry=True)[1]:
+        errors.append("index.html desatualizado em relação à data/midia.xlsx: rode python3 scripts/midia.py build antes")
+    subject = subject_of(cfg, ctx)
+    if subject:
+        cfg["pessoa"]["subjectOf"] = subject
 
     doc = rewrite_links(src, routes)
     if not SEO_RE.search(doc):
@@ -480,6 +527,10 @@ def render(cfg):
         pub = ctx["_portfolio"][1]
         # nomes das empresas vêm da planilha e não se traduzem
         names = {x.strip() for r in pub for x in (r["nome"], r["nome_exibido"], r["logo_texto"], *r["logo_alt"].split(";"))}
+        # veículos e títulos das matérias ficam como publicados; datas e total da mídia saem dos dados
+        m_pub = midia.published(m_rows)
+        names |= midia.keep_names(m_pub, m_vehicles)
+        cfg["en"]["textos"].update(midia.en_textos(m_pub))
         t = Dicionario(cfg["en"], names - {""})
         t.total = str(len([r for r in pub if r["nome"] not in cfg["en"]["remover_empresas"]]))
         ctx["_t"] = t
