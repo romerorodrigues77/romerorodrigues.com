@@ -1,6 +1,7 @@
 # romerorodrigues.com
 
-Site estático em um único `index.html` (rotas por hash), publicado no Azure Static Web Apps a partir da raiz do repositório.
+Site estático publicado no Azure Static Web Apps a partir da raiz do repositório. O `index.html` é o arquivo de autoria;
+as páginas publicadas são geradas por `scripts/pages.py` (ver abaixo).
 
 ## Portfólio
 
@@ -12,6 +13,24 @@ Não edite os cards do portfólio direto no `index.html`: edite a planilha e rod
 
 `build` reescreve só esses blocos gerados. Logos ficam em `assets/img/logos/` com o nome da empresa (ex.: `pismo.png`) e a planilha guarda o nome do arquivo.
 Se o HTML do portfólio foi alterado à mão, `export --force` recria a planilha a partir dele (sobrescreve edições da planilha).
+
+### Logo novo ou trocado
+
+O site não serve o PNG: serve o WebP gerado a partir dele em `assets/img/logos/web/`. Para cada logo que entra ou muda:
+
+1. Salve o PNG em `assets/img/logos/` com o nome da empresa (ex.: `nova-empresa.png`), fundo transparente.
+2. Ponha o nome do arquivo na coluna Logo da planilha.
+3. Gere o WebP e reconstrua:
+
+       python3 scripts/imagens.py logos     # gera assets/img/logos/web/nova-empresa.webp (precisa do Pillow)
+       python3 scripts/portfolio.py build
+       python3 scripts/pages.py build
+
+4. Commite o PNG **e** o WebP.
+
+Se o WebP faltar, o `portfolio.py` avisa (`aviso: nova-empresa.png sem WebP`) e usa o PNG: nada quebra, só fica mais pesado.
+Trocando o logo de uma empresa que já existe, use um nome de arquivo novo (ex.: `pismo-2026.png`) e atualize a planilha:
+os logos têm cache de 1 semana, e com o mesmo nome quem já visitou o site pode continuar vendo o antigo.
 
 ## Páginas reais e SEO
 
@@ -33,7 +52,8 @@ views, com `data/en.json` (traduções frase a frase, o que manter, o que remove
 da XP sai. Mudou ou entrou texto em português? `pages.py check` acusa a tradução que falta; acrescente em `data/en.json`.
 
 Toda `<img>` precisa de `width` e `height` reais (`pages.py check` acusa). Nos logos do portfólio o `portfolio.py` já põe.
-Favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow + Google Chrome); rode só quando mudar a foto ou o texto.
+Logos, fotos em WebP, favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow; a imagem OG também precisa do
+Google Chrome). Sem argumento gera tudo; `logos`, `fotos`, `icones` ou `og` geram só a etapa pedida.
 
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`

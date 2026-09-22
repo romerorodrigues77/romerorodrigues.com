@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Favicon e imagem Open Graph, gerados a partir das fotos e da fonte do site.
 
-    python3 scripts/imagens.py
+    python3 scripts/imagens.py           # tudo
+    python3 scripts/imagens.py logos     # só os logos (logo novo ou trocado; não precisa do Chrome)
+    python3 scripts/imagens.py fotos     # também: icones, og
 
-Rode só quando mudar a foto, o texto ou o visual; o resultado é commitado.
+Rode quando entrar ou mudar um logo, uma foto, o texto ou o visual; o resultado é commitado.
 Precisa de Pillow e do Google Chrome instalado (a imagem Open Graph é uma página
 HTML com a fonte e as cores do site, fotografada pelo Chrome em modo headless).
 Não faz parte do build do site.
@@ -138,12 +140,15 @@ def og():
 
 
 def main():
-    logos()
-    fotos()
-    icones()
-    og()
+    etapas = {"logos": logos, "fotos": fotos, "icones": icones, "og": og}
+    pedidas = sys.argv[1:] or list(etapas)
+    for nome in pedidas:
+        if nome not in etapas:
+            sys.exit(f"etapa desconhecida: {nome}. Use: {', '.join(etapas)}")
+        etapas[nome]()
     for p in ("favicon.ico", "assets/img/icon/icon-192.png", "assets/img/icon/apple-touch-icon.png", OG_PATH):
-        print(f"{p}  {os.path.getsize(path(p)) // 1024} KB")
+        if ("icones" in pedidas and "og" not in p) or ("og" in pedidas and "og" in p):
+            print(f"{p}  {os.path.getsize(path(p)) // 1024} KB")
 
 
 if __name__ == "__main__":

@@ -129,7 +129,7 @@ def logo_img(filename, alt, extra=""):
     if os.path.exists(webp):
         src, (w, h) = f"{LOGO_SRC}web/{os.path.basename(webp)}", webp_size(webp)
     else:
-        print(f"aviso: {filename} sem WebP, usando o PNG (rode python3 scripts/imagens.py)")
+        print(f"aviso: {filename} sem WebP, usando o PNG (rode python3 scripts/imagens.py logos)")
         src, (w, h) = f"{LOGO_SRC}{filename}", png_size(filename)
     return f'<img src="{esc(src)}" alt="{esc(alt)}" width="{w}" height="{h}"{extra}>'
 
