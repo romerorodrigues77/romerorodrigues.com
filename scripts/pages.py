@@ -134,13 +134,16 @@ def fill(s, ctx):
 
 
 def ga4(med, base):
+    """Tag do GA4, carregada só no domínio publicado (preview e localhost não contam visita)."""
     tag = med.get("ga4")
     if not tag:
         return []
+    host = base.split("//", 1)[1]
     return [
-        f'<script async src="https://www.googletagmanager.com/gtag/js?id={esc(tag)}"></script>',
-        '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-        f'gtag("js",new Date());gtag("config","{esc(tag)}");</script>',
+        f'<script>(function(){{if(location.hostname!=="{host}")return;var s=document.createElement("script");s.async=true;'
+        f's.src="https://www.googletagmanager.com/gtag/js?id={esc(tag)}";document.head.appendChild(s);'
+        'window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
+        f'gtag("js",new Date());gtag("config","{esc(tag)}");}})();</script>',
     ]
 
 
