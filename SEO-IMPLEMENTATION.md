@@ -281,7 +281,11 @@ Notas de execução da Fase 2:
   (`assets/img/og/romero-rodrigues.jpg`). Favicon: recorte redondo do retrato.
   Os dois saem de `scripts/imagens.py` (Pillow + Chrome headless, fora do build).
 - Versão em inglês: rascunho traduzido por Claude num PR separado, para revisão
-  do Romero frase a frase antes do merge.
+  do Romero frase a frase antes do merge. `/en/*` sai das mesmas views do
+  `index.html` via `data/en.json`; hreflang recíproco + `x-default` (PT) e link
+  de idioma no rodapé. Números em inglês seguem as bios EN oficiais (US$ 516M na
+  Headline Brazil). Saem do EN: card XP em "Onde atuo", marco de 2022, card
+  XP Inc. do portfólio (total 123), bios PT do press kit, menções à XP.
 
 Tarefas fora do repositório, em paralelo (não são do Claude Code):
 

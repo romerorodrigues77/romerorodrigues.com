@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- gerado por scripts/pages.py — não edite à mão -->
-<!-- impressões: home.html=a3e4d7bb8b6b trajetoria.html=0b1d779a7292 portfolio.html=c65d59b98db6 sobre.html=f182c1f6a0a4 links.html=d155a77f835c -->
+<!-- impressões: home.html=8ba286bd2c32 trajetoria.html=902f81d65087 portfolio.html=e2ffc6218d34 sobre.html=904789f525b7 links.html=261ca130bd5b en/home.html=0c7bb6f4af22 en/journey.html=538dfb40afb6 en/portfolio.html=d4772a5dee29 en/about.html=89726d251ef4 en/links.html=ea60a6554e0a -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://romerorodrigues.com/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://romerorodrigues.com/trajetoria</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://romerorodrigues.com/portfolio</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://romerorodrigues.com/sobre</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://romerorodrigues.com/links</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/journey</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/portfolio</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/about</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/links</loc><lastmod>2026-09-21</lastmod></url>
 </urlset>
