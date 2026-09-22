@@ -171,6 +171,7 @@ def with_head(head, title, seo, route=None):
         head = sub_once(HTML_TAG_RE, f'<html lang="pt-BR" data-route="{route}">', head, '<html lang="pt-BR">')
         head = head.replace("<!doctype html>\n", "<!doctype html>\n" + GENERATED + "\n", 1)
         head = head.replace('url("assets/', 'url("/assets/')
+        head = head.replace('href="assets/', 'href="/assets/')
     return head
 
 
@@ -248,6 +249,10 @@ def render(cfg):
         h1 = len(re.findall(r"<h1[\s>]", views[route]))
         if h1 != 1:
             errors.append(f"/{route}: {h1} <h1> (deveria ser 1)")
+        loose = [re.search(r'src="([^"]*)"', i).group(1) for i in re.findall(r"<img [^>]*>", views[route])
+                 if " width=" not in i or " height=" not in i]
+        if loose:
+            errors.append(f"/{route}: {len(loose)} <img> sem width/height: {', '.join(sorted(set(loose))[:5])}")
         left = sorted(set(re.findall(r'href="(#/[^"]*)"', page)))
         if left:
             errors.append(f"/{route}: links por hash que não sei reescrever: {', '.join(left)}")
