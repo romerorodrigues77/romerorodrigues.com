@@ -11,8 +11,7 @@
 <title>Página não encontrada · Romero Rodrigues</title>
 <!-- SEO:START -->
 <meta name="robots" content="noindex">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1B9M6H97C7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-1B9M6H97C7");</script>
+<script>(function(){if(location.hostname!=="romerorodrigues.com")return;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-1B9M6H97C7";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());gtag("config","G-1B9M6H97C7");})();</script>
 <!-- SEO:END -->
 <style>/* Romero Rodrigues — site pessoal v1 */
 @font-face {
@@ -297,7 +296,7 @@ a.tomb:hover, .tomb:has(a.tomb-site):hover { border-color: var(--ink); }
 /* Links page */
 .links-page { max-width: 560px; margin: 0 auto; padding: calc(40px + env(safe-area-inset-top, 0px)) 20px 48px; }
 .links-head { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-.links-head img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; filter: grayscale(1); }
+.links-head img { width: 72px; height: 72px; flex-shrink: 0; border-radius: 50%; object-fit: cover; object-position: 50% 20%; filter: grayscale(1); }
 .links-head h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
 .links-head p { font-size: 14px; color: var(--mute); }
 .link-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
