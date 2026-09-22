@@ -262,7 +262,7 @@ Só começa com a Fase 1 em produção e indexando.
       `font-display: swap` no `@font-face`. Hoje a fonte leva 3,0 s.
 - [x] **Favicon declarado.** Não há nenhum `<link rel="icon">` no site.
 - [x] **Imagens Open Graph 1200x630**, uma por rota, em `assets/img/og/`.
-- [ ] **Versão em inglês** em `/en/*` com hreflang recíproco mais `x-default`.
+- [x] **Versão em inglês** em `/en/*` com hreflang recíproco mais `x-default`.
       Decisão editorial já tomada: a versão EN mostra só a Headline, a PT mostra
       Headline e XP. As bios em inglês já existem no press kit do `/sobre`.
       Reciprocidade é obrigatória, senão o Google ignora as duas direções.
@@ -305,9 +305,24 @@ Tarefas fora do repositório, em paralelo (não são do Claude Code):
       gere conteúdo: isso é exatamente o "scaled content abuse" que derruba
       domínio inteiro em core update.
 - [ ] `/ideias` listando os posts do Substack com título, data e resumo
-- [ ] Converter os 101 logos de PNG para WebP, com fallback
-- [ ] Reduzir as 5 fotos grandes em `assets/img` (a maior tem 724 KB)
+- [x] Converter os 101 logos de PNG para WebP, com fallback
+- [x] Reduzir as 5 fotos grandes em `assets/img` (a maior tem 724 KB)
 - [ ] Investigar o TTFB de 1,1 s no Azure
+
+Notas de execução da Fase 3 (PR #4):
+
+- Páginas por empresa: **descartado** pelo Romero.
+- `/ideias` e TTFB: não feitos. `/ideias` exigiria rodar um script (ou agendar
+  uma Action) a cada post; o TTFB (0,7–0,8 s) é do plano Free em Central US e
+  só cai com CDN na frente ou troca de plano.
+- Logos: WebP em `assets/img/logos/web/`, até 88 px de altura (1365 → 434 KB);
+  sem `<picture>`, o `portfolio.py` aponta direto para o WebP e cai no PNG se
+  faltar. Fotos: WebP 480/960 com `srcset`; "Baixar" segue no JPG original.
+- Também no PR #4: cache longo para fonte e imagens, GA4 só no domínio
+  publicado, avatar do `/links` corrigido, `llms.txt` com as páginas EN e a
+  correção do job que fecha os previews do Azure.
+- Decisões do Romero: R$ 2,0 bi fica no PT e o valor em dólar no EN; o title
+  da Trajetória fica "de 1998 a hoje".
 
 ---
 
