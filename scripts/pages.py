@@ -27,6 +27,7 @@ import json
 import os
 import re
 import sys
+import warnings
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML_PATH = os.path.join(ROOT, "index.html")
@@ -113,7 +114,8 @@ def og_image(cfg, rota):
 
 def fill(s, ctx):
     for k, v in ctx.items():
-        s = s.replace("{" + k + "}", v)
+        if isinstance(v, str):
+            s = s.replace("{" + k + "}", v)
     return s
 
 
@@ -157,10 +159,56 @@ def seo_block(cfg, route, ctx):
             lines.append(f'<meta name="msvalidate.01" content="{esc(med["bing_site_verification"])}">')
     lines += ga4(med)
     person = json.loads(fill(json.dumps(cfg["pessoa"], ensure_ascii=False), ctx))
-    ld = json.dumps(person, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    lines.append(f'<script type="application/ld+json">{ld}</script>')
+    lines.append(ld_script(person))
+    lines += [ld_script(x) for x in extra_ld(cfg, route, ctx)]
     lines.append("<!-- SEO:END -->")
     return "\n".join(lines)
+
+
+def ld_script(data):
+    ld = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{ld}</script>'
+
+
+def portfolio_rows():
+    """Empresas publicadas, lidas da planilha pelo portfolio.py, na ordem dos cards."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")  # openpyxl avisa sobre validação de dados da planilha
+        import portfolio
+        return portfolio, portfolio.published(portfolio.read_xlsx(portfolio.XLSX_PATH))
+
+
+def extra_ld(cfg, route, ctx):
+    """JSON-LD além do Person: WebSite na home, ProfilePage no sobre, ItemList no portfólio."""
+    base = cfg["base"]
+    person = {"@id": cfg["pessoa"]["@id"]}
+    website = {"@id": f"{base}/#website"}
+    if route == "":
+        return [{"@context": "https://schema.org", "@type": "WebSite", **website, "url": f"{base}/",
+                 "name": "Romero Rodrigues", "inLanguage": "pt-BR", "publisher": person}]
+    rota = cfg["rotas"][route]
+    url = base + rota["url"]
+    if route == "sobre":
+        return [{"@context": "https://schema.org", "@type": "ProfilePage", "@id": f"{url}#pagina", "url": url,
+                 "name": fill(rota["title"], ctx), "inLanguage": "pt-BR", "isPartOf": website,
+                 "mainEntity": person, "about": person}]
+    if route == "portfolio":
+        portfolio, pub = ctx["_portfolio"]
+        items = []
+        for i, r in enumerate(pub, 1):
+            desc = f"Relação de Romero Rodrigues: {portfolio.card_label(r)}"
+            desc += f", desde {r['ano']}." if r["ano"] else "."
+            desc += "".join(f" {x}." for x in (r["nota"], r["status"]) if x)
+            org = {"@type": "Organization", "name": r["nome"]}
+            if r["site"]:
+                org["url"] = r["site"]
+            org["description"] = desc
+            items.append({"@type": "ListItem", "position": i, "item": org})
+        return [{"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#empresas",
+                 "name": "Empresas do portfólio de Romero Rodrigues", "numberOfItems": len(items),
+                 "itemListOrder": "https://schema.org/ItemListOrderAscending", "itemListElement": items}]
+    return []
 
 
 def with_head(head, title, seo, route=None):
@@ -228,6 +276,10 @@ def render(cfg):
     if not total:
         fail("não encontrei o total de empresas (<p class=\"lede\">N empresas.) — rode o portfolio.py build")
     ctx = {"total": total.group(1), "og_home": og_image(cfg, cfg["rotas"][""])}
+    ctx["_portfolio"] = portfolio_rows()
+    if str(len(ctx["_portfolio"][1])) != ctx["total"]:
+        errors.append(f"planilha tem {len(ctx['_portfolio'][1])} empresas publicadas e o index.html mostra "
+                      f"{ctx['total']}: rode python3 scripts/portfolio.py build antes")
 
     doc = rewrite_links(src, routes)
     if not SEO_RE.search(doc):
