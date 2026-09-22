@@ -50,7 +50,9 @@
     { "rota": "", "tag": "div", "contendo": "data-year=\"2022\"", "trocar_por": "<div class=\"tick\" aria-hidden=\"true\"></div>" },
     { "rota": "trajetoria", "tag": "li", "contendo": "data-name=\"Sócio da XP\"" },
     { "rota": "sobre", "tag": "article", "contendo": "data-copy=\"bio-pt_curta\"" },
-    { "rota": "sobre", "tag": "article", "contendo": "data-copy=\"bio-pt_mini\"" }
+    { "rota": "sobre", "tag": "article", "contendo": "data-copy=\"bio-pt_mini\"" },
+    { "rota": "", "tag": "li", "contendo": "href=\"https://neofeed.com.br/insiders/artigo-o-maior-ipo-da-historia-ja-tinha-424-anos/\"", "trocar_por": "<li><a class=\"row\" href=\"https://romerorodrigues.substack.com/p/the-biggest-ipo-in-history-is-424\" target=\"_blank\" rel=\"noopener\"><span class=\"src\">Substack</span><span class=\"ttl\">The Biggest IPO in History Is 424 Years Old</span><span class=\"go\">Ler</span></a></li>" },
+    { "rota": "", "tag": "li", "contendo": "href=\"https://neofeed.com.br/insiders/o-efeito-porsche-930-da-ia-por-que-o-impacto-ainda-nao-apareceu-e-esta-prestes-a-explodir\"", "trocar_por": "<li><a class=\"row\" href=\"https://romerorodrigues.substack.com/p/the-widowmaker\" target=\"_blank\" rel=\"noopener\"><span class=\"src\">Substack</span><span class=\"ttl\">The Widowmaker</span><span class=\"go\">Ler</span></a></li>" }
   ],
   "remover_marcos": ["Sócio da XP"],
   "remover_empresas": ["XP Inc."],
@@ -65,6 +67,10 @@
     "On Top of the Headline", "Press kit", "Vertical", "Português",
     "Links · Romero Rodrigues", "Managing Partner.", "Venture capital", "VC", "Holding",
     "Local to Global Fintech Innovation: Celebrating Pismo’s $1B Acquisition by Visa",
+    "O maior IPO da história já tinha 424 anos",
+    "The Biggest IPO in History Is 424 Years Old",
+    "The Widowmaker",
+    "Brazil’s fintech boom offers new vertical opportunities for investors",
     "Fiibo: Investing in Accessible Health & Wellness in Brazil",
     "From Silicon Valley to Rio: Our Global Approach to Investing",
     "O efeito Porsche 930 da IA: por que o impacto ainda não apareceu e está prestes a explodir",
