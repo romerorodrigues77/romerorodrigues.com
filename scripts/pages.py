@@ -106,10 +106,24 @@ def split(doc):
 # ---------------------------------------------------------------- <head>
 
 def og_image(cfg, rota):
-    path = rota.get("og") or ""
-    if not path or not os.path.exists(os.path.join(ROOT, path.lstrip("/"))):
+    """URL absoluta da imagem Open Graph da rota ("og" em data/pages.json, senão og_padrao)."""
+    path = rota.get("og") or cfg["og_padrao"]
+    if not os.path.exists(os.path.join(ROOT, path.lstrip("/"))):
         path = cfg["og_padrao"]
     return cfg["base"] + path
+
+
+def og_size(url, cfg):
+    """(largura, altura) de um JPEG, lidas do marcador SOF, sem dependência."""
+    with open(os.path.join(ROOT, url[len(cfg["base"]):].lstrip("/")), "rb") as f:
+        data = f.read()
+    i = 2
+    while i + 9 < len(data) and data[:2] == b"\xff\xd8":
+        marker, length = data[i + 1], int.from_bytes(data[i + 2:i + 4], "big")
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + length
+    return None
 
 
 def fill(s, ctx):
@@ -137,6 +151,7 @@ def seo_block(cfg, route, ctx):
     title = fill(rota["title"], ctx)
     desc = fill(rota["description"], ctx)
     img = og_image(cfg, rota)
+    size = og_size(img, cfg)
     lines = [
         "<!-- SEO:START -->",
         f'<meta name="description" content="{esc(desc)}">',
@@ -148,6 +163,8 @@ def seo_block(cfg, route, ctx):
         f'<meta property="og:title" content="{esc(title)}">',
         f'<meta property="og:description" content="{esc(desc)}">',
         f'<meta property="og:image" content="{esc(img)}">',
+        *([f'<meta property="og:image:width" content="{size[0]}">',
+           f'<meta property="og:image:height" content="{size[1]}">'] if size else []),
         '<meta property="og:image:alt" content="Romero Rodrigues">',
         '<meta name="twitter:card" content="summary_large_image">',
         '<meta name="twitter:site" content="@romerorodrigues">',
@@ -328,9 +345,9 @@ def main():
     if errors:
         sys.exit(f"{len(errors)} erro(s). Nada foi alterado.")
 
-    missing = [r["og"] for r in cfg["rotas"].values() if not os.path.exists(os.path.join(ROOT, r["og"].lstrip("/")))]
-    if missing:
-        print(f"aviso: {len(missing)} imagem(ns) Open Graph não existe(m) ainda; usando {cfg['og_padrao']}")
+    for og in {r.get("og") or cfg["og_padrao"] for r in cfg["rotas"].values()}:
+        if not os.path.exists(os.path.join(ROOT, og.lstrip("/"))):
+            print(f"aviso: imagem Open Graph {og} não existe")
     stale = [p for p, text in out.items() if read(p) != text]
     names = ", ".join(os.path.relpath(p, ROOT) for p in stale)
     if a.cmd == "check":
