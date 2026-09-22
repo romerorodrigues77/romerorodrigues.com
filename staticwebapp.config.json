@@ -13,7 +13,6 @@
     { "route": "/links", "rewrite": "/links.html" },
 
     { "route": "/en", "rewrite": "/en/home.html" },
-    { "route": "/en/", "rewrite": "/en/home.html" },
     { "route": "/en/journey", "rewrite": "/en/journey.html" },
     { "route": "/en/portfolio", "rewrite": "/en/portfolio.html" },
     { "route": "/en/about", "rewrite": "/en/about.html" },
