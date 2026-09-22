@@ -133,7 +133,7 @@ def fill(s, ctx):
     return s
 
 
-def ga4(med):
+def ga4(med, base):
     tag = med.get("ga4")
     if not tag:
         return []
@@ -193,7 +193,7 @@ def seo_block(cfg, route, ctx, lang="pt"):
             lines.append(f'<meta name="google-site-verification" content="{esc(med["google_site_verification"])}">')
         if med.get("bing_site_verification"):
             lines.append(f'<meta name="msvalidate.01" content="{esc(med["bing_site_verification"])}">')
-    lines += ga4(med)
+    lines += ga4(med, cfg["base"])
     person = cfg["pessoa"] if lang == "pt" else {**cfg["pessoa"], **cfg["en"]["pessoa"]}
     person = json.loads(fill(json.dumps(person, ensure_ascii=False), ctx))
     lines.append(ld_script(person))
@@ -273,7 +273,9 @@ def with_head(head, title, seo, route=None):
 def standalone(head, view, tail):
     m = VIEW_RE.match(view)
     view = m.group(0).replace(" hidden>", ">") + view[m.end():]
-    return head + view.replace('src="assets/', 'src="/assets/') + tail
+    view = view.replace('src="assets/', 'src="/assets/')
+    view = re.sub(r'srcset="([^"]*)"', lambda m: 'srcset="' + re.sub(r"(^|, )assets/", r"\1/assets/", m.group(1)) + '"', view)
+    return head + view + tail
 
 
 def notfound(head, home_view, tail, cfg):
@@ -282,7 +284,7 @@ def notfound(head, home_view, tail, cfg):
     if not header or not footer:
         fail("não encontrei o header/footer na view da home")
     seo = "\n".join(["<!-- SEO:START -->", '<meta name="robots" content="noindex">',
-                     *ga4(cfg.get("medicao", {})), "<!-- SEO:END -->"])
+                     *ga4(cfg.get("medicao", {}), cfg["base"]), "<!-- SEO:END -->"])
     head = with_head(head, NOTFOUND_TITLE, seo, route="404")
     view = f'<div class="view" data-route="404" data-title="{esc(NOTFOUND_TITLE)}">{header.group(0)}{NOTFOUND_MAIN}{footer.group(0)}</div>'
     return head + view + tail

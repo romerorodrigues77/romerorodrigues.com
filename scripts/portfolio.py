@@ -110,9 +110,28 @@ def png_size(filename):
     return int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")
 
 
+def webp_size(path):
+    """(largura, altura) de um WebP (VP8, VP8L ou VP8X), sem dependência."""
+    with open(path, "rb") as f:
+        d = f.read(30)
+    kind = d[12:16]
+    if kind == b"VP8X":
+        return 1 + int.from_bytes(d[24:27], "little"), 1 + int.from_bytes(d[27:30], "little")
+    if kind == b"VP8L":
+        b = int.from_bytes(d[21:25], "little")
+        return 1 + (b & 0x3FFF), 1 + ((b >> 14) & 0x3FFF)
+    return int.from_bytes(d[26:28], "little") & 0x3FFF, int.from_bytes(d[28:30], "little") & 0x3FFF
+
+
 def logo_img(filename, alt, extra=""):
-    w, h = png_size(filename)
-    return f'<img src="{LOGO_SRC}{esc(filename)}" alt="{esc(alt)}" width="{w}" height="{h}"{extra}>'
+    """<img> do logo: a versão WebP gerada por scripts/imagens.py, ou o PNG se ela não existir."""
+    webp = os.path.join(LOGO_DIR, "web", os.path.splitext(filename)[0] + ".webp")
+    if os.path.exists(webp):
+        src, (w, h) = f"{LOGO_SRC}web/{os.path.basename(webp)}", webp_size(webp)
+    else:
+        print(f"aviso: {filename} sem WebP, usando o PNG (rode python3 scripts/imagens.py)")
+        src, (w, h) = f"{LOGO_SRC}{filename}", png_size(filename)
+    return f'<img src="{esc(src)}" alt="{esc(alt)}" width="{w}" height="{h}"{extra}>'
 
 
 # ---------------------------------------------------------------- planilha -> dados
@@ -296,7 +315,8 @@ def parse_html():
         cats = g(r'data-cats="([^"]*)"', it).split()
         shown = g(r'class="tomb-name">(.*?)<', it)
         rels = [html.unescape(x) for x in re.findall(r'class="tomb-rel">(.*?)<', it)]
-        imgs = [(html.unescape(a), html.unescape(b)) for a, b in re.findall(r'<img src="assets/img/(?:logos/)?([^"]+)" alt="([^"]*)"', it)]
+        imgs = [(re.sub(r"^web/(.+)\.webp$", r"\1.png", html.unescape(a)), html.unescape(b))
+                for a, b in re.findall(r'<img src="assets/img/(?:logos/)?([^"]+)" alt="([^"]*)"', it)]
         word = g(r'class="tomb-word"[^>]*>(.*?)<', it)
         alts = [b for _, b in imgs]
         r = {k: "" for k in KEYS}

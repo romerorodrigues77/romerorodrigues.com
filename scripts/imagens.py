@@ -9,6 +9,9 @@ HTML com a fonte e as cores do site, fotografada pelo Chrome em modo headless).
 Não faz parte do build do site.
 
 Gera:
+    assets/img/logos/web/<nome>.webp     logos em WebP, até 88 px de altura (2x os 44 px do card)
+    assets/img/web/<foto>-480.webp       fotos em WebP para exibição (480 e 960 px de largura);
+    assets/img/web/<foto>-960.webp       os JPG originais continuam nos links "Baixar"
     favicon.ico                          16, 32 e 48 px, recorte redondo do retrato
     assets/img/icon/icon-192.png         recorte redondo, fundo transparente
     assets/img/icon/apple-touch-icon.png 180 px, quadrado (o iOS arredonda)
@@ -28,6 +31,11 @@ except ImportError:
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
+LOGOS = "assets/img/logos"
+LOGO_ALTURA = 88
+FOTOS = ["assets/img/3f0319f5f2.jpg", "assets/img/0de76816e4.jpg", "assets/img/44ad558712.jpg",
+         "assets/img/4e81b16db7.jpg", "assets/img/01ca4a711b.jpg"]
+FOTO_LARGURAS = (480, 960)
 RETRATO = "assets/img/44ad558712.jpg"
 RETRATO_ROSTO = (42, 50, 482, 490)  # quadrado do topo da cabeça ao queixo
 FOTO_OG = "assets/img/3f0319f5f2.jpg"
@@ -69,6 +77,35 @@ def rosto(size, redondo):
     return img
 
 
+def logos():
+    out = path(f"{LOGOS}/web")
+    os.makedirs(out, exist_ok=True)
+    antes = depois = 0
+    for f in sorted(os.listdir(path(LOGOS))):
+        if not f.endswith(".png"):
+            continue
+        img = Image.open(path(f"{LOGOS}/{f}")).convert("RGBA")
+        if img.height > LOGO_ALTURA:
+            img = img.resize((round(img.width * LOGO_ALTURA / img.height), LOGO_ALTURA), Image.LANCZOS)
+        dest = os.path.join(out, f[:-4] + ".webp")
+        img.save(dest, "WEBP", quality=90, method=6)
+        antes += os.path.getsize(path(f"{LOGOS}/{f}"))
+        depois += os.path.getsize(dest)
+    print(f"logos: {antes // 1024} KB em PNG -> {depois // 1024} KB em WebP")
+
+
+def fotos():
+    os.makedirs(path("assets/img/web"), exist_ok=True)
+    for foto in FOTOS:
+        img = ImageOps.exif_transpose(Image.open(path(foto))).convert("RGB")
+        nome = os.path.basename(foto)[:-4]
+        for w in FOTO_LARGURAS:
+            im = img if img.width <= w else img.resize((w, round(img.height * w / img.width)), Image.LANCZOS)
+            im.save(path(f"assets/img/web/{nome}-{w}.webp"), "WEBP", quality=80, method=6)
+        print(f"{foto}: {os.path.getsize(path(foto)) // 1024} KB -> "
+              + ", ".join(f"{w}px {os.path.getsize(path(f'assets/img/web/{nome}-{w}.webp')) // 1024} KB" for w in FOTO_LARGURAS))
+
+
 def icones():
     os.makedirs(path("assets/img/icon"), exist_ok=True)
     rosto(48, True).save(path("favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)])
@@ -101,6 +138,8 @@ def og():
 
 
 def main():
+    logos()
+    fotos()
     icones()
     og()
     for p in ("favicon.ico", "assets/img/icon/icon-192.png", "assets/img/icon/apple-touch-icon.png", OG_PATH):
