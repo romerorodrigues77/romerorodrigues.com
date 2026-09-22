@@ -27,6 +27,7 @@ import json
 import os
 import re
 import sys
+import warnings
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML_PATH = os.path.join(ROOT, "index.html")
@@ -105,15 +106,30 @@ def split(doc):
 # ---------------------------------------------------------------- <head>
 
 def og_image(cfg, rota):
-    path = rota.get("og") or ""
-    if not path or not os.path.exists(os.path.join(ROOT, path.lstrip("/"))):
+    """URL absoluta da imagem Open Graph da rota ("og" em data/pages.json, senão og_padrao)."""
+    path = rota.get("og") or cfg["og_padrao"]
+    if not os.path.exists(os.path.join(ROOT, path.lstrip("/"))):
         path = cfg["og_padrao"]
     return cfg["base"] + path
 
 
+def og_size(url, cfg):
+    """(largura, altura) de um JPEG, lidas do marcador SOF, sem dependência."""
+    with open(os.path.join(ROOT, url[len(cfg["base"]):].lstrip("/")), "rb") as f:
+        data = f.read()
+    i = 2
+    while i + 9 < len(data) and data[:2] == b"\xff\xd8":
+        marker, length = data[i + 1], int.from_bytes(data[i + 2:i + 4], "big")
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + length
+    return None
+
+
 def fill(s, ctx):
     for k, v in ctx.items():
-        s = s.replace("{" + k + "}", v)
+        if isinstance(v, str):
+            s = s.replace("{" + k + "}", v)
     return s
 
 
@@ -135,6 +151,7 @@ def seo_block(cfg, route, ctx):
     title = fill(rota["title"], ctx)
     desc = fill(rota["description"], ctx)
     img = og_image(cfg, rota)
+    size = og_size(img, cfg)
     lines = [
         "<!-- SEO:START -->",
         f'<meta name="description" content="{esc(desc)}">',
@@ -146,6 +163,8 @@ def seo_block(cfg, route, ctx):
         f'<meta property="og:title" content="{esc(title)}">',
         f'<meta property="og:description" content="{esc(desc)}">',
         f'<meta property="og:image" content="{esc(img)}">',
+        *([f'<meta property="og:image:width" content="{size[0]}">',
+           f'<meta property="og:image:height" content="{size[1]}">'] if size else []),
         '<meta property="og:image:alt" content="Romero Rodrigues">',
         '<meta name="twitter:card" content="summary_large_image">',
         '<meta name="twitter:site" content="@romerorodrigues">',
@@ -157,10 +176,56 @@ def seo_block(cfg, route, ctx):
             lines.append(f'<meta name="msvalidate.01" content="{esc(med["bing_site_verification"])}">')
     lines += ga4(med)
     person = json.loads(fill(json.dumps(cfg["pessoa"], ensure_ascii=False), ctx))
-    ld = json.dumps(person, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    lines.append(f'<script type="application/ld+json">{ld}</script>')
+    lines.append(ld_script(person))
+    lines += [ld_script(x) for x in extra_ld(cfg, route, ctx)]
     lines.append("<!-- SEO:END -->")
     return "\n".join(lines)
+
+
+def ld_script(data):
+    ld = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{ld}</script>'
+
+
+def portfolio_rows():
+    """Empresas publicadas, lidas da planilha pelo portfolio.py, na ordem dos cards."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")  # openpyxl avisa sobre validação de dados da planilha
+        import portfolio
+        return portfolio, portfolio.published(portfolio.read_xlsx(portfolio.XLSX_PATH))
+
+
+def extra_ld(cfg, route, ctx):
+    """JSON-LD além do Person: WebSite na home, ProfilePage no sobre, ItemList no portfólio."""
+    base = cfg["base"]
+    person = {"@id": cfg["pessoa"]["@id"]}
+    website = {"@id": f"{base}/#website"}
+    if route == "":
+        return [{"@context": "https://schema.org", "@type": "WebSite", **website, "url": f"{base}/",
+                 "name": "Romero Rodrigues", "inLanguage": "pt-BR", "publisher": person}]
+    rota = cfg["rotas"][route]
+    url = base + rota["url"]
+    if route == "sobre":
+        return [{"@context": "https://schema.org", "@type": "ProfilePage", "@id": f"{url}#pagina", "url": url,
+                 "name": fill(rota["title"], ctx), "inLanguage": "pt-BR", "isPartOf": website,
+                 "mainEntity": person, "about": person}]
+    if route == "portfolio":
+        portfolio, pub = ctx["_portfolio"]
+        items = []
+        for i, r in enumerate(pub, 1):
+            desc = f"Relação de Romero Rodrigues: {portfolio.card_label(r)}"
+            desc += f", desde {r['ano']}." if r["ano"] else "."
+            desc += "".join(f" {x}." for x in (r["nota"], r["status"]) if x)
+            org = {"@type": "Organization", "name": r["nome"]}
+            if r["site"]:
+                org["url"] = r["site"]
+            org["description"] = desc
+            items.append({"@type": "ListItem", "position": i, "item": org})
+        return [{"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#empresas",
+                 "name": "Empresas do portfólio de Romero Rodrigues", "numberOfItems": len(items),
+                 "itemListOrder": "https://schema.org/ItemListOrderAscending", "itemListElement": items}]
+    return []
 
 
 def with_head(head, title, seo, route=None):
@@ -171,6 +236,7 @@ def with_head(head, title, seo, route=None):
         head = sub_once(HTML_TAG_RE, f'<html lang="pt-BR" data-route="{route}">', head, '<html lang="pt-BR">')
         head = head.replace("<!doctype html>\n", "<!doctype html>\n" + GENERATED + "\n", 1)
         head = head.replace('url("assets/', 'url("/assets/')
+        head = head.replace('href="assets/', 'href="/assets/')
     return head
 
 
@@ -227,6 +293,10 @@ def render(cfg):
     if not total:
         fail("não encontrei o total de empresas (<p class=\"lede\">N empresas.) — rode o portfolio.py build")
     ctx = {"total": total.group(1), "og_home": og_image(cfg, cfg["rotas"][""])}
+    ctx["_portfolio"] = portfolio_rows()
+    if str(len(ctx["_portfolio"][1])) != ctx["total"]:
+        errors.append(f"planilha tem {len(ctx['_portfolio'][1])} empresas publicadas e o index.html mostra "
+                      f"{ctx['total']}: rode python3 scripts/portfolio.py build antes")
 
     doc = rewrite_links(src, routes)
     if not SEO_RE.search(doc):
@@ -248,6 +318,10 @@ def render(cfg):
         h1 = len(re.findall(r"<h1[\s>]", views[route]))
         if h1 != 1:
             errors.append(f"/{route}: {h1} <h1> (deveria ser 1)")
+        loose = [re.search(r'src="([^"]*)"', i).group(1) for i in re.findall(r"<img [^>]*>", views[route])
+                 if " width=" not in i or " height=" not in i]
+        if loose:
+            errors.append(f"/{route}: {len(loose)} <img> sem width/height: {', '.join(sorted(set(loose))[:5])}")
         left = sorted(set(re.findall(r'href="(#/[^"]*)"', page)))
         if left:
             errors.append(f"/{route}: links por hash que não sei reescrever: {', '.join(left)}")
@@ -271,9 +345,9 @@ def main():
     if errors:
         sys.exit(f"{len(errors)} erro(s). Nada foi alterado.")
 
-    missing = [r["og"] for r in cfg["rotas"].values() if not os.path.exists(os.path.join(ROOT, r["og"].lstrip("/")))]
-    if missing:
-        print(f"aviso: {len(missing)} imagem(ns) Open Graph não existe(m) ainda; usando {cfg['og_padrao']}")
+    for og in {r.get("og") or cfg["og_padrao"] for r in cfg["rotas"].values()}:
+        if not os.path.exists(os.path.join(ROOT, og.lstrip("/"))):
+            print(f"aviso: imagem Open Graph {og} não existe")
     stale = [p for p, text in out.items() if read(p) != text]
     names = ", ".join(os.path.relpath(p, ROOT) for p in stale)
     if a.cmd == "check":

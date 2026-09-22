@@ -89,6 +89,32 @@ def auto_label(cats):
     return " · ".join(REL_LABEL[c] for c in REL_CODES if c in cats)
 
 
+def card_label(r):
+    """Rótulo da relação exibido no card."""
+    return r["rotulo"] or auto_label(r["cats"])
+
+
+def published(rows):
+    """Empresas publicadas, na ordem do site."""
+    pub = [r for r in rows if r["publicar"]]
+    pub.sort(key=lambda r: (num(r["prioridade"], float("inf")), r["nome"].lower()))
+    return pub
+
+
+def png_size(filename):
+    """(largura, altura) lidas do cabeçalho IHDR do PNG em assets/img/logos/."""
+    with open(os.path.join(LOGO_DIR, filename), "rb") as f:
+        head = f.read(24)
+    if head[:8] != b"\x89PNG\r\n\x1a\n":
+        sys.exit(f"{filename} não é PNG")
+    return int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")
+
+
+def logo_img(filename, alt, extra=""):
+    w, h = png_size(filename)
+    return f'<img src="{LOGO_SRC}{esc(filename)}" alt="{esc(alt)}" width="{w}" height="{h}"{extra}>'
+
+
 # ---------------------------------------------------------------- planilha -> dados
 
 def cell_str(v):
@@ -183,9 +209,9 @@ def render_tomb(r):
         parts.append(f'<span class="tomb-word" aria-hidden="true">{esc(word)}</span>')
     for i, f in enumerate(files):
         alt = alts[i] if i < len(alts) and alts[i] else r["nome"]
-        parts.append(f'<img src="{LOGO_SRC}{esc(f)}" alt="{esc(alt)}" loading="lazy">')
+        parts.append(logo_img(f, alt, ' loading="lazy"'))
     logo_cls = "tomb-logo stack" if len(parts) > 1 else "tomb-logo"
-    rels = [r["rotulo"] or auto_label(r["cats"])]
+    rels = [card_label(r)]
     if r["nota"]:
         rels.append(r["nota"])
     inner = (f'<div class="{logo_cls}">{"".join(parts)}</div>'
@@ -210,7 +236,7 @@ def render_marquee(items):
         attr = ' aria-hidden="true"' if hidden else ""
         tab = ' tabindex="-1"' if hidden else ""
         def li(r):
-            img = f'<img src="{LOGO_SRC}{esc(r["logo"])}" alt="{esc(r["nome"])}">'
+            img = logo_img(r["logo"], r["nome"])
             if r["site"]:
                 img = f'<a{tab} href="{esc(r["site"])}" target="_blank" rel="noopener">{img}</a>'
             return f"<li>{img}</li>"
@@ -236,8 +262,7 @@ def sub_once(regex, fn, text, what):
 
 
 def build(rows, dry=False):
-    pub = [r for r in rows if r["publicar"]]
-    pub.sort(key=lambda r: (num(r["prioridade"], float("inf")), r["nome"].lower()))
+    pub = published(rows)
     home = sorted((r for r in pub if r["home"]), key=lambda r: num(r["home"], 0))
     src = open(HTML_PATH, encoding="utf-8").read()
     out = sub_once(TOMBS_RE, lambda m: m.group(1) + "".join(render_tomb(r) for r in pub) + m.group(3), src, "lista de cards")
