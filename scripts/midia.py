@@ -62,12 +62,13 @@ MESES = {"pt": "jan fev mar abr mai jun jul ago set out nov dez".split(),
          "en": "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()}
 TAG_PAYWALL = "assinantes"
 TAG_ASSINADO = "por Romero"
+DESTAQUES = 4  # cards da seção Na mídia na home
 TRACKING = re.compile(r"^(utm_\w+|fbclid|gclid|dclid|mc_cid|mc_eid|igshid|_ga|ref_src|cmpid)$", re.I)
 
 # (chave, cabeçalho, largura, comentário)
 COLUMNS = [
     ("publicar", "Publicar", 9, "x = aparece no site. Vazio = fica só na planilha."),
-    ("destaque", "Destaque", 10, "1, 2 ou 3 = posição na home. Vazio = fora da home. Precisa haver exatamente três."),
+    ("destaque", "Destaque", 10, "1 a 4 = posição na home. Vazio = fora da home. Precisa haver exatamente quatro."),
     ("data", "Data", 12, "AAAA-MM-DD. Ordenação e exibição saem daqui. Sem o dia, use AAAA-MM (ou AAAA)."),
     ("veiculo", "Veículo", 20, "Precisa bater com a aba Veículos."),
     ("titulo", "Título", 60, "Como o veículo publicou, sem reescrever."),
@@ -84,6 +85,7 @@ COLUMNS = [
     ("obs", "Observações", 40, "Interna, não vai para o site."),
 ]
 KEYS = [c[0] for c in COLUMNS]
+POSICOES = [str(i) for i in range(1, DESTAQUES + 1)]
 HEADERS = {c[0]: c[1] for c in COLUMNS}
 FLAGS = ["publicar", "assinado", "paywall", "subjectof"]
 
@@ -294,13 +296,13 @@ def validate(rows, vehicles):
                 warnings.append(f"{where}: empresa {r['empresa']!r} não está no portfolio.xlsx")
         if r["subjectof"] and r["assinado"]:
             errors.append(f"{where}: texto assinado não entra no subjectOf (é autoria, não assunto)")
-        if r["destaque"] and r["destaque"] not in {"1", "2", "3"}:
-            errors.append(f"{where}: Destaque deve ser 1, 2 ou 3")
+        if r["destaque"] and r["destaque"] not in POSICOES:
+            errors.append(f"{where}: Destaque deve ser de 1 a {DESTAQUES}")
 
     pub = published(rows)
     marks = sorted(r["destaque"] for r in pub if r["destaque"])
-    if marks != ["1", "2", "3"]:
-        errors.append(f"Destaque: precisa de exatamente três matérias publicadas, nas posições 1, 2 e 3 (hoje: {', '.join(marks) or 'nenhuma'})")
+    if marks != POSICOES:
+        errors.append(f"Destaque: precisa de exatamente {DESTAQUES} matérias publicadas, nas posições {', '.join(POSICOES)} (hoje: {', '.join(marks) or 'nenhuma'})")
     n_subject = sum(r["subjectof"] for r in pub)
     if n_subject > 5:
         errors.append(f"subjectOf: {n_subject} matérias marcadas, o máximo é 5")
@@ -606,7 +608,7 @@ def write_xlsx(rows, vehicles, path):
     listv = style_sheet(ws, COLUMNS, FLAGS + ["destaque", "data", "categoria", "formato", "idioma", "checado"])
     for k in FLAGS:
         listv(k, ["x"], "Use x para marcar ou deixe vazio.")
-    listv("destaque", ["1", "2", "3"], "Use 1, 2 ou 3.")
+    listv("destaque", POSICOES, f"Use um número de 1 a {DESTAQUES}.")
     listv("categoria", CAT_CODES, "Use perfil, tese, movimento ou portfolio.")
     listv("formato", list(FORMATOS), "Use texto, video ou audio.")
     listv("idioma", list(IDIOMAS), "Use pt ou en.")
@@ -636,7 +638,7 @@ def write_xlsx(rows, vehicles, path):
         ("Regra de entrada: você é nomeado na matéria E a peça é sobre você, assinada por você, ou um negócio da Headline que você liderou.", False),
         ("Ficam de fora (Publicar vazio): menção de passagem, lista de participantes, publieditorial e nota curta sem substância.", False),
         ("Publicar: x = aparece no site. Vazio = fica só na planilha, com o dossiê inteiro.", False),
-        ("Destaque: 1, 2 e 3 = os três cards da home, nessa ordem. Precisa haver exatamente três.", False),
+        ("Destaque: 1 a 4 = os quatro cards da home, nessa ordem. Precisa haver exatamente quatro.", False),
         ("Categoria, pelo que a peça prova: perfil (quem você é), tese (como pensa), movimento (o que construiu), portfolio (o fundo operando).", False),
         ("  Formato, idioma e ano viram filtro na página, não categoria.", False),
         ("Assinado: x = texto seu. Vai para o bloco Textos assinados e entra no JSON-LD como author, não about.", False),
@@ -645,7 +647,7 @@ def write_xlsx(rows, vehicles, path):
         ("Aba Veículos: um veículo por linha. Faixa = posição na faixa de nomes da home; Wordmark = como o nome aparece nela.", False),
         ("Observações não vão para o site.", False),
         ("", False),
-        ("Uma vez por trimestre: acrescente o que saiu, rode python3 scripts/midia.py check --links e revise os três destaques.", False),
+        ("Uma vez por trimestre: acrescente o que saiu, rode python3 scripts/midia.py check --links e revise os quatro destaques.", False),
         ("Passe o mouse no cabeçalho de cada coluna para ver a explicação. Não renomeie os cabeçalhos: o script procura as colunas pelo nome.", False),
     ]
     for text, bold in lines:
