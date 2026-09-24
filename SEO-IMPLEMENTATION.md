@@ -15,6 +15,17 @@ do anúncio. Consequências práticas:
 - Não há redirect de URL legada para fazer. O passado não existe.
 - A baseline de métricas começa limpa, no dia do lançamento.
 
+> **Correção, 24/09/2026 (auditoria).** A premissa acima estava errada num
+> ponto: **o passado existe**. O domínio hospedou um blog em WordPress, e ele
+> continua indexado — uma busca por `site:romerorodrigues.com` ainda devolve
+> `/perfil/`, `/tendencias-do-digital-commerce/` e outras. O Wayback Machine tem
+> 40 posts com captura íntegra, mais páginas de tag e categoria. Todas davam 404.
+> Os 301 voltaram ao `staticwebapp.config.json`, e os textos foram recuperados
+> para `_recuperado/` (fora do git) para o Romero decidir o que fazer com cada um:
+> só 301 para a home, ou republicar e então apontar o 301 para a página nova.
+> O resto da premissa continua valendo: não havia tráfego nem ranking do site
+> atual a proteger.
+
 **Regra de ouro: não divulgue o site até a Fase 1 estar em produção.**
 
 Execute **uma fase por vez**. Abra um branch por fase, marque os checkboxes ao
@@ -294,6 +305,19 @@ Tarefas fora do repositório, em paralelo (não são do Claude Code):
       hoje para em 2009 e não menciona Headline nem venture capital
 - [ ] Auditoria dos 7 perfis externos: mesma cifra do Buscapé, mesmo nome, link
       para romerorodrigues.com em todos
+
+---
+
+## Fora do plano original: Na mídia (setembro/2026)
+
+Entrou depois da Fase 3, com a mesma arquitetura das outras fontes de verdade:
+`data/midia.xlsx` (abas Matérias, Veículos e Como usar) alimenta `scripts/midia.py`,
+que gera a página `/midia`, a seção Na mídia da home e a versão `/en/press`.
+São 67 peças publicadas de 102 no dossiê, de 2009 a 2026. JSON-LD: `CollectionPage`
++ `ItemList`, com `NewsArticle`, `PodcastEpisode` e `CreativeWork` conforme o formato;
+textos assinados entram como `author`, o resto como `about`; até 5 peças vão para
+`subjectOf` no nó `Person` de todas as páginas. Na versão em inglês vale a exceção:
+a cobertura que menciona a XP fica, porque imprensa é registro histórico.
 
 ---
 

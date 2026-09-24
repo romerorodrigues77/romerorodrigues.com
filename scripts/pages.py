@@ -52,7 +52,7 @@ NOTFOUND_MAIN = """<main>
   <p class="lede">O endereço que você tentou abrir não existe ou mudou de lugar.</p>
 </div></section>
 <section style="padding-bottom:120px"><div class="wrap">
-  <p style="display:flex;flex-wrap:wrap;gap:24px"><a class="link" href="/">Página inicial</a><a class="link" href="/trajetoria">Trajetória</a><a class="link" href="/portfolio">Portfólio</a></p>
+  <p style="display:flex;flex-wrap:wrap;gap:24px"><a class="link" href="/">Página inicial</a><a class="link" href="/trajetoria">Trajetória</a><a class="link" href="/portfolio">Portfólio</a><a class="link" href="/midia">Na mídia</a></p>
 </div></section>
 </main>"""
 
