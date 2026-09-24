@@ -19,6 +19,12 @@
       "title": "Portfolio: the companies Romero Rodrigues has invested in",
       "description": "Every company I have invested in as a fund manager, angel or board member, with its current status: active, acquired, IPO and closed."
     },
+    "ideias": {
+      "arquivo": "en/ideas.html",
+      "url": "/en/ideas",
+      "title": "Ideas: what Romero Rodrigues writes",
+      "description": "What I have written about founding, investing, e-commerce and technology since 2013: {total_ideias} texts, in outlets and on my old blog."
+    },
     "midia": {
       "arquivo": "en/press.html",
       "url": "/en/press",
@@ -40,32 +46,91 @@
   },
   "pessoa": {
     "description": "Co-founder of Buscapé, sold to Naspers/Prosus in 2009 at a US$ 374M valuation. Managing Partner of Headline Brazil, with $516m under management and more than 120 startups backed.",
-    "nationality": { "@type": "Country", "name": "Brazil" },
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Polytechnic School of the University of São Paulo" },
-    "worksFor": [{ "@type": "Organization", "name": "Headline", "url": "https://headline.com/" }],
-    "knowsAbout": ["Venture capital", "Startups", "E-commerce", "Artificial intelligence"]
+    "nationality": {
+      "@type": "Country",
+      "name": "Brazil"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Polytechnic School of the University of São Paulo"
+    },
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "Headline",
+        "url": "https://headline.com/"
+      }
+    ],
+    "knowsAbout": [
+      "Venture capital",
+      "Startups",
+      "E-commerce",
+      "Artificial intelligence"
+    ]
   },
   "remover": [
-    { "rota": "", "tag": "article", "contendo": "<h3>XP</h3>" },
-    { "rota": "", "tag": "div", "contendo": "data-year=\"2022\"", "trocar_por": "<div class=\"tick\" aria-hidden=\"true\"></div>" },
-    { "rota": "trajetoria", "tag": "li", "contendo": "data-name=\"Sócio da XP\"" },
-    { "rota": "sobre", "tag": "article", "contendo": "data-copy=\"bio-pt_curta\"" },
-    { "rota": "sobre", "tag": "article", "contendo": "data-copy=\"bio-pt_mini\"" },
-    { "rota": "", "tag": "li", "contendo": "href=\"https://neofeed.com.br/insiders/artigo-o-maior-ipo-da-historia-ja-tinha-424-anos/\"", "trocar_por": "<li><a class=\"row\" href=\"https://romerorodrigues.substack.com/p/the-biggest-ipo-in-history-is-424\" target=\"_blank\" rel=\"noopener\"><span class=\"src\">Substack</span><span class=\"ttl\">The Biggest IPO in History Is 424 Years Old</span><span class=\"go\">Ler</span></a></li>" },
-    { "rota": "", "tag": "li", "contendo": "href=\"https://neofeed.com.br/insiders/o-efeito-porsche-930-da-ia-por-que-o-impacto-ainda-nao-apareceu-e-esta-prestes-a-explodir\"", "trocar_por": "<li><a class=\"row\" href=\"https://romerorodrigues.substack.com/p/the-widowmaker\" target=\"_blank\" rel=\"noopener\"><span class=\"src\">Substack</span><span class=\"ttl\">The Widowmaker</span><span class=\"go\">Ler</span></a></li>" }
+    {
+      "rota": "",
+      "tag": "article",
+      "contendo": "<h3>XP</h3>"
+    },
+    {
+      "rota": "",
+      "tag": "div",
+      "contendo": "data-year=\"2022\"",
+      "trocar_por": "<div class=\"tick\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "rota": "trajetoria",
+      "tag": "li",
+      "contendo": "data-name=\"Sócio da XP\""
+    },
+    {
+      "rota": "sobre",
+      "tag": "article",
+      "contendo": "data-copy=\"bio-pt_curta\""
+    },
+    {
+      "rota": "sobre",
+      "tag": "article",
+      "contendo": "data-copy=\"bio-pt_mini\""
+    }
   ],
-  "remover_marcos": ["Sócio da XP"],
-  "remover_empresas": ["XP Inc."],
+  "remover_marcos": [
+    "Sócio da XP"
+  ],
+  "remover_empresas": [
+    "XP Inc."
+  ],
   "js": {
     "\"Fechar\"": "\"Close\"",
     "\"Copiado\"": "\"Copied\"",
     "|| \"itens\"": "|| \"items\""
   },
   "manter": [
-    "Romero Rodrigues", "Menu", "Headline", "Romero AI", "Uncapped", "Substack", "NeoFeed",
-    "LinkedIn", "X", "Instagram", "YouTube", "TikTok", "Links", "© 2026 Romero Rodrigues",
-    "On Top of the Headline", "Press kit", "Vertical", "Português",
-    "Links · Romero Rodrigues", "Managing Partner.", "Venture capital", "VC", "Holding",
+    "Romero Rodrigues",
+    "Menu",
+    "Headline",
+    "Romero AI",
+    "Uncapped",
+    "Substack",
+    "NeoFeed",
+    "LinkedIn",
+    "X",
+    "Instagram",
+    "YouTube",
+    "TikTok",
+    "Links",
+    "© 2026 Romero Rodrigues",
+    "On Top of the Headline",
+    "Press kit",
+    "Vertical",
+    "Português",
+    "Links · Romero Rodrigues",
+    "Managing Partner.",
+    "Venture capital",
+    "VC",
+    "Holding",
     "Local to Global Fintech Innovation: Celebrating Pismo’s $1B Acquisition by Visa",
     "O maior IPO da história já tinha 424 anos",
     "The Biggest IPO in History Is 424 Years Old",
@@ -75,7 +140,8 @@
     "From Silicon Valley to Rio: Our Global Approach to Investing",
     "O efeito Porsche 930 da IA: por que o impacto ainda não apareceu e está prestes a explodir",
     "O efeito Porsche 930 da IA",
-    "Renner compra a Repassa", "Brazil Journal · jul 2021",
+    "Renner compra a Repassa",
+    "Brazil Journal · jul 2021",
     "Romero Rodrigues, vertical",
     "Romero Rodrigues is Managing Partner of Headline Brazil, an early-stage venture capital firm investing across Latin America, with $516m in four funds since 2012. He has spent nearly three decades building and backing startups. He co-founded Buscapé in 1998, ran it as CEO for 16 years and led its sale to Naspers/Prosus for $374m in 2009. He has backed more than 120 startups, nine of which became billion-dollar companies, including Wellhub, iFood and Pismo, which Visa bought for $1b. He holds a degree in electrical engineering from the University of São Paulo and completed the Stanford Executive Program.",
     "Managing Partner of Headline Brazil, an early-stage venture capital firm in Latin America with $516m under management. Co-founder and CEO of Buscapé for 16 years, sold to Naspers for $374m in 2009."
@@ -87,7 +153,6 @@
     "Ideias": "Ideas",
     "Projetos": "Projects",
     "Sobre": "About",
-
     "Fundei.": "Founded.",
     "Vendi.": "Sold.",
     "Invisto.": "Investing.",
@@ -132,7 +197,6 @@
     "Sobre e press kit": "About and press kit",
     "Perfil na Headline": "Headline profile",
     "Conteúdo pessoal. Não constitui oferta nem recomendação de investimento. As opiniões são minhas e não representam a Headline ou a XP.": "Personal content. Not an offer or an investment recommendation. The opinions are my own and do not represent Headline.",
-
     "Trajetória · Romero Rodrigues": "Journey · Romero Rodrigues",
     "De 1995 até hoje. Primeiro construindo o Buscapé. Depois investindo em quem constrói.": "From 1995 to today. First building Buscapé. Then investing in those who build.",
     "marcos": "milestones",
@@ -171,7 +235,6 @@
     "US$ 1 bilhão.": "$1b.",
     "R$ 2,0 bi sob gestão": "$516m under management",
     "Quatro fundos. Mais de 90 investidas desde 2012. Mais de 120 startups ao longo da carreira, nove acima de US$ 1 bilhão.": "Four funds. More than 90 portfolio companies since 2012. More than 120 startups over his career, nine above $1b.",
-
     "Portfólio · Romero Rodrigues": "Portfolio · Romero Rodrigues",
     "{total} empresas. Como fundador, investidor anjo, gestor de venture capital e conselheiro. Do Buscapé, em 1998, aos investimentos de 2026.": "{total} companies. As a founder, angel investor, venture capital investor and board member. From Buscapé in 1998 to the investments of 2026.",
     "empresas": "companies",
@@ -203,7 +266,6 @@
     "Saída": "Exited",
     "US$ 1 bi · 2024": "$1b · 2024",
     "US$ 374M · 2009": "$374m · 2009",
-
     "Sobre e press kit · Romero Rodrigues": "About and press kit · Romero Rodrigues",
     "Romero Rodrigues é Managing Partner da Headline e sócio da XP, onde lidera as estratégias de Venture Capital. Responde por R$ 2,0 bilhões sob gestão em quatro fundos, com mais de 90 investidas desde 2012.": "Romero Rodrigues is Managing Partner of Headline Brazil, an early-stage venture capital firm investing across Latin America, with $516m in four funds and more than 90 portfolio companies since 2012.",
     "Empreendedor e investidor há quase três décadas, co-fundou em 1998 o Buscapé, uma das primeiras startups do Brasil, onde foi CEO por 16 anos, coordenou 3 rodadas e liderou mais de 20 aquisições. Em 2009, conduziu a venda da companhia para a Naspers/Prosus por US$ 374 milhões, na maior aquisição de uma startup brasileira até então. Saiu em 2014, com a empresa faturando mais de R$ 600 milhões anualizados, 1.500 colaboradores e presença em 18 países e 3 continentes.": "An entrepreneur and investor for nearly three decades, he co-founded Buscapé in 1998, one of Brazil's first startups, where he was CEO for 16 years, led 3 funding rounds and more than 20 acquisitions. In 2009, he led the company's sale to Naspers/Prosus for $374m, the largest acquisition of a Brazilian startup at the time. He left in 2014, with the company at more than R$ 600 million in annualized revenue, 1,500 employees and operations in 18 countries across 3 continents.",
@@ -232,7 +294,6 @@
     "Meio corpo, Headline": "Half body, Headline",
     "Romero Rodrigues, vertical, headline": "Romero Rodrigues, vertical, Headline",
     "Vertical, Headline": "Vertical, Headline",
-
     "Fundador do Buscapé. Managing Partner da Headline.": "Founder of Buscapé. Managing Partner of Headline.",
     "Clone de IA, por texto e voz": "AI clone, by text and voice",
     "Artigo na NeoFeed": "Article on NeoFeed",
@@ -282,6 +343,11 @@
     "Textos assinados": "Bylined pieces",
     "O que escrevi para os veículos. Os demais textos estão no": "What I have written for the press. Everything else is on",
     "Os links levam às matérias nos veículos originais; as marcadas como assinantes pedem assinatura. Para bios oficiais e fotos, veja o": "Links go to the stories on the original outlets; those marked subscribers are behind a paywall. For official bios and photos, see the",
-    "press kit": "press kit"
+    "press kit": "press kit",
+    "Ideias · Romero Rodrigues": "Ideas · Romero Rodrigues",
+    "sobre empreender, investir, e-commerce e tecnologia. Os mais recentes saíram em veículos; os do começo estão aqui, recuperados do blog que mantive entre 2013 e 2016.": "on founding, investing, e-commerce and technology. The recent ones ran in outlets; the early ones are here, recovered from the blog I kept between 2013 and 2016.",
+    "Os textos publicados em veículos abrem no site original. Os do blog antigo abrem aqui, como foram publicados na época.": "Texts published in outlets open on the original site. The ones from the old blog open here, as they were published at the time.",
+    "Ver textos anteriores": "See earlier texts",
+    "Ver todos os textos": "See all texts"
   }
 }
