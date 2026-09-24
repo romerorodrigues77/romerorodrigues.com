@@ -18,4 +18,4 @@ m-commerce
 
 Esses dados demonstram a importância crescente da internet móvel para o comércio eletrônico. Em outras palavras, mostram que os smartphone e os tablets viraram um shopping center na mão dos consumidores. E não deixam dúvidas: o seu concorrente está a um dedo de distância.
 
-Quem quiser acessar o Relatório Webshoppers na íntegra, é só clicar [aqui](http://img.ebit.com.br/webshoppers/pdf/WebShoppers2014_2oSeme.pdf).
+Quem quiser acessar o Relatório Webshoppers na íntegra, é só clicar aqui.

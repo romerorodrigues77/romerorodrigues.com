@@ -10,7 +10,7 @@ Os pedidos da sexta-feira chegaram a** 2,2 milhões com o tíquete médio de R$ 
 
 As ofertas atraíram o total de 1,2 milhão de consumidores únicos, sendo que 18% deles aproveitaram o momento e realizaram sua primeira compra pela Internet. As categorias que mais venderam no dia da Black Friday foram **Telefonia e Celulares, Eletrodomésticos, Moda & Acessórios, Informática e Eletrônicos.**
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2014/12/blackfriday20142.png)
+
 
 Em comparação a uma sexta feira comum (no caso, a última sexta feira de outubro de 2014), a Black Friday se destacou por superar dados nos seguintes quesitos: **867% no faturamento; 619% na quantidade de pedidos; e 536% em número de consumidores únicos.**
 

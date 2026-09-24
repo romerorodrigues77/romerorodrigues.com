@@ -16,7 +16,7 @@ Não importa o tamanho do auditório, busque sempre se conectar com esse públic
 
 **Lembre-se:** Seu público alvo é provavelmente o principal fator a ser considerado na ora de preparar sua apresentação.
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2015/02/rei-da-comedia.jpeg)*Robert De Niro em “O Rei da Comédia”, dirigido por Martin Scorsese.*
+*Robert De Niro em “O Rei da Comédia”, dirigido por Martin Scorsese.*
 
 2. Aprenda com as pessoas que você admira.
 
@@ -48,4 +48,4 @@ Trabalhe duro, entenda a arte de ser pró-ativo, de correr atrás e seja totalme
 
 **Lembre-se:** É raro até para os melhores oradores afirmar que eles têm uma “habilidade natural”. Eles vão dizer que trabalharam bastante e inspiraram-se nos melhores naquele ofício. Um dom de falar naturalmente pode te ajudar, mas só a busca por aperfeiçoamento constante vai te levar ao sucesso.
 
-[Artigo original: “4 Killer Public Speaking Tips From Comedians” no The Muse](https://www.themuse.com/advice/4-killer-public-speaking-tips-from-comedians)
+Artigo original: “4 Killer Public Speaking Tips From Comedians” no The Muse

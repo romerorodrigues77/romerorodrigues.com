@@ -32,7 +32,7 @@ Empregadas domésticas: [Parafuzo](http://www.parafuzo.com) ([www.parafuzo.com](
 
 Hotelzinho canino: [Doghero](http://www.doghero.com.br) ([www.doghero.com.br](http://www.doghero.com.br))
 
-Gerente de investimentos: [Magnetis](http://www.magnetis.com.br) ([www.magnetis.com.br](http://www.magnetis.com.br)) (5)
+Gerente de investimentos: Magnetis (www.magnetis.com.br) (5)
 
 Contabilidade para microempreendedores: [Qipu](http://www.qipu.com.br) ([www.qipu.com.br](http://www.qipu.com.br)) (6)
 
@@ -42,7 +42,7 @@ Lavanderia: [aLavadeira](https://www.alavadeira.com/) ([www.alavadeira.com](http
 
 Entregas: Mandaê ([www.mandae.com.br](http://www.mandae.com.br))
 
-Chefs de cozinha: [BlooChef](http://www.bloochef.com.br) ([www.bloochef.com.br](http://www.bloochef.com.br))
+Chefs de cozinha: BlooChef (www.bloochef.com.br)
 
 (Sentiu falta de alguma? Comente abaixo!)
 

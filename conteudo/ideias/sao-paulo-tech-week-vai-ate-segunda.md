@@ -10,4 +10,4 @@ São Paulo já pode ser considerado um hub global no setor de empreendedorismo e
 
 A maioria das atividades é gratuita e aberta ao público, porém, algumas requerem inscrições prévias.
 
-[A programação completa e as inscrições estão disponíveis no site da SPTW](http://www.saopaulotechweek.com/).
+A programação completa e as inscrições estão disponíveis no site da SPTW.

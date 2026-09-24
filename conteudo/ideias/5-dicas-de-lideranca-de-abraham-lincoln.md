@@ -14,7 +14,7 @@ Ser presidente dos Estados Unidos, assim como principal executivo de uma empresa
 
 Lincoln dava crédito aos demais e assumia a responsabilidade quando algo dava errado. Assim, fazia com que a equipe também se sentisse responsável por suas atitudes. Os líderes estimados são aqueles que tendem a ser democráticos, permitindo uma maior participação das pessoas nas decisões.
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2015/02/lincoln.jpg)
+
 
 - **Incentive a inovação**
 

@@ -3,6 +3,7 @@
 
     python3 scripts/ideias.py importar arquivo.docx   # traz os textos do blog antigo do .docx curado
     python3 scripts/ideias.py check                   # valida, não altera nada
+    python3 scripts/ideias.py links                   # testa os links dos textos e tira os que morreram
     python3 scripts/ideias.py build                   # regenera a lista da /ideias, a seção da home e as páginas dos textos
 
 A planilha é a fonte da verdade: uma linha por texto, do mais recente para o mais antigo.
@@ -17,6 +18,7 @@ import html
 import os
 import re
 import sys
+import time
 import unicodedata
 
 try:
@@ -180,6 +182,68 @@ def importar(caminho, datas_extras):
     if perdidos:
         sys.exit("sem texto recuperado para: " + ", ".join(perdidos))
     return linhas
+
+
+# ---------------------------------------------------------------- links dos textos
+
+# Bloqueio a robô (403, 401, 429, 999 do LinkedIn) não é link morto: o leitor abre normalmente.
+BLOQUEIO = {401, 403, 405, 429, 999}
+
+
+def testa_link(url, tentativas=2):
+    """(vivo, motivo). Só marca como morto o que falha duas vezes."""
+    import urllib.error
+    import urllib.request
+    motivo = ""
+    for i in range(tentativas):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return True, str(r.status)
+        except urllib.error.HTTPError as e:
+            if e.code in BLOQUEIO:
+                return True, f"{e.code} (bloqueia robô)"
+            if 300 <= e.code < 400:     # redirecionamento: o link está vivo
+                return True, str(e.code)
+            motivo = str(e.code)
+        except Exception as e:
+            motivo = type(e).__name__
+        if i + 1 < tentativas:
+            time.sleep(3)
+    return False, motivo
+
+
+def revisar_links(dry=False):
+    """Testa os links dos textos e tira o link dos que morreram, preservando a frase."""
+    import concurrent.futures as cf
+    alvos = {}
+    for nome in sorted(os.listdir(CORPO_DIR)):
+        if not nome.endswith(".md"):
+            continue
+        for m in LINK_RE.finditer(open(os.path.join(CORPO_DIR, nome), encoding="utf-8").read()):
+            alvos.setdefault(m.group(2), []).append(nome)
+    print(f"testando {len(alvos)} links em {len(set(sum(alvos.values(), [])))} textos...")
+    with cf.ThreadPoolExecutor(8) as ex:
+        resultado = dict(zip(alvos, ex.map(lambda u: testa_link(u), alvos)))
+    mortos = {u: r[1] for u, (vivo, _) in resultado.items() if not vivo for r in [resultado[u]]}
+    if not mortos:
+        print("nenhum link morto")
+        return 0
+    mexidos = 0
+    for nome in sorted({n for u in mortos for n in alvos[u]}):
+        caminho = os.path.join(CORPO_DIR, nome)
+        texto = open(caminho, encoding="utf-8").read()
+        novo = LINK_RE.sub(lambda m: m.group(1) if m.group(2) in mortos else m.group(0), texto)
+        if novo != texto:
+            mexidos += 1
+            if not dry:
+                open(caminho, "w", encoding="utf-8").write(novo)
+    print(f"{len(mortos)} links mortos em {mexidos} textos" + (" (nada foi alterado)" if dry else " — o texto ficou, o link saiu"))
+    for u, motivo in sorted(mortos.items())[:12]:
+        print(f"  {motivo:16} {u[:86]}")
+    if len(mortos) > 12:
+        print(f"  ... e mais {len(mortos) - 12}")
+    return len(mortos)
 
 
 # ---------------------------------------------------------------- planilha
@@ -380,9 +444,10 @@ def corpo_html(markdown, slugs):
         bloco = " ".join(l.strip() for l in bloco.splitlines()).strip()
         if not bloco:
             continue
-        if bloco.startswith("## "):
+        cabecalho = re.match(r"(#{2,6})\s+(.*)", bloco)
+        if cabecalho:
             fecha()
-            html_out.append(f"<h2>{inline(bloco[3:].strip(), slugs)}</h2>")
+            html_out.append(f"<h2>{inline(cabecalho.group(2).strip(), slugs)}</h2>")
         elif bloco.startswith("- "):
             for item in re.split(r"\s+- ", bloco[2:]):
                 if item.strip():
@@ -425,7 +490,7 @@ def render_lista(pub, lang="pt"):
         titulo_en = r["titulo_en"]
         alvo = ' target="_blank" rel="noopener"' if externo else ""
         ler = ler_label(r)
-        lang_attr = f' lang="{idioma}"' if idioma != "pt" else ""
+        lang_attr = f' lang="{"pt-BR" if idioma == "pt" else idioma}"'  # a lista EN mistura os dois idiomas
         ttl_en = f' data-en="{esc(titulo_en)}"' if titulo_en else ""
         linhas.append(
             f'<li data-ano="{esc((r["data"] or "0000")[:4])}">'
@@ -444,7 +509,7 @@ def render_home(pub):
     for r in pub[:DESTAQUES_HOME]:
         externo = not interno(r)
         alvo = ' target="_blank" rel="noopener"' if externo else ""
-        lang_attr = f' lang="{r["idioma"]}"' if r["idioma"] != "pt" else ""
+        lang_attr = f' lang="{"pt-BR" if r["idioma"] == "pt" else r["idioma"]}"'
         ttl_en = f' data-en="{esc(r["titulo_en"])}"' if r["titulo_en"] else ""
         extra = f' data-en-href="{esc(r["url_en"])}"' if r["url_en"] else ""
         linhas.append(
@@ -507,10 +572,15 @@ def validate(rows):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("cmd", choices=["importar", "check", "build"])
+    ap.add_argument("cmd", choices=["importar", "check", "build", "links"])
     ap.add_argument("docx", nargs="?", help="importar: o .docx curado com os textos do blog antigo")
     ap.add_argument("--xlsx", default=XLSX_PATH)
     a = ap.parse_args()
+
+    if a.cmd == "links":
+        revisar_links()
+        print("rode python3 scripts/pages.py build para as páginas saírem sem eles")
+        return
 
     if a.cmd == "importar":
         if not a.docx:

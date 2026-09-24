@@ -11,7 +11,7 @@ Na Odisseia, porém, Mentor era um personagem de pouca expressão. Ele só ganho
 
 Assim como Telêmaco, todos temos de lidar, invariavelmente, com grandes jornadas ao longo da vida. Elas podem ser de ordem existencial, espiritual, acadêmica ou profissional. Em cada um desses campos a presença do mentor é importante. O mestre pode ser qualquer pessoa – um superior na empresa, um professor, amigo, alguém que consideramos referência na área de atuação escolhida. E na vida não temos um, mas vários mentores.
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2015/04/shutterstock_117189670.jpg)
+
 
 No meu caso, o primeiro e o mais importante é o meu pai, também chamado Romero. Nosso vínculo começa pelo nome e passa pela profissão, pois ele também é engenheiro e sua carreira culmina no empreendedorismo. Com sua sabedoria – e também de minha mãe -, ele permitia que eu, na infância e depois adolescência, desmontasse aparelhos eletrônicos e os espalhasse pela casa. Isso fez nascer em mim o encanto pela experimentação e pela invenção, o que depois se mostrou determinante na minha carreira – essa motivação fez com que cedo, aos 14 anos, já soubesse que traçaria minha carreira profissional na intersecção do empreendedorismo e da tecnologia – e assim, fui para o mercado digital, área na qual a inovação acontece por meio de tentativas, erros e acertos.
 

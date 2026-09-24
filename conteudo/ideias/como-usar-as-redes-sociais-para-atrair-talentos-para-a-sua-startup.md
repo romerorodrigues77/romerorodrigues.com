@@ -10,7 +10,7 @@ Isso pode parecer óbvio, mas não é bem assim, pois muitas companhias ou não 
 
 **2. Recorra a seus contatos**
 
-Ter os profissionais recomendados por algum contato ou empresa parceira é uma boa medida para qualificar sua seleção. O LinkedIn oferece até uma ferramenta que auxilia nessa tarefa: [LinkedIn Recruiter](http://business.linkedin.com/talent-solutions/products/recruiter.html).
+Ter os profissionais recomendados por algum contato ou empresa parceira é uma boa medida para qualificar sua seleção. O LinkedIn oferece até uma ferramenta que auxilia nessa tarefa: LinkedIn Recruiter.
 
 **3. Crie landing pages**
 

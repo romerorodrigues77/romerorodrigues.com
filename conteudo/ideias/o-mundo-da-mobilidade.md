@@ -1,6 +1,6 @@
 Esses dias li uma matéria interessante sobre um dado um tanto surpreendente: o número de dispositivos móveis vai superar o número de pessoas existentes em todo o planeta em 2013.
 
-A [Cisco](http://http://www.cisco.com/en/US/solutions/collateral/ns341/ns525/ns537/ns705/ns827/white_paper_c11-520862.html) fez uma pesquisa que levantou que o número de smartphones, tablets, laptops e telefones com conexão à internet passará de 7 bilhões nesse ano, o mesmo número da população mundial. E o que isso significa?
+A Cisco fez uma pesquisa que levantou que o número de smartphones, tablets, laptops e telefones com conexão à internet passará de 7 bilhões nesse ano, o mesmo número da população mundial. E o que isso significa?
 
 Veremos uma velocidade da rede móvel cada vez maior, mais inovação na parte tecnológica dos produtos, crescimento de aplicativos e serviços exclusivos para mobile, entre outros. Não tem jeito. A inserção digital já faz parte da nossa rotina diária, estamos conectados o tempo inteiro.
 

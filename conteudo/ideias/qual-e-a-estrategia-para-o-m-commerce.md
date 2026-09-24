@@ -10,7 +10,7 @@ Qual é a estratégia para o m-commerce? Reproduzo aqui a brilhante análise do 
 
 *Os smartphones são o canal preferido para as transações móveis. Em dezembro de 2014, 65% das compras foram originadas por smartphones e 35% por tablets, o que mostra uma inversão em relação a janeiro de 2014, quando este último era responsável por 67% das vendas.*
 
-*[](http://www.romerorodrigues.com/wp-content/uploads/2015/02/shutterstock_182862287.jpg)As classes A e B são as maiores adeptas do m-commerce, com 62% de participação, enquanto C e D possuem 27%. O papel das mulheres também é relevante: elas representam 57% dos compradores móveis. Em termos financeiros e de faixa etária, os consumidores do m-commercce têm em média 40 anos e uma renda média maior se comparada à do consumidor apenas do e-commerce: R$ 6.128 ante R$ 4.378.*
+*As classes A e B são as maiores adeptas do m-commerce, com 62% de participação, enquanto C e D possuem 27%. O papel das mulheres também é relevante: elas representam 57% dos compradores móveis. Em termos financeiros e de faixa etária, os consumidores do m-commercce têm em média 40 anos e uma renda média maior se comparada à do consumidor apenas do e-commerce: R$ 6.128 ante R$ 4.378.*
 
 *Outro aspecto interessante constatado pelo Webshoppers diz respeito ao ranking das categorias com a maior participação nas vendas realizadas por meio de dispositivos móveis. Em primeiro lugar está o grupo Alimentos e Bebidas (8,4%), seguido por Joalheria (6,3%), Bebês & Cia (6,2%), Colecionáveis (6,1%) e Cosméticos e Perfumaria/Cuidados Pessoais (6,1%), nesta ordem.*
 

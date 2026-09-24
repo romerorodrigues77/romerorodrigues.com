@@ -4,7 +4,7 @@ Apesar de 2014 ter sido um ano atípico, contando com eventos imapctantes como a
 
 A mobilidade também continua mostrando sua força. As compras via smartphones atingiram 9,7%. No primeiro semestre de 2014 esse número era de 7%.
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2015/02/Captura-de-Tela-2015-02-04-às-14.53.18.png)
+
 
 “As pessoas estão criando esse hábito, de entrar numa loja online e visualizar os produtos pela tela pequena. O consumidor tem a conveniência de estar dentro de um shopping center e poder pesquisar os preços em outras lojas pelo comparador de preços e decidir pela melhor compra, esteja onde estiver”, comenta Pedro Guasti, Diretor executivo da E-bit.
 

@@ -1,4 +1,4 @@
-Há pouco tempo, indiquei no meu [Twitter](http://https://twitter.com/romerorodrigues/status/296321930640912385)um livro chamado “Startup Enxuta”, do americano [Eric Ries](https://twitter.com/ericries), que fala desse movimento que tem ganhado cada vez mais força nos novos negócios e empreendimentos.
+Há pouco tempo, indiquei no meu Twitterum livro chamado “Startup Enxuta”, do americano [Eric Ries](https://twitter.com/ericries), que fala desse movimento que tem ganhado cada vez mais força nos novos negócios e empreendimentos.
 
 O conceito de Startup Enxuta surgiu quando Eric Ries criou uma rede social, onde as pessoas interagiam por meio de avatares. A ideia era criar bonequinhos que trocavam de roupa, mudavam o visual e interagiam uns com os outros. Naquela época, no entanto, as pessoas já utilizavam outros serviços de mensagens instantâneas, como MSN e salas de bate papo. Não havia por que sair daquele ambiente onde todos já tinham seus ciclos de amizade.
 

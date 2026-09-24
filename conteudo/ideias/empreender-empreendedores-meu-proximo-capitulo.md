@@ -1,4 +1,4 @@
-Há 2 meses ocupei este espaço para[contar](http://www.romerorodrigues.com/hora-de-virar-a-pagina-mas-nao-de-terminar-o-livro/)que era hora de virar a página. Mas não de terminar o livro. E hoje é chegado o dia de começar a escrever um novo e vibrante capítulo.
+Há 2 meses ocupei este espaço paracontarque era hora de virar a página. Mas não de terminar o livro. E hoje é chegado o dia de começar a escrever um novo e vibrante capítulo.
 
 De peito aberto, com o coração valente de quem desbravou os primeiros hectares da Internet, feliz em me unir a amigos de longa data e pronto para noites insones como as que atravessei nos primeiros dias do Buscapé, reúno minha bagagem para [aportar na Redpoint eventures](http://www.nytimes.com/2015/11/11/business/dealbook/redpoint-joint-venture-in-brazil-adds-romero-rodrigues-a-top-entrepreneur.html?ref=dealbook&_r=0) e embarcar rumo a uma nova, mas muito bem planejada, aventura: **ajudar a construir o melhor fundo de Venture Capital do Brasil**.
 
