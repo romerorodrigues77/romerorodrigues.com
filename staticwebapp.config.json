@@ -1,5 +1,4 @@
 {
-  "trailingSlash": "never",
   "routes": [
     { "route": "/data/*", "allowedRoles": ["bloqueado"] },
     { "route": "/scripts/*", "allowedRoles": ["bloqueado"] },
