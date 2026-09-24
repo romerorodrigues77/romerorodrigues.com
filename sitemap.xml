@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- gerado por scripts/pages.py — não edite à mão -->
-<!-- impressões: home.html=4e660727dbfc trajetoria.html=5b8b476bd4ff portfolio.html=9246e910af99 midia.html=7ca52aeb739e sobre.html=1f00da62d59f links.html=9bd6419d381b en/home.html=dd2f54ec2131 en/journey.html=1b9b9642f060 en/portfolio.html=6f0e57440a35 en/press.html=f02b7b9af8e7 en/about.html=db4abb660c38 en/links.html=6bd39e818362 -->
+<!-- impressões: home.html=bc65e9ea359b trajetoria.html=61876a70fdcc portfolio.html=6ae9287feba4 midia.html=477492468e0f sobre.html=dd15c8b6bc98 links.html=7a75f8eb14de en/home.html=2c10656abe8c en/journey.html=f446fa6de5b0 en/portfolio.html=1a5921c2dfcf en/press.html=b689661fb556 en/about.html=85bf5e04e016 en/links.html=bf6030a79d5d -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://romerorodrigues.com/</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/trajetoria</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/portfolio</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/midia</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/sobre</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/links</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/journey</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/portfolio</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/press</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/about</loc><lastmod>2026-09-22</lastmod></url>
-  <url><loc>https://romerorodrigues.com/en/links</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://romerorodrigues.com/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/trajetoria</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/portfolio</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/midia</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/sobre</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/links</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/journey</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/portfolio</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/press</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/about</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/links</loc><lastmod>2026-09-24</lastmod></url>
 </urlset>

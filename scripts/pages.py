@@ -45,6 +45,8 @@ TOTAL_RE = re.compile(r'<p class="lede">(\d+) empresas\.')  # escrito pelo portf
 FINGERPRINTS_RE = re.compile(r"<!-- impressões: (.*?) -->")
 LASTMOD_RE = re.compile(r"<loc>(.*?)</loc><lastmod>(.*?)</lastmod>")
 
+DATA_MARCA = "__DATA_MODIFICACAO__"  # vira a data do sitemap depois da impressão digital
+
 NOTFOUND_TITLE = "Página não encontrada · Romero Rodrigues"
 NOTFOUND_MAIN = """<main>
 <section class="intro"><div class="wrap">
@@ -249,16 +251,18 @@ def extra_ld(cfg, route, ctx, lang="pt"):
     person = {"@id": cfg["pessoa"]["@id"]}
     website = {"@id": f"{base}/#website"}
     langs = ["pt-BR", "en"] if "en" in cfg else "pt-BR"
-    if route == "":
-        return [{"@context": "https://schema.org", "@type": "WebSite", **website, "url": f"{base}/",
-                 "name": "Romero Rodrigues", "inLanguage": langs, "publisher": person}]
     rota = rotas(cfg, lang)[route]
     url = base + rota["url"]
     code = "pt-BR" if lang == "pt" else "en"
+    pagina = {"@context": "https://schema.org", "@id": f"{url}#pagina", "url": url,
+              "name": fill(rota["title"], ctx), "inLanguage": code, "isPartOf": website,
+              "about": person, "dateModified": DATA_MARCA}
+    if route == "":
+        return [{"@context": "https://schema.org", "@type": "WebSite", **website, "url": f"{base}/",
+                 "name": "Romero Rodrigues", "inLanguage": langs, "publisher": person},
+                {**pagina, "@type": "WebPage"}]
     if route == "sobre":
-        return [{"@context": "https://schema.org", "@type": "ProfilePage", "@id": f"{url}#pagina", "url": url,
-                 "name": fill(rota["title"], ctx), "inLanguage": code, "isPartOf": website,
-                 "mainEntity": person, "about": person}]
+        return [{**pagina, "@type": "ProfilePage", "mainEntity": person}]
     if route == "portfolio":
         portfolio, pub = ctx["_portfolio"]
         t = ctx["_t"] if lang == "en" else (lambda s: s)
@@ -277,7 +281,8 @@ def extra_ld(cfg, route, ctx, lang="pt"):
                 org["url"] = r["site"]
             org["description"] = desc
             items.append({"@type": "ListItem", "position": i, "item": org})
-        return [{"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#empresas",
+        return [{**pagina, "@type": "CollectionPage", "mainEntity": {"@id": f"{url}#empresas"}},
+                {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#empresas",
                  "name": frase[2], "inLanguage": code, "numberOfItems": len(items),
                  "itemListOrder": "https://schema.org/ItemListOrderAscending", "itemListElement": items}]
     if route == "midia":
@@ -285,13 +290,11 @@ def extra_ld(cfg, route, ctx, lang="pt"):
         items = [{"@type": "ListItem", "position": i, "item": midia.creative_work(r, vehicles, person)}
                  for i, r in enumerate(midia.published(rows), 1)]
         name = "Romero Rodrigues na mídia" if lang == "pt" else "Romero Rodrigues in the press"
-        return [{"@context": "https://schema.org", "@type": "CollectionPage", "@id": f"{url}#pagina", "url": url,
-                 "name": fill(rota["title"], ctx), "inLanguage": code, "isPartOf": website, "about": person,
-                 "mainEntity": {"@id": f"{url}#materias"}},
+        return [{**pagina, "@type": "CollectionPage", "mainEntity": {"@id": f"{url}#materias"}},
                 {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#materias", "name": name,
                  "numberOfItems": len(items), "itemListOrder": "https://schema.org/ItemListOrderDescending",
                  "itemListElement": items}]
-    return []
+    return [{**pagina, "@type": "WebPage"}]
 
 
 def with_head(head, title, seo, route=None):
@@ -452,19 +455,30 @@ def en_tail(cfg, tail, errors):
     return tail
 
 
-def sitemap(cfg, pages, old):
-    """pages: [(arquivo, url, impressão)]."""
+def datas_modificacao(cfg, prints, old):
+    """Data por arquivo: a do sitemap anterior enquanto a página não muda, senão hoje.
+
+    A impressão digital é calculada com a data ainda como marcador, senão a data
+    entraria na própria impressão e mudaria a cada build.
+    """
     old = old or ""
     m = FINGERPRINTS_RE.search(old)
     old_prints = dict(p.split("=", 1) for p in m.group(1).split()) if m else {}
     old_lastmod = dict(LASTMOD_RE.findall(old))
-    today = datetime.date.today().isoformat()
-    urls = []
-    for arquivo, url, fp in pages:
+    hoje = datetime.date.today().isoformat()
+    datas = {}
+    for arquivo, url, fp in prints:
         loc = cfg["base"] + url
-        same = old_prints.get(arquivo) == fp and loc in old_lastmod
-        urls.append(f"  <url><loc>{esc(loc)}</loc><lastmod>{old_lastmod[loc] if same else today}</lastmod></url>")
-    stamp = " ".join(f"{arquivo}={fp}" for arquivo, _, fp in pages)
+        igual = old_prints.get(arquivo) == fp and loc in old_lastmod
+        datas[arquivo] = old_lastmod[loc] if igual else hoje
+    return datas
+
+
+def sitemap(cfg, prints, datas):
+    """prints: [(arquivo, url, impressão)]."""
+    urls = [f'  <url><loc>{esc(cfg["base"] + url)}</loc><lastmod>{datas[arquivo]}</lastmod></url>'
+            for arquivo, url, _ in prints]
+    stamp = " ".join(f"{arquivo}={fp}" for arquivo, _, fp in prints)
     return "\n".join([
         '<?xml version="1.0" encoding="UTF-8"?>',
         GENERATED,
@@ -547,11 +561,14 @@ def render(cfg):
         for k in sorted(set(t.textos) - t.used):
             print(f"aviso: tradução nunca usada em data/en.json: {k!r}")
 
-    for arquivo, _, page in pages:
-        out[os.path.join(ROOT, arquivo)] = page
-    out[NOTFOUND_PATH] = notfound(head, views[""], tail, cfg)
     prints = [(a, u, hashlib.sha256(p.encode("utf-8")).hexdigest()[:12]) for a, u, p in pages]
-    out[SITEMAP_PATH] = sitemap(cfg, prints, read(SITEMAP_PATH))
+    datas = datas_modificacao(cfg, prints, read(SITEMAP_PATH))
+    for arquivo, _, page in pages:
+        out[os.path.join(ROOT, arquivo)] = page.replace(DATA_MARCA, datas[arquivo])
+    # o index.html é o arquivo de autoria, com o mesmo <head> da home
+    out[HTML_PATH] = out[HTML_PATH].replace(DATA_MARCA, datas[cfg["rotas"][""]["arquivo"]])
+    out[NOTFOUND_PATH] = notfound(head, views[""], tail, cfg)
+    out[SITEMAP_PATH] = sitemap(cfg, prints, datas)
     return out, errors
 
 
