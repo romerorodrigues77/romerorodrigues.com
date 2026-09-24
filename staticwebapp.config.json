@@ -101,6 +101,16 @@
       "statusCode": 301
     },
     {
+      "route": "/ideias.html",
+      "redirect": "/ideias",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/ideas.html",
+      "redirect": "/en/ideas",
+      "statusCode": 301
+    },
+    {
       "route": "/midia.html",
       "redirect": "/midia",
       "statusCode": 301
