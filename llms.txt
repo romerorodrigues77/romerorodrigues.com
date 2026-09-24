@@ -23,6 +23,7 @@
 
 - [Trajetoria](https://romerorodrigues.com/trajetoria): linha do tempo de 1995 a hoje
 - [Portfolio](https://romerorodrigues.com/portfolio): as empresas investidas
+- [Ideias](https://romerorodrigues.com/ideias): os textos que escrevi desde 2013, em veiculos e no blog antigo
 - [Na midia](https://romerorodrigues.com/midia): cobertura de imprensa desde 2009, com links para os veiculos originais (New York Times, Fortune, Valor, NeoFeed, TechCrunch)
 - [Sobre e press kit](https://romerorodrigues.com/sobre): bios oficiais e fotos
 - [Links](https://romerorodrigues.com/links): canais e contato
@@ -32,6 +33,7 @@
 - [Home](https://romerorodrigues.com/en): Buscape founder, Managing Partner of Headline Brazil
 - [Journey](https://romerorodrigues.com/en/journey): timeline from 1995 to today
 - [Portfolio](https://romerorodrigues.com/en/portfolio): portfolio companies
+- [Ideas](https://romerorodrigues.com/en/ideas): texts written by Romero since 2013
 - [Press](https://romerorodrigues.com/en/press): press coverage since 2009, linking to the original outlets
 - [About and press kit](https://romerorodrigues.com/en/about): official English bios and photos
 - [Links](https://romerorodrigues.com/en/links): channels and contact
