@@ -1,5 +1,7 @@
 Navegando pela internet, encontrei um artigo, escrito por Rafael Berto, gerente de Projetos Especiais e Marketing da EZ Commerce, empresa de tecnologia especializada em soluções para comércio eletrônico, que dá dicas para lojas virtuais que querem obter melhores resultados usando o Buscapé. Além de honrado pela menção dos nossos serviços, gostei muito das dicas que foram compartilhadas. Por isso, replico o artigo aqui no blog:
 
+## Dicas para vender mais no Buscapé
+
 “Sabemos que navegar de loja em loja pesquisando preços e informações sobre determinado produto ou serviço não é uma tarefa prática. Porém, hoje em dia, com a ajuda dos comparadores de preço, torna-se cada vez mais simples e fácil encontrar um produto ou serviço desejado.
 
 Um dos comparadores mais utilizados pelos consumidores atualmente, é o Buscapé, e boa parcela de sua popularidade é devido à qualidade das informações que ele fornece, tanto sobre o produto, quanto do lojista.
@@ -23,6 +25,8 @@ Para ajudá-lo a atingir um melhor aproveitamento, a aumentar as vendas e não d
 7. O Buscapé anuncia no Adwords por você – economize seus investimentos em marketing digital. O Buscapé investe forte em SEO e Adwords, utilize seu budget em outras mídias, ou até para baratear ainda mais o valor de seu produto.
 
 8. Sua reputação é importante - solicite que os consumidores respondam a avaliação da compra em sua loja no e-bit, assim como no próprio Buscapé, essa informação influência muito no momento de decisão de compra.
+
+## Teste e ajuste suas estratégias
 
 Explore ao máximo as funcionalidades que o Buscapé pode lhe oferecer. Teste, e se suas ações não estiverem dando o resultado esperado, mude! O importante é não temer possíveis alterações de suas estratégias de marketing.
 

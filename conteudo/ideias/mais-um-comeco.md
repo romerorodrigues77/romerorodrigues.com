@@ -2,7 +2,9 @@ Quero abrir meu blog contando um pouco da minha história e de como o [Buscapé]
 
 Eu sempre digo que não acredito em momento “eureca”. Para empreender é preciso estar aberto, antenado e, acima de tudo, estar disposto a trabalhar muito. Eu tenho espírito empreendedor desde pequeno.
 
-Na faculdade de engenharia, comecei a encontrar pessoas que dividiam a mesma paixão. Nessa época conheci o Rodrigo e o Ronaldo e nos juntamos para pensar em modelos de negócios para empreender.  O Buscapé foi a 5ª tentativa de negócio.
+Na faculdade de engenharia, comecei a encontrar pessoas que dividiam a mesma paixão. Nessa época conheci o Rodrigo e o Ronaldo e nos juntamos para pensar em modelos de negócios para empreender. O Buscapé foi a 5ª tentativa de negócio.
+
+## Como nasceu a ideia
 
 Tudo começou quando o Rodrigo estava à procura de uma impressora, mas não conseguia encontrar nenhuma informação sobre produtos e preços. A partir de uma dificuldade, tivemos a ideia de criar o ”Quanto Custa”.
 
@@ -12,7 +14,9 @@ Insistimos na ideia. Passamos dias e dias trabalhando. Até que descobrimos que 
 
 Decidimos então escolher um novo nome e precisava ser rápido. Meu sócio começou a brincar com nomes como Buscapreço, Buscaproduto, Buscaoferta, até chegar em Buscapé. No começo, todos acharam infantil, mas eu resolvi apostar e registramos.
 
-Lançamos o Buscapé em junho de 1999. Em setembro do mesmo ano a internet explodiu.  Conseguimos investidores e, em 2001, foi o ano que tivemos a primeira receita no nosso modelo de negócios. Eram destaques no resultado de busca, a loja pagaria por clique para aparecer nesses destaques.
+## O lançamento e o crescimento
+
+Lançamos o Buscapé em junho de 1999. Em setembro do mesmo ano a internet explodiu. Conseguimos investidores e, em 2001, foi o ano que tivemos a primeira receita no nosso modelo de negócios. Eram destaques no resultado de busca, a loja pagaria por clique para aparecer nesses destaques.
 
 Em 2002, tivemos o ano mais importante, pois atingimos um ponto de equilíbrio. Todos os grandes varejistas já pagavam para estar listados nos destaques. Só um que não. Um grande varejista que ameaçou nos processar quando lançamos o Buscapé. Como ele era o único que ainda não pagava para aparecer nos resultados de busca, resolvemos tirá-lo do ar. No dia seguinte, esse varejista me ligou e ameaçou nos processar, caso ele não aparecesse nos destaques.
 

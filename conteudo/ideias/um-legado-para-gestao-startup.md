@@ -4,11 +4,15 @@ Artigo muito bacana! Confiram abaixo:
 
 **U**ma vez palestrando em uma oportunidade sobre gestão para empreendedores em um evento que tinha uma audiência de empreendedores e candidatos a empreendedores bastante concentrados na indústria de inovação, como tecnologia, mídia, serviços e infra-estrutura para a indústria digital, eu primeiro procurei entender um desafio do empreendedor ‘startup’ daquela amostra: **Sobreviver, ao seu estágio inicial**.
 
+## Como sondei a plateia
+
 Na oportunidade da palestra, sondei quais seriam os pontos que poderiam levar uma empresa à inviabilidade. Utilizei o critério aferido nas “Principais causas da mortalidade das empresas” conforme estudo “[10 Anos de Monitoramento da Sobrevivência e Mortalidade de Empresas](http://www.sebraesp.com.br/arquivos_site/biblioteca/EstudosPesquisas/mortalidade/10_anos_mortalidade_relatorio_completo.pdf)” do Sebrae-SP.
 
 Pedi então para todos preverem o futuro indicando qual o principal motivo seria o mais provável para que suas empresas ou seus projetos futuros tivessem uma “causa mortis”.
 
 Eu dava o motivo e o auditório todo apagado, em blackout, me respondia ”Sim/Este” com as luzes dos seus celulares ativadas, criando uma espécie de céu estrelado. Tiramos fotos e agora aqui vou fazer alguns apontamentos sobre este “diagnóstico”, ao menos daquela amostra.
+
+## Os motivos mapeados
 
 Os motivos mapeados foram:
 
@@ -23,6 +27,8 @@ Os motivos mapeados foram:
 – Flutuações na conjuntura econômica;
 
 – Problemas pessoais dos proprietários.
+
+## O que depende do empreendedor
 
 Primeiro fiquei muito feliz ao consolidar e somar minha percepção daquele “data-mobile-lights” e detectar que 89% dos motivos estão na mão e dependem do empreendedor. E aqui está o lindo da vida empreendedora: reverter o que depende de nós para atingir o êxito das nossas iniciativas! Adoro quando o que depende de nós é majoritário!
 
@@ -51,6 +57,8 @@ Neste quesito o brasileiro, na oportunidade global inclusive, tem uma vantagem. 
 ** 12% – Problemas pessoais dos proprietários**
 
 Existe aqui pra mim uma receita ótima. Sempre procurei substituir a palavra problema, por desafio. A vida pessoal anda ao lado (no mínimo) da vida empreendedora. Não se desvincula por teorias, por técnicas e mesmo por determinação da vontade, apenas. Somos um só ser, mesmo que em papéis ou personas distintas do humano que é o empreendedor. Quando os desafios na vida pessoal acontecem, existe uma forma de você não isolar, mas estabelecer uma agenda positiva para o tratamento disso em sua vida. Ou uma forma de você não fazer dele o motivo para que você ganhe mais um problema, quer dizer o problema da inviabilidade de seu empreendimento. Se você tem um problema pessoal ‘administrável’ (muitas vezes problemas profundos de saúde ou de família estão, infelizmente, fora deste contexto), procure não deixar que ele domine sua oportunidade empreendedora, para aí sim ter “problemas“ em dobro.
+
+## Um convite ao debate
 
 Convido você a aqui comentar suas impressões e histórias. E manter viva e contínua a palestra e o assunto. Porque todos gostam – e eu também – de falar sobre o que deu certo. Mas é muito valioso termos condições de contornar os erros e desafios principalmente aqueles que podem ser fatais para o negócio, compartilhando e expandindo generosamente o conhecimento.
 

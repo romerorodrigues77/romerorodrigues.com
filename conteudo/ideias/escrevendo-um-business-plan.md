@@ -20,7 +20,7 @@ O formato de *business plan* abaixo, que sugere o uso de 15 a 20 slides, apresen
 
 **Produto** – Defina as características do produto (funcionalidade, características, arquitetura, propriedade intelectual). – e o roteiro de desenvolvimento.
 
-**Modelo de negócio** – Modelo de receita – Preços – *Average account size *e / ou *Lifetime Value* – Modelo de Vendas e distribuição – Lista de clientes.
+**Modelo de negócio** – Modelo de receita – Preços – *Average account size *e / ou *Lifetime Value* – Modelo de Vendas e distribuição – Lista de clientes.
 
 **Equipe** – Fundadores e gestores – Conselho de Administração/Conselho Consultivo.
 

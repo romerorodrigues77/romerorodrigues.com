@@ -1,6 +1,6 @@
 As micro e pequenas empresas representam hoje 95% dos negócios no Brasil, **sendo que 44% desse universo atuam no comércio**. Porém, elas ainda **respondem por 27% do PIB brasileiro** e precisam de estímulo para ampliar a participação no mercado.
 
-Para incentivar o crescimento das vendas dos pequenos empreendedores, especialmente no comércio eletrônico, o Buscapé aderiu ao **Movimento Compre do Pequeno Negócio** – uma iniciativa do Sebrae para fortalecer a economia – lançando um novo comparador de preços e produtos que reúne apenas e-commerces de pequeno porte ([compredopequeno.buscape.com.br](http://compredopequeno.buscape.com.br/)).
+Para incentivar o crescimento das vendas dos pequenos empreendedores, especialmente no comércio eletrônico, o Buscapé aderiu ao **Movimento Compre do Pequeno Negócio** – uma iniciativa do Sebrae para fortalecer a economia – lançando um novo comparador de preços e produtos que reúne apenas e-commerces de pequeno porte ([compredopequeno.buscape.com.br](http://compredopequeno.buscape.com.br/)).
 
 Assim como as grandes lojas, no comércio eletrônico as demais lojas passam a contar com toda infraestrutura para negociar seus produtos e concorrer em condições de igualdade. Para ajudá-las a impulsionar suas vendas e atrair consumidores, nos juntamos à campanha do Sebrae.
 
@@ -8,7 +8,7 @@ Segundo [dados da E-bit divulgados recentemente no 32o relatório WebShoppers](h
 
 #### Para aderir ao comparador
 
-Neste marketplace, o usuário poderá conferir **as ofertas disponibilizadas por cerca de 5 mil lojas virtuais nas mais diversas categorias de produtos**. Basta pesquisar, encontrar o que deseja e clicar para a compra. Para se juntar a este comparador de ofertas, o Buscapé convida novas lojas a se cadastrarem em sua plataforma, podendo assim aumentar suas chances de venda.
+Neste marketplace, o usuário poderá conferir **as ofertas disponibilizadas por cerca de 5 mil lojas virtuais nas mais diversas categorias de produtos**. Basta pesquisar, encontrar o que deseja e clicar para a compra. Para se juntar a este comparador de ofertas, o Buscapé convida novas lojas a se cadastrarem em sua plataforma, podendo assim aumentar suas chances de venda.
 
 As lojas que começarem a anunciar dentro do Buscapé passam a fazer parte do shopping automaticamente e, além disso, o Buscapé irá presentear esses lojistas com bônus de R$200 (na comissão a pagar).
 

@@ -10,6 +10,8 @@ Meus sócios e eu somos extremamente realizados com o que construímos até aqui
 
 Volto a empreender de novo numa indústria nascente, a de Venture Capital, para dessa vez colocar tudo que aprendi à serviço de vários negócios. A verdade é que dividir sonhos de empreendedores que querem mudar o mundo, cada um em uma indústria diferente é, hoje, o melhor néctar intelectual que eu poderia receber.
 
+## Ser escolhido pelos melhores
+
 O processo de amadurecimento dessa decisão levou em conta a reflexão sobre o que é preciso para ser o melhor fundo de Venture Capital: ser escolhido pelos melhores empreendedores.
 
 Para que isso aconteça é preciso 3 coisas:
@@ -39,6 +41,8 @@ Não faltavam razões para a subir à bordo. Fazer tudo sozinho me tomaria algun
 Ao me associar com uma venture capital da envergadura da Redpoint eventures terei vários desafios sobre a mesa e todas as peças que preciso para ajudar a estruturar um ecossistema onde possam brotar novos negócios liderados por talentosos empreendedores.
 
 Como sócio da Redpoint eventures, meu novo desafio será identificar novas oportunidades, trabalhar com a equipe para selecionar os melhores investimentos e, principalmente, apoiar os empreendedores no crescimento de suas empresas em ritmo acelerado. Na prática, apoiar os melhores empreendedores digitais do Brasil.
+
+## Um celeiro tão fértil
 
 Não tenho dúvidas de que o Brasil está pronto para se tornar um celeiro tão fértil quanto o Vale do Silício. Mais que isso, como refleti em meu último post, não há melhor momento para as startups brasileiras, apesar e por causa da crise econômica.
 

@@ -1,5 +1,7 @@
 Há algumas semanas atrás escrevi sobre como melhorar sua presença online para conseguir destaque no LinkedIn. [Leia aqui](http://www.romerorodrigues.com/seis-dicas-para-melhorar-o-perfil-no-linkedin/). Baseado naquele texto busquei uma visão mais empreendedora sobre o mesmo assunto.
 
+## O desafio de recrutar talentos
+
 Todo empreendedor sabe o quanto é difícil recrutar pessoas talentosas, qualificadas e criativas para a sua startup. Com o mercado altamente competitivo, encontrar o profissional adequado é desafio que requer uma dedicação especial.
 
 Nesse processo, as startups têm nas redes sociais uma boa aliada. Usar esses canais para encontrar bons profissionais, no entanto, requer estratégia. Portanto, neste post, que é inspirado num texto produzido pelo [Social Media Camp](http://socialmediacamp.ca/2013/04/startup-4-ways-to-use-social-media-when-hiring/), daremos algumas recomendações para o empreendedor, por meio das mídias sociais, conseguir encontrar os melhores talentos para a sua empresa. Confira as dicas:

@@ -6,7 +6,7 @@ A maioria dos consumidores (57%) que respondeu à pesquisa, disse que não estav
 
 [](http://www.romerorodrigues.com/o-abandono-do-carrinho-de-compras/tabela/)
 
-Só por esses dados já é possível tirar uma conclusão esclarecedora: tem muita gente que desiste de comprar porque o serviço de comércio virtual é ruim – e não porque acham que a compra seria impulsiva ou perigosa, por ser feita pela internet.  Uma pequena dificuldade em calcular o frete, por exemplo, já seria um motivo enorme para abandonar a compra.
+Só por esses dados já é possível tirar uma conclusão esclarecedora: tem muita gente que desiste de comprar porque o serviço de comércio virtual é ruim – e não porque acham que a compra seria impulsiva ou perigosa, por ser feita pela internet. Uma pequena dificuldade em calcular o frete, por exemplo, já seria um motivo enorme para abandonar a compra.
 
 Por mais que esses índices revelem muita coisa, as explicações para o abandono das compras virtuais ainda são bastante subjetivas. De qualquer forma, acho que esse é um bom momento para os varejistas repensarem suas estratégias. O ponto de partida pode ser as métricas usadas para calcular o comportamento dos compradores – e tentar facilitar ao máximo a vida deles.
 

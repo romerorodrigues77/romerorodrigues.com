@@ -132,7 +132,10 @@ RABEIRA = re.compile(r"\n+Categoria:\s*\n.*$", re.S)   # rodapé do tema do blog
 
 def limpa_corpo(corpo):
     """Tira o que era template do blog: a categoria do rodapé e asteriscos sem par."""
-    corpo = RABEIRA.sub("", corpo).strip()
+    corpo = RABEIRA.sub("", corpo).replace("\u00a0", " ").strip()
+    corpo = re.sub(r"(?m)^#{1,6}\s*$\n+", "", corpo)        # "##" sozinho: sobra do tema antigo
+    corpo = re.sub(r"(?m)^\(\s*\)\s*", "", corpo)           # rodapé "(*)" que ficou vazio
+    corpo = re.sub(r"[ \t]{2,}", " ", corpo)
     saida = []
     for par in re.split(r"\n{2,}", corpo):
         if len(re.findall(r"(?<!\*)\*(?!\*)", par)) % 2:   # itálico que ficou aberto
@@ -444,6 +447,8 @@ def corpo_html(markdown, slugs):
         bloco = " ".join(l.strip() for l in bloco.splitlines()).strip()
         if not bloco:
             continue
+        if re.fullmatch(r"#{1,6}", bloco):
+            continue   # "##" sozinho: sobra do tema antigo, onde o subtítulo do post virava título
         cabecalho = re.match(r"(#{2,6})\s+(.*)", bloco)
         if cabecalho:
             fecha()

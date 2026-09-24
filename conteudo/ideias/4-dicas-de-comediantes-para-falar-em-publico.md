@@ -2,6 +2,8 @@
 
 No desenrolar de sua experiência de falar em público, você vai aprender com suas falhas. Mas também vai desenvolver suas forças e a capacidade de entender seus públicos e que tom usar com cada um.
 
+## Por que aprender com comediantes
+
 Os comediantes formam um grupo que é obrigado a aprender desde cedo. Representam um tipo incomum de oradores, que podem simplesmente serem vaiados e até expulsos do palco ao invés de só verem algumas pessoas se retirando do auditório.
 
 Assim, eles tem muito a ensinar sobre o ato de falar em público:
@@ -17,6 +19,8 @@ Não importa o tamanho do auditório, busque sempre se conectar com esse públic
 **Lembre-se:** Seu público alvo é provavelmente o principal fator a ser considerado na ora de preparar sua apresentação.
 
 *Robert De Niro em “O Rei da Comédia”, dirigido por Martin Scorsese.*
+
+## Inspire-se em quem você admira
 
 2. Aprenda com as pessoas que você admira.
 
@@ -40,7 +44,7 @@ Nunca suba ao palco sem bater um papo com uma ou duas pessoas da plateia. Esforc
 
 **4. Comediantes são pró-ativos. Seja você também![](http://www.romerorodrigues.com/wp-content/uploads/2015/02/seinfield.jpg)**
 
-Seinfield é considerado um dos melhores comediantes de todos os tempos. Fora de sua rotina intensa de shows de standup, ele é conhecido por trabalhar duro para se aprimorar. Dizem que Jerry Seinfield estuda mais comedia, sobe mais aos palcos, e aplica mais tempo escrevendo do que qualquer um.
+Seinfield é considerado um dos melhores comediantes de todos os tempos. Fora de sua rotina intensa de shows de standup, ele é conhecido por trabalhar duro para se aprimorar. Dizem que Jerry Seinfield estuda mais comedia, sobe mais aos palcos, e aplica mais tempo escrevendo do que qualquer um.
 
 **Como fazer isso?**
 

@@ -1,5 +1,7 @@
 Já me perguntaram muito porque faço investimentos anjo. Tanto, que na falta de uma resposta, comecei a me perguntar também.
 
+## Não é pelo retorno financeiro
+
 A primeira tentativa de resposta flerta com o retorno financeiro, mas não poderia ser menos verdadeira. De fato, eu faço uma boa análise do potencial financeiro de um projeto, seu modelo de negócios, o potencial econômico, o tamanho do mercado, a posição na cadeia de valor, quanto de poder transfere ao consumidor/cliente, quem seriam os potenciais parceiros ou investidores estratégicos que se interessariam pelo negócio um dia no futuro…
 
 Mas dois fatores me fazem perceber que não é por isso que faço investimentos anjo: o primeiro é que dificilmente acompanho o investimento como um investimento. Ou seja, considero o investimento perdido no instante seguinte que faço a transferência bancária (o famoso *write-off*). Comportamento que deve ser fortemente revisado caso eu me torne um investidor de dinheiro de terceiros (rs!). Mas isso não quer dizer que não cobro os fundadores por resultado ou que não tento contribuir para o sucesso da empresa. Simplesmente não espero ficar rico com estes investimentos.
@@ -8,6 +10,8 @@ O segundo motivo que justifica não ser um investimento financeiro é que a aná
 
 Ou seja, a alma do negócio e o sonho do empreendedor, no meu ponto de vista, valem mais que o resultado financeiro. É isso que compro, que acredito, que invisto. Mais, é isso que quero compartilhar: o sonho. Não tem nada mais prazeroso.
 
+## O aprendizado com empreendedores
+
 Um segunda possível resposta seria dizer que é o meu MBA. Já disse isso muito e é, em boa parte, verdade. Aprendo, hoje em dia, mais com empreendedores do que na sala do MBA. Ao tocar diferentes modelos de negócios em diferentes setores todo os meses, cada *start-up* com suas dificuldades, nos tornamos mais abertos para o que está acontecendo. Mais conectados. Mais sinapses.
 
 Cada fundador com seus desafios e problemas, e com enormes limitações de orçamento, formula alternativas criativas para superar os obstáculos. Muitas vezes com soluções, se não inéditas, diferentes das muitas vezes encontradas na academia. É, nem todos os caminhos foram traçados ainda.
@@ -15,6 +19,8 @@ Cada fundador com seus desafios e problemas, e com enormes limitações de orça
 Essa pluralidade de ideias me torna um empreendedor e CEO melhor, da mesma forma que ser empreendedor de uma empresa que passou por vários desafios me torna (acredito, rs) um investidor anjo melhor.
 
 Mas não precisaria investir nas empresas pra fazer isso, certo? Já o faço como pro-bono na **Endeavor** ([http://www.endeavor.org.br](http://www.endeavor.org.br)), onde atuo como mentor e membro do Conselho de Administração e sou exposto à nata do empreendedorismo de impacto Brasileiro.
+
+## Um hobby, quase um vício
 
 No final, acredito que seja um pouco do meu hobby, do meu vício. É definitivamente minha cachaça: tem gente que gosta de colocar seu dinheiro e seu tempo livre em relógios, carros, vinhos, gravatas… eu gosto de *start-ups*… Empresas que vão dar poder ao indivíduo, ao consumidor, tocadas por gente talentosa e inteligente e, portanto, sexy.
 
@@ -82,6 +88,6 @@ A Clicksign é um aplicativo de assinatura eletrônica de documentos. Utilizada 
 
 *** Com exceção do Grubster e da E-midia, onde minha participação é de 15% e 12% respectivamente, todas minhas participações são inferiores a 10%. Alguns investimentos/participações não estão na lista por questões de necessidade de confidencialidade por parte dos negócios.
 
-() Fundador do Buscapé Company e
+Fundador do Buscapé Company e
 
 *Membro do Conselho da Fundação Endeavor*
