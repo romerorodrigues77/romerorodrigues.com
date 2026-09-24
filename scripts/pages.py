@@ -167,6 +167,8 @@ def alternates(cfg, route):
 
 def seo_block(cfg, route, ctx, lang="pt"):
     rota = rotas(cfg, lang)[route]
+    if lang == "en" and "_t" in ctx:
+        ctx = {**ctx, "total": ctx["_t"].total}  # o EN tem menos empresas: o que sai por remover_empresas
     med = cfg.get("medicao", {})
     url = cfg["base"] + rota["url"]
     title = fill(rota["title"], ctx)
