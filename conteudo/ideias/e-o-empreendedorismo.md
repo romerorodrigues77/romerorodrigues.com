@@ -8,17 +8,23 @@ Mas há um tema, no entanto, igualmente relevante que passou batido no primeiro 
 
 Trata-se de um assunto interligado a outras áreas e cujo desenvolvimento terá um efeito benéfico para o conjunto da sociedade. Só para ficar em dois exemplos: o empreendedorismo está diretamente relacionado ao emprego, mas também pode e deve estar associado a ações na área da educação. Como se sabe, a formação de mão de obra é um dos gargalos que atravancam o avanço econômico-social do País.
 
+## O peso das pequenas empresas
+
 Para dar uma ideia da dimensão do que estamos falando, o IBGE calculou que os pequenos empreendimentos representavam 21% dos negócios do PIB do País em 1985. Como não havia atualização desse índice, o Sebrae e a Fundação Getúlio Vargas resolveram, utilizando a mesma metodologia, avaliar a evolução do setor.
 
 Assim, registraram que, em 2001, o percentual subiu para 23,2% e, em 2011, para 27% – ou seja, mais de um quarto do PIB brasileiro é gerado pelas pequenas empresas.
 
 Como também demonstra o estudo, as MPEs já são as principais geradoras de riqueza no comércio no Brasil (53,4% do PIB deste setor). No faturamento da indústria, a fatia das micro e pequenas (22,5%) se aproxima das médias empresas (24,5%). E, no setor de serviços, mais de um terço da produção nacional (36,3%) se origina nos pequenos negócios.
 
+## Os obstáculos para empreender
+
 Esses dados demonstram que o novo governo não pode ignorar a importância de desenvolver um ambiente de negócios favorável ao surgimento e fortalecimento de novos empreendedores. Para que se entenda bem a complexidade do tema, hoje a taxa de mortalidade das empresas no período de dois anos, no Brasil, é de 70%.
 
 [](http://www.romerorodrigues.com/e-o-empreendedorismo/empreendedorismo-visionario/)Alguns dos obstáculos principais já são bem conhecidos: sistema tributário complexo e oneroso demais, burocracia excessiva para abertura e fechamento de empresas, infraestrutura deficiente (logística, telecomunicações, internet) e dificuldade de acesso ao capital, apenas para citar alguns casos.
 
 Como se não bastasse, hoje os empreendedores são obrigados a gastar cerca de 2,6 mil horas para pagar impostos, de acordo com o relatório do Doing Business. Em um mercado altamente competitivo, tudo o que os empreendedores mais desejam é perder menos tempo com a burocracia para, assim, se dedicarem mais à operação e aos negócios.
+
+## Propostas da Endeavor Brasil
 
 Além de trabalhar efetivamente para resolver esses problemas, é importante que o próximo governo crie ações concretas que estimulem a capacitação de novos empreendedores. A [Endeavor Brasil](http://www.endeavor.org.br/), entidade de fomento ao empreendedorismo da qual sou conselheiro, listou algumas propostas importantes para o setor. Confira:
 

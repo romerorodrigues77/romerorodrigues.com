@@ -2,6 +2,8 @@
 
 **Confira mais informações fornecidas pela Universidade Buscapé Company, com base dos dados da E-bit:**
 
+## O faturamento da Black Friday
+
 A Black Friday deste ano no Brasil resultou num faturamento de **R$ 1,16 bilhão**, o que representa um crescimento nominal de 51% em relação a 2013. A informação é da E-bit e refere-se às vendas realizadas somente na sexta-feira (28). Se formos considerar também as compras efetuadas na véspera, o valor chega a R$ 1,4 bilhão, 51% maior que o ano anterior, já que muitas das ofertas estavam no ar desde quinta-feira, ação que atraiu muitos consumidores por antecipação.
 
 E-commerce cresce 51% na Black Friday 2014 Para o diretor executivo da E-bit, Pedro Guasti, a previsão foi confirmada, já que a cada ano o evento ganha maior adesão do varejo e do próprio público. “O faturamento da Black Friday neste ano atingiu a expectativa que aguardávamos e representou o maior faturamento em um único dia no e-commerce”, assinala.
@@ -10,7 +12,7 @@ Os pedidos da sexta-feira chegaram a** 2,2 milhões com o tíquete médio de R$ 
 
 As ofertas atraíram o total de 1,2 milhão de consumidores únicos, sendo que 18% deles aproveitaram o momento e realizaram sua primeira compra pela Internet. As categorias que mais venderam no dia da Black Friday foram **Telefonia e Celulares, Eletrodomésticos, Moda & Acessórios, Informática e Eletrônicos.**
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2014/12/blackfriday20142.png)
+## Bem acima de uma sexta comum
 
 Em comparação a uma sexta feira comum (no caso, a última sexta feira de outubro de 2014), a Black Friday se destacou por superar dados nos seguintes quesitos: **867% no faturamento; 619% na quantidade de pedidos; e 536% em número de consumidores únicos.**
 

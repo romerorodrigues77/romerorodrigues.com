@@ -1,8 +1,8 @@
-##
-
 São muitas as invenções que nasceram como resultado das duas primeiras guerras mundiais. A partir de necessidades que surgiram nos horrores dos campos de batalha, foram criados o zíper, o absorvente íntimo, o drone, o rádio sem fio, a quimioterapia e, vale lembrar, a própria estruturação da rede mundial de computadores que deu origem à Internet foi motivada pela Guerra Fria e a corrida espacial disputadas entre Estados Unidos e Rússia.
 
 Aguçar a criatividade e buscar saídas em tempos de crise é da nossa natureza humana, do nosso instinto de sobrevivência. Em cenários macroeconômicos como o que o Brasil vem enfrentando, de juros estratosféricos e inflação em alta, fatores que impulsionam as taxas de desemprego e fecham as portas para o trabalho formal, é importante manter o radar ligado para oportunidades de inovar e empreender.
+
+## Um período propício para startups
 
 Os mais céticos dirão que perdi completamente o bom senso. Que não estou acompanhando os índices da economia e estou alienado ao que dizem os analistas. Que estou rasgando a cartilha mercantilista e esquecendo que não há como aquecer o consumo com taxas de financiamento inaceitáveis e preços em alta. Mesmo correndo todos estes riscos de ter minha sanidade questionada, acredito piamente que nunca tivemos um período tão propício para investir em startups digitais, especialmente as voltadas a consumo e crédito.
 
@@ -12,11 +12,15 @@ Mas o que me faz apostar na existência de um universo repleto de oportunidades 
 
 A facilidade de pesquisar, comparar e contratar serviços ou produtos nas proximidades com os melhores preços ajudará a transformar rapidamente em hábito o que estamos vendo como uma mudança de comportamento sem precedentes. É na esteira do mobile, e por que não dizer, da crise, que estão nascendo empresas inovadoras, disruptivas, capazes de fazer ruir negócios tradicionais que foram planejados para crescer em economias formais, reguladas e burocratas e, por isso mesmo, muito mais suscetíveis a turbulências. Ao perderem fôlego, num momento de crise, para investir em marketing e inovação, estas grandes empresas abrem finalmente espaço para a adoção dos serviços inovadores das startups digitais, que não têm como principal meta nem receita, nem lucro, e sim a satisfação de seu usuário.
 
+## O poder do homo mobilis
+
 O ‘homo mobilis’ inverte a lógica do mercado pelo simples motivo de que, conectado a qualquer hora, em qualquer lugar e em tempo real, passa a ter acesso a um número muito maior de ofertas e de fornecedores. Com muito mais poder de negociação, só fechará negócio se julgar conveniente (o que não quer dizer que preço seja o único e mais importante fator de decisão).
 
 Como líderes e pioneiros no serviço de comparação de preços, no Buscapé conquistamos um grande aumento da popularização do nosso serviço a cada nova crise, que se revertia em explosão de receitas logo após a passagem da tormenta. Hoje o consumidor já incorporou o hábito de fazer pesquisas de preços na Internet antes de sair às compras ou mesmo quando está dentro da loja em nosso aplicativo no celular. Só perde dinheiro e boas promoções quem quer. A ‘tempestade perfeita’ formada pela atual crise está justamente na mudança comportamental do consumidor decorrente da explosão da mobilidade. As crises sempre promovem grandes mudanças de comportamento. Num ambiente aquecido economicamente, o consumidor tem mais resistência para mudar seus hábitos.
 
 O empreendedor que souber aproveitar o momento e mirar nesta transição nos hábitos de consumo irá fazer uma saborosa limonada. As grandes empresas não estão preparadas para essa mudança. A verdade é que estas organizações sobrevivem, com suas ineficiências, da inércia de comportamento do consumidor. Já as startups utilizam este momento da evolução do ‘homo mobilis’ como catalizador para ganhar market share e share of mind.
+
+## Números da penetração do smartphone
 
 E a transição para esta nova espécie humana é evidente. Uma pesquisa divulgada recentemente pelo IBGE (Instituto Brasileiro de Geografia e Estatística), com base em dados da Pesquisa Nacional por Amostra de Domicílio (Pnad), revelou que quase 60% das residências brasileiras acessaram a Internet por celulares ou tablets em 2013. A GSMA prevê que a penetração de smartphones na América Latina chegará a 68% em 2020 (no Brasil alcançará 72%).
 
@@ -25,6 +29,8 @@ São números incontestáveis que mostram que em pouco tempo o smartphone com pl
 Seguem alguns números da eMarketer sobre o mercado mobile na América Latina e no Brasil:
 
 ![imagem](https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAANxAAAAJDg5MjMxN2UxLTA2ZGYtNGE3OC05OTE4LTdmYzg3YzYzZmVlZQ.png)
+
+## Fintechs como segmento promissor
 
 Há alguns segmentos que julgo bem promissores, como para startups ‘fintech’. Se antes não comparava as taxas do cheque especial e do cartão e não observava as tarifas dos serviços bancários, agora o consumidor ficará muito mais atento a quanto seu banco está cobrando e não abrirá mão de fazer pesquisas em apps de comparação de produtos financeiros e de buscar produtos alternativos que não sejam necessariamente oferecidos por uma instituição financeira tradicional.
 

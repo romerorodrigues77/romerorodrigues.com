@@ -20,4 +20,6 @@ Quem já se viu diante da difícil tarefa de solicitar a retirada de um conteúd
 
 E o que falar de resistência à abertura dos dados de usuários pedófilos, como vimos num passado recente, sob o mesmo pretexto vazio de que o servidores não ficam no País?
 
+## Um passo decisivo
+
 Como se vê, estamos diante de um momento crucial da internet no Brasil. A aprovação do Marco Civil, com a inclusão da exigência de armazenamento de dados no País – e também da neutralidade de rede, outra medida essencial -, será um passo decisivo na direção de uma internet em sintonia com a sociedade e o mercado digital no País.

@@ -1,6 +1,8 @@
 Um dos grandes nomes da história dos Estados Unidos, Abraham Lincoln é um exemplo atualíssimo de liderança e engajamento. O 16° presidente americano, responsável direto pela unificação do país no século XIX, exibia diversas características daquilo que hoje, 165 anos depois de sua morte, consideramos traços do líder moderno: alguém que influencia e inspira a equipe, assume responsabilidades pelo resultado e reconhece o mérito.
 
-Por conta disso, vou listar aqui cinco dicas de liderança de Abraham Lincoln para inspirar você em 2015. E sempre! Utilizo como referência para este post um artigo da revista Time, posteriormente adaptado para o Jornal do Empreendedor por Enrico Cardoso.
+Por conta disso, vou listar aqui cinco dicas de liderança de Abraham Lincoln para inspirar você em 2015. E sempre! Utilizo como referência para este post um artigo da revista Time, posteriormente adaptado para o Jornal do Empreendedor por Enrico Cardoso.
+
+## Como Lincoln liderava pessoas
 
 - **Saia do escritório e circule**
 
@@ -14,7 +16,7 @@ Ser presidente dos Estados Unidos, assim como principal executivo de uma empresa
 
 Lincoln dava crédito aos demais e assumia a responsabilidade quando algo dava errado. Assim, fazia com que a equipe também se sentisse responsável por suas atitudes. Os líderes estimados são aqueles que tendem a ser democráticos, permitindo uma maior participação das pessoas nas decisões.
 
-[](http://www.romerorodrigues.com/wp-content/uploads/2015/02/lincoln.jpg)
+## Inovação e histórias que convencem
 
 - **Incentive a inovação**
 
@@ -28,4 +30,4 @@ Grande contador de histórias, Abraham Lincoln sabia do poder que os “causos�
 
 Feliz 2015!
 
-() Fundador do Buscapé Company e  Membro do Conselho da Fundação Endeavor
+Fundador do Buscapé Company e Membro do Conselho da Fundação Endeavor

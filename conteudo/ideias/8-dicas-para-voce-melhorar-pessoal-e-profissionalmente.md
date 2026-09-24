@@ -4,6 +4,8 @@ Nos dias de hoje, é difícil separar o lado pessoal do profissional
 
 O aperfeiçoamento deve ser uma busca permanente de todos, seja no plano pessoal, seja no profissional. Embora cada uma dessas áreas tenha suas peculiaridades, muitas vezes os benefícios do aprimoramento podem ser sentidos de uma forma mais completa em nossas vidas, com reflexos em todos os campos de atuação. Neste post, listo 8 dicas valiosas que podem ajudar você nessa jornada pessoal. Busquei inspiração para este texto no artigo “Eight Promises That Make Tomorrow Better Than Today”, do Jeff Hade, também abordado em um post do Jornal do Empreendedor.
 
+## Da atenção à iniciativa
+
 **1 – Preste atenção a quem nunca é notado**
 
 Quantos ao seu redor trabalham arduamente sem que ninguém os perceba? Pense em pessoas cujo esforço não é de ordem intelectual e pode não estar diretamente associado a uma atividade considerada nobre, mas que são fundamentais para que a engrenagem funcione perfeitamente. Sorria, converse com essa pessoa. Demonstre que você a valoriza e a considera importante.
@@ -19,6 +21,8 @@ Você não tem de esperar para ser descoberto ou receber um favor, uma ajuda. Fa
 **4 – Deixe as pessoas decidirem**
 
 O chefe está acostumado a mandar os outros fazerem coisas. O líder, embora esteja no comando, prefere delegar e respeita as responsabilidades dos membros da equipe. Ao deixar as pessoas também decidirem, não sufoca a criatividade e as habilidades dos outros.
+
+## Conquistas, erros, amor e autenticidade
 
 5 – Valorize suas pequenas conquistas
 

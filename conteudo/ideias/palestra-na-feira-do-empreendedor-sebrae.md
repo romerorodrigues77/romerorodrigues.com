@@ -1,4 +1,4 @@
-Paixão por empreender, fracasso, sucesso, a história do Buscapé e, principalmente, uma recomendação: acredite no impossível! Foi isso que abordei em minha [Palestra na Feira do Empreendedor Sebrae](http://feiradoempreendedor.ce.sebrae.com.br/), sexta-feira (8/8), em Fortaleza.
+Paixão por empreender, fracasso, sucesso, a história do Buscapé e, principalmente, uma recomendação: acredite no impossível! Foi isso que abordei em minha Palestra na Feira do Empreendedor Sebrae, sexta-feira (8/8), em Fortaleza.
 
 No bate-papo, falei sobre o surgimento do Buscapé, os desafios que enfrentamos, nossos erros e a estratégia de negócios implementada. Outros aspectos importantes destacados são os valores que norteiam a companhia e a importância de criar uma cultura corporativa que permita o fracasso.
 

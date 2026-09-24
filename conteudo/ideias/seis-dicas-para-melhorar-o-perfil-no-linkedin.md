@@ -1,8 +1,12 @@
 **Como melhorar o perfil no LinkedIn.** A dinâmica de trabalho dos recrutadores e das empresas que buscam novos profissionais mudou bastante nos últimos tempos. Para a alegria dos headhunters, o processo de seleção de candidatos, antes moroso e complicado, agora pode ser feito quase que instantaneamente e com muito mais precisão do que no passado. A internet, sem dúvida, teve papel fundamental nesta transformação, já que trouxe consigo inúmeras formas de facilitar e tornar mais acurado o processo de busca de candidatos qualificados.
 
+## Por que o LinkedIn importa
+
 O LinkedIn é uma destas ferramentas. A rede social, focada no perfil profissional dos usuários, vem se tornando quase que indispensável neste processo, desbancando inclusive os tradicionais currículos, tanto em relevância quanto em quantidade/qualidade de dados.
 
 A plataforma, contudo, não apresenta benefícios apenas para os recrutadores. Ela é especialmente útil para os que estão à procura de oportunidades, pois oferece uma série de possibilidades que, se bem aproveitadas, podem garantir que o candidato leve vantagem sobre seu concorrente.
+
+## Seis dicas para se destacar
 
 Pensando nisso, o site Mashable publicou um artigo que reúne seis dicas da perita em carreiras do LinkedIn, Nicole Williams, para que os usuários tenham mais chance de atrair o interesse das empresas. Confira:
 

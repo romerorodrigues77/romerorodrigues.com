@@ -2,6 +2,8 @@ Em 1998, quatro estudantes estavam com uma ideia na cabeça: e se todas as infor
 
 O varejo naquela época, no entanto, dava mostras que não gostaria disso. Informar preços por telefone era prática proibida até na lojas com as melhores reputações.
 
+## A revolução chamada Buscapé
+
 Mas a ingenuidade faz dos jovens uns tolos. Românticos, eles sempre começam sua própria revolução. A nossa se chamava [Buscapé](http://www.buscape.com.br/).
 
 Há 15 anos, no dia 1º de junho de 1999, entrava no ar o [Buscape](http://www.buscape.com.br/). Recheado com 35 lojas e 30 mil produtos (hoje são mais de 15 mil varejistas e 12 milhões de produtos), o site trazia quase tudo que se podia comprar online na época.
@@ -13,6 +15,8 @@ Das várias mudanças que o acesso à informação nos trouxe nesses 15 anos, ne
 A força da rápida transmissão de informações ainda vai impactar muito a saúde, a educação e os movimentos democráticos nos próximos 15 anos. Mas, como era de se esperar, o capitalismo foi impactado primeiro – e na sua veia de consumo.
 
 Quando começamos, nosso primeiro plano de negócios – de forma otimista, claro – estimava que o Brasil teria 700 mil usuários de internet em 2000. Hoje, somos mais de 100 milhões de “internautas” (palavra que já morreu) e temos mais celulares que habitantes brasileiros.
+
+## A revolução digital começa agora
 
 A tal revolução digital começa de verdade agora: durante os últimos 15 anos a internet nos trouxe todas as informações disponíveis no mundo. Foi a chave para uma maior democratização da educação, além de estar sendo a ferramenta para a redução das diferenças sociais. Mas, por pura ironia, elas ficavam todas presas a nosso computador “desktop” (palavra que vai morrer), amarrado em cima de alguma mesa. Na maioria das vezes, inacessíveis quando precisávamos.
 

@@ -28,4 +28,4 @@ Para aprender sobre variados temas relacionados ao mundo executivo, uma boa pedi
 
 Como deu para perceber, os temas abordados por esses importantes **influenciadores** são os mais variados. Não tenha dúvidas de que eles podem agregar muito a qualquer pessoa que queira se aperfeiçoar como profissional.
 
-[Publicação original](http://blog.goomarkpublicidade.com.br/influenciadores-para-seguir-nas-redes/?utm_content=31590669&utm_medium=social&utm_source=linkedin)** **
+Publicação original** **

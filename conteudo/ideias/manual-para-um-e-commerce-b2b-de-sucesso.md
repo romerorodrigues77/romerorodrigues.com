@@ -18,9 +18,13 @@ Neste artigo, vamos abordar os tipos de atividades que são necessárias para te
 
 Note que alguns desses papéis serão combinados em organizações menores, fazendo com que a tarefa de encontrar o profissional certo seja ainda mais desafiador.
 
+## As atividades cruciais do B2B
+
 Atividades Cruciais do B2B e o Papel de Trabalho a ser desempenhado
 
 A boa notícia é que o segmento B2C já estabeleceu o caminho para o sucesso. Os fabricantes e distribuidores precisam, essencialmente, investir em todas essas atividades para ser bem sucedido hoje, pois os compradores desejam o mesmo tipo de experiência de cliente seja em lojas online B2B ou B2C:
+
+## Conteúdo, marketing e publicidade
 
 **1.** Desenvolvimento de conteúdo relevante
 
@@ -71,6 +75,8 @@ E-mail marketing é altamente eficaz no mercado de B2B. Desenvolver listas segme
 Papel de trabalho:
 
 Algum funcionário especializado em e-mail marketing. Ele precisará ter habilidades em linguagem HTML e também em design.
+
+## Design, tecnologia e atendimento
 
 **7**. Designer
 

@@ -1,12 +1,14 @@
 Empreendedores precisam de altas doses de inspiração para manter-se firmes. Hoje, a história motivadora que apresento não tem nada a ver com o universo digital, mas traz em sua essência valores fundamentais para quem que botar sua ideia na prática.
 
-O foto documentarista brasileiro Sebastião Salgado é um dos ícones mundiais da fotografia. Começou sua carreira com quase 30 anos ao perceber que a fotografia poderia ir muito além de simplesmente registrar imagens. Aventurando-se com sua câmera pelo mundo e denunciando cenários de grande vulnerabilidade humana e natural, ele contaria histórias e sensibilizaria muita gente em prol de causas nobres.
+O foto documentarista brasileiro Sebastião Salgado é um dos ícones mundiais da fotografia. Começou sua carreira com quase 30 anos ao perceber que a fotografia poderia ir muito além de simplesmente registrar imagens. Aventurando-se com sua câmera pelo mundo e denunciando cenários de grande vulnerabilidade humana e natural, ele contaria histórias e sensibilizaria muita gente em prol de causas nobres.
 
-A história de vida e carreira desse fotógrafo natural de Aimorés (MG) é um exemplo de perseverança que deveria inspirar todo empreendedor. Listo abaixo 5 valores que aprendi conhecendo um pouco de sua história e trabalho.
+A história de vida e carreira desse fotógrafo natural de Aimorés (MG) é um exemplo de perseverança que deveria inspirar todo empreendedor. Listo abaixo 5 valores que aprendi conhecendo um pouco de sua história e trabalho.
+
+## Coragem para arriscar e inovar
 
 **Ele não teve medo de arriscar**
 
-Antes de abraçar a fotografia como profissão, Sebastião Salgado já tinha pós graduação em Economia pela USP, já havia se engajado em movimento contra a ditadura militar, emigrado para Paris, onde escreveu uma tese econômica, e trabalhado como secretário para a Organização Internacional do Café (OIC), em Londres. Só com quase 30 anos é que ele descobriu sua verdadeira motivação fotográfica, durante viagens à trabalho para a África, as quais registrava com a máquina de sua esposa.
+Antes de abraçar a fotografia como profissão, Sebastião Salgado já tinha pós graduação em Economia pela USP, já havia se engajado em movimento contra a ditadura militar, emigrado para Paris, onde escreveu uma tese econômica, e trabalhado como secretário para a Organização Internacional do Café (OIC), em Londres. Só com quase 30 anos é que ele descobriu sua verdadeira motivação fotográfica, durante viagens à trabalho para a África, as quais registrava com a máquina de sua esposa.
 
 Salgado precisou ter coragem para mudar de carreira e trilhar um novo caminho, que apresentava incertezas, até pelo fato da fotografia ainda ser um ramo relativamente novo. Um empreendedor precisa dessa coragem de concentrar todas as suas ações em sua ideia, acreditar nela e, assim, romper as barreiras de sua zona de conforto.
 
@@ -24,11 +26,13 @@ Saber inovar seu nicho de atividade é um grande trunfo na mão de um empreended
 
 *Foto do projeto Trabalhadores em Serra Pelada – Sebastião Salgado*
 
+## Conheça o público e escolha parceiros
+
 **Ele conheceu bem quem fotografou**
 
 Em cada projeto em que se debruçava, Salgado projetava toda sua dedicação. Alguns de seus trabalhos, como Outras Américas, Trabalhadores Rurais e Êxodos, levaram anos para serem concluídos. Esse era o tempo necessário para que conhecesse a fundo as pessoas que fotografaria e, especialmente, a vida que levavam.
 
-Um empreendedor não precisa levar todo esse tempo para conhecer seu público, mas precisa ter essa mesma dedicação para entende-lo de verdade. Seu planejamento deve conter detalhadamente quais serão os tipos de públicos que interagirão com seu negócio. Assim, conhecendo seu comportamento, seus esforços serão muito mais assertivos e recompensadores, para ambas as partes.
+Um empreendedor não precisa levar todo esse tempo para conhecer seu público, mas precisa ter essa mesma dedicação para entende-lo de verdade. Seu planejamento deve conter detalhadamente quais serão os tipos de públicos que interagirão com seu negócio. Assim, conhecendo seu comportamento, seus esforços serão muito mais assertivos e recompensadores, para ambas as partes.
 
 ![imagem](http://www.romerorodrigues.com/wp-content/uploads/2015/05/salgado4.png)
 
@@ -43,6 +47,8 @@ Um empreendedor isolado não alça vôos tão altos. Cerque-se de pessoas que co
 ![imagem](http://www.romerorodrigues.com/wp-content/uploads/2015/05/salgado5.png)
 
 *Sebastião Salgado e a esposa Lélia no Instituto Terra, em Minas Gerais*
+
+## Fazer a diferença
 
 **Ele fez a diferença**
 
@@ -64,4 +70,4 @@ Sebastião Salgado, através de sua câmera, de seu olhar e de seu coração, co
 
 Fontes: [Biografia Sebastião Salgado – Wikipedia.](http://pt.wikipedia.org/wiki/Sebasti%C3%A3o_Salgado)
 
-[Documentário O Sal da Terra,](http://www.adorocinema.com/filmes/filme-220717/) de [Wim Wenders](http://www.adorocinema.com/personalidades/personalidade-37/), [Juliano Ribeiro Salgado](http://www.adorocinema.com/personalidades/personalidade-638925/)
+[Documentário O Sal da Terra,](http://www.adorocinema.com/filmes/filme-220717/) de [Wim Wenders](http://www.adorocinema.com/personalidades/personalidade-37/), [Juliano Ribeiro Salgado](http://www.adorocinema.com/personalidades/personalidade-638925/)

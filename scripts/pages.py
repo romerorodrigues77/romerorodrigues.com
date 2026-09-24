@@ -598,7 +598,8 @@ def artigos_ideias(head, home_view, tail, cfg, ctx):
         pagina_ld = {"@context": "https://schema.org", "@type": "WebPage", "@id": f"{base}{url}#pagina",
                      "url": base + url, "name": r["titulo"], "inLanguage": "pt-BR",
                      "isPartOf": {"@id": f"{base}/#website"}, "about": {"@id": cfg["pessoa"]["@id"]},
-                     "dateModified": DATA_MARCA}
+                     # texto de arquivo: a data que importa é a da publicação, não a do build
+                     "dateModified": r["data"]}
         trilha = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Início", "item": f"{base}/"},
             {"@type": "ListItem", "position": 2, "name": "Ideias", "item": f"{base}/ideias"},

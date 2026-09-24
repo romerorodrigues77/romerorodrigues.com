@@ -2,6 +2,8 @@ Quem nunca sonhou em ter seu próprio negócio e fazer o que gosta? Uma [pesquis
 
 Parece simples, mas começar uma *startup* não é tão fácil quanto parece. É preciso alguns requisitos básicos para não se perder no meio do caminho e alcançar o sucesso desejado.
 
+## Dedicação, paixão e coragem
+
 Tem quem pense que ter o próprio negócio significa trabalhar quando e como quiser. Não é bem assim. Dedicação, paixão, empenho e tempo são essenciais para quem está começando. Ah! Não podemos nos esquecer da coragem. Junto com uma empresa nova vêm os riscos e os problemas. Quando criamos o Buscapé, folga e descanso eram palavras que não existiam no nosso dia a dia.
 
 Por isso, deixo algumas dicas para você que está a fim de colocar a mão na massa:
