@@ -13,6 +13,7 @@ import html
 import os
 import re
 import sys
+import unicodedata
 
 try:
     import openpyxl
@@ -83,6 +84,12 @@ TOTAL_RES = [
 
 def esc(s):
     return html.escape(s, quote=True)
+
+
+def slug(nome):
+    """Nome da empresa -> âncora do card (/portfolio#empresa-pismo)."""
+    txt = unicodedata.normalize("NFKD", nome).encode("ascii", "ignore").decode()
+    return "empresa-" + re.sub(r"-{2,}", "-", re.sub(r"[^a-zA-Z0-9]+", "-", txt).strip("-").lower())
 
 
 def auto_label(cats):
@@ -246,7 +253,7 @@ def render_tomb(r):
         news = (f'<a class="tomb-news" href="{esc(r["materia_url"])}" target="_blank" rel="noopener">'
                 f'{esc(r["materia_titulo"])}{small}</a>')
     foot = f'<div class="tomb-foot"><span class="yr">{esc(r["ano"])}</span><span class="val">{esc(r["status"])}</span></div>'
-    return (f'<li data-cats="{" ".join(r["cats"])}" data-name="{esc(r["nome"])}">'
+    return (f'<li id="{slug(r["nome"])}" data-cats="{" ".join(r["cats"])}" data-name="{esc(r["nome"])}">'
             f'<div class="tomb">{site}{news}{foot}</div></li>')
 
 

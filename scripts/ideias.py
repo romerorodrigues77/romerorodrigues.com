@@ -19,6 +19,7 @@ import os
 import re
 import sys
 import time
+import warnings
 import unicodedata
 
 try:
@@ -434,9 +435,59 @@ def inline(texto, slugs):
     return re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"<em>\1</em>", saida)
 
 
-def corpo_html(markdown, slugs):
+TAG_RE = re.compile(r"(<[^>]+>)")
+# A história do Buscapé está na trajetória, não num card do portfólio.
+DESTINO_PROPRIO = {"Buscapé": "/trajetoria"}
+
+
+def empresas_do_portfolio():
+    """{nome da empresa: para onde linkar a primeira menção dela num texto}."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        import portfolio
+    mapa = {}
+    for r in portfolio.published(portfolio.read_xlsx(portfolio.XLSX_PATH)):
+        destino = f"/portfolio#{portfolio.slug(r['nome'])}"
+        for nome in (r["nome"], r["nome_exibido"]):
+            if nome and len(nome) >= 4:      # nome curto demais gera falso positivo
+                mapa.setdefault(nome, destino)
+    mapa.update(DESTINO_PROPRIO)
+    return dict(sorted(mapa.items(), key=lambda kv: -len(kv[0])))   # nome mais longo primeiro
+
+
+def linkar_empresas(trecho, mapa, usados):
+    """Liga a primeira menção de cada empresa. Não entra em link existente."""
+    partes = TAG_RE.split(trecho)
+    em_link = False
+    for i, parte in enumerate(partes):
+        if parte.startswith("<"):
+            if parte.startswith("<a "):
+                em_link = True
+            elif parte.startswith("</a"):
+                em_link = False
+            continue
+        if em_link or not parte.strip():
+            continue
+        achados = []
+        for nome, destino in mapa.items():
+            if nome in usados:
+                continue
+            m = re.search(r"(?<![\w\-À-ÿ])" + re.escape(nome) + r"(?![\w\-À-ÿ])", parte)
+            if m and not any(ini < m.end() and m.start() < fim for ini, fim, _ in achados):
+                achados.append((m.start(), m.end(), destino))
+                usados.add(nome)
+        for ini, fim, destino in sorted(achados, reverse=True):   # de trás para frente
+            parte = f'{parte[:ini]}<a href="{destino}">{parte[ini:fim]}</a>{parte[fim:]}'
+        partes[i] = parte
+    return "".join(partes)
+
+
+def corpo_html(markdown, slugs, mapa=None):
     """Markdown simples -> HTML. As imagens saem: os arquivos do blog não existem mais."""
     html_out, lista = [], []
+    usados = set()
+    liga = (lambda t: linkar_empresas(t, mapa, usados)) if mapa else (lambda t: t)
 
     def fecha():
         if lista:
@@ -452,14 +503,14 @@ def corpo_html(markdown, slugs):
         cabecalho = re.match(r"(#{2,6})\s+(.*)", bloco)
         if cabecalho:
             fecha()
-            html_out.append(f"<h2>{inline(cabecalho.group(2).strip(), slugs)}</h2>")
+            html_out.append(f"<h2>{inline(cabecalho.group(2).strip(), slugs)}</h2>")   # subtítulo não recebe link
         elif bloco.startswith("- "):
             for item in re.split(r"\s+- ", bloco[2:]):
                 if item.strip():
-                    lista.append(inline(item.strip(), slugs))
+                    lista.append(liga(inline(item.strip(), slugs)))
         else:
             fecha()
-            html_out.append(f"<p>{inline(bloco, slugs)}</p>")
+            html_out.append(f"<p>{liga(inline(bloco, slugs))}</p>")
     fecha()
     return "\n".join(html_out)
 
@@ -475,10 +526,11 @@ def artigos(rows):
     """Textos que viram página aqui, com o corpo já em HTML, do mais novo para o mais antigo."""
     pub = published(rows)
     slugs = {r["slug"] for r in pub if interno(r)}
+    mapa = empresas_do_portfolio()
     saida = []
     for r in pub:
         if interno(r):
-            saida.append({**r, "html": corpo_html(corpo_de(r), slugs),
+            saida.append({**r, "html": corpo_html(corpo_de(r), slugs, mapa),
                           "palavras": len(corpo_de(r).split())})
     return saida
 
