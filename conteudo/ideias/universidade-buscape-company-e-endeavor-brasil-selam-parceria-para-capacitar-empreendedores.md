@@ -1,0 +1,15 @@
+A [Universidade Buscapé Company](http://www.unibuscapecompany.com/), em parceria com a [Endeavor Brasil](http://www.endeavor.org.br/), passa a ter no seu portfólio dois novos cursos voltados a empreendedores: [Como inovar e escalar em seu negócio](http://www.unibuscapecompany.com/curso-como-escalar-e-inovar-em-seu-negocio/p?__hstc=40253373.afc753b52d487652710deb67ea11880f.1370375786425.1370375786425.1370375786425.1&__hssc=40253373.1.1370375786425) e [Marketing para Empreendedores: Ferramentas e Estratégias para Conquistar seus Clientes](http://www.unibuscapecompany.com/curso-marketing-para-empreendedores/p?__hstc=40253373.afc753b52d487652710deb67ea11880f.1370375786425.1370375786425.1370375786425.1&__hssc=40253373.1.1370375786425).
+
+A iniciativa tem a finalidade de capacitar empreendedores, para que consigam desenvolver estratégias para superar os desafios diários de seus negócios. Para isso, a Endeavor reuniu os mais renomados especialistas para ministrar ambos os cursos.
+
+O módulo completo conta com vídeo-aulas, exercícios e materiais complementares, em uma carga-horária total de 5 horas. Os participantes ainda terão acesso ao conteúdo dos cursos por tempo indeterminado.
+
+O curso “Marketing para Empreendedores: Ferramentas e Estratégias para Conquistar seus Clientes” tem como foco principal ajudar os empreendedores a entender qual a melhor estratégia de marketing para atrair novos clientes ao negócio. Leonardo Filardi, empresário e especialista em construção de negócios de alto crescimento por Babson College e Business Model Generation (BMG) por Osterwalder, é quem ministra o curso. Outros nomes de peso, como Lito Rodriguez (DryWash), Leonardo Kelmann (Insightmedia), William Hertz (Apis3), Romero Rodrigues (Buscapé) e Maristela Mafei (Máquina PR) também compartilharão seus conhecimentos com os participantes.
+
+Já o curso “Como inovar e escalar em seu negócio” tem o objetivo de discutir os fatores chave na construção de um negócio de sucesso e como aplica-los na prática. Ministrado por Camila Key, formada em administração pela FGV, especialista em seleção de empreendedores na Endeavor, o curso conta ainda com um time de especialistas, como: Ozires Silva (Embraer), Leila Velez (Beleza Natural), Luiz Eduardo Serafim (3M), Valério Dornelles (TecnoLogys), André Bianchi (Bianchi & Associates), Marcelo Salim (Rava Corporation) e Caio Bonatto (Tecverde), que transmitirão os nos de experiência com os participantes.
+
+Para saber mais sobre os cursos, assuntos abordados e valores, consulte:
+
+[Como Escalar e Inovar em seu Negócio](http://www.unibuscapecompany.com/curso-como-escalar-e-inovar-em-seu-negocio/p?__hstc=40253373.afc753b52d487652710deb67ea11880f.1370375786425.1370375786425.1370375786425.1&__hssc=40253373.1.1370375786425)
+
+[Marketing para Empreendedores: Ferramentas e Estratégias para Conquistar seus Clientes](http://www.unibuscapecompany.com/curso-marketing-para-empreendedores/p?__hstc=40253373.afc753b52d487652710deb67ea11880f.1370375786425.1370375786425.1370375786425.1&__hssc=40253373.1.1370375786425)

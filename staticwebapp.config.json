@@ -1,134 +1,599 @@
 {
   "routes": [
-    { "route": "/data/*", "allowedRoles": ["bloqueado"] },
-    { "route": "/scripts/*", "allowedRoles": ["bloqueado"] },
-    { "route": "/CLAUDE.md", "allowedRoles": ["bloqueado"] },
-    { "route": "/SEO-IMPLEMENTATION.md", "allowedRoles": ["bloqueado"] },
-
-    { "route": "/", "rewrite": "/home.html" },
-    { "route": "/trajetoria", "rewrite": "/trajetoria.html" },
-    { "route": "/portfolio", "rewrite": "/portfolio.html" },
-    { "route": "/midia", "rewrite": "/midia.html" },
-    { "route": "/sobre", "rewrite": "/sobre.html" },
-    { "route": "/links", "rewrite": "/links.html" },
-
-    { "route": "/en", "rewrite": "/en/home.html" },
-    { "route": "/en/journey", "rewrite": "/en/journey.html" },
-    { "route": "/en/portfolio", "rewrite": "/en/portfolio.html" },
-    { "route": "/en/press", "rewrite": "/en/press.html" },
-    { "route": "/en/about", "rewrite": "/en/about.html" },
-    { "route": "/en/links", "rewrite": "/en/links.html" },
-
-
-    { "route": "/home.html", "redirect": "/", "statusCode": 301 },
-    { "route": "/index.html", "redirect": "/", "statusCode": 301 },
-    { "route": "/trajetoria.html", "redirect": "/trajetoria", "statusCode": 301 },
-    { "route": "/portfolio.html", "redirect": "/portfolio", "statusCode": 301 },
-    { "route": "/midia.html", "redirect": "/midia", "statusCode": 301 },
-    { "route": "/sobre.html", "redirect": "/sobre", "statusCode": 301 },
-    { "route": "/links.html", "redirect": "/links", "statusCode": 301 },
-    { "route": "/en/home.html", "redirect": "/en", "statusCode": 301 },
-    { "route": "/en/journey.html", "redirect": "/en/journey", "statusCode": 301 },
-    { "route": "/en/portfolio.html", "redirect": "/en/portfolio", "statusCode": 301 },
-    { "route": "/en/press.html", "redirect": "/en/press", "statusCode": 301 },
-    { "route": "/en/about.html", "redirect": "/en/about", "statusCode": 301 },
-    { "route": "/en/links.html", "redirect": "/en/links", "statusCode": 301 },
-
-    { "route": "/10-dicas-para-voce-conseguir-um-bom-investidor-anjo*", "redirect": "/", "statusCode": 301 },
-    { "route": "/5-licoes-de-lideranca-que-voce-pode-aprender-com-game-of-thrones*", "redirect": "/", "statusCode": 301 },
-    { "route": "/8-dicas-para-voce-melhorar-pessoal-e-profissionalmente*", "redirect": "/", "statusCode": 301 },
-    { "route": "/a-arte-de-empreender*", "redirect": "/", "statusCode": 301 },
-    { "route": "/a-cultura-do-fracasso*", "redirect": "/", "statusCode": 301 },
-    { "route": "/a-produtificacao-dos-servicos-entrevista-com-romero-rodrigues*", "redirect": "/", "statusCode": 301 },
-    { "route": "/como-usar-as-redes-sociais-para-atrair-talentos-para-a-sua-startup*", "redirect": "/", "statusCode": 301 },
-    { "route": "/dicas-para-levar-sua-ideia-ao-sucesso*", "redirect": "/", "statusCode": 301 },
-    { "route": "/disrupcao-mobilidade*", "redirect": "/", "statusCode": 301 },
-    { "route": "/empreender-e-a-arte-da-superacao*", "redirect": "/", "statusCode": 301 },
-    { "route": "/empreender-empreendedores-meu-proximo-capitulo*", "redirect": "/", "statusCode": 301 },
-    { "route": "/entrevista-com-julio-vasconcellos-para-a-veja*", "redirect": "/", "statusCode": 301 },
-    { "route": "/entrevista-fora-de-serie*", "redirect": "/", "statusCode": 301 },
-    { "route": "/infografico-empreendedorismo*", "redirect": "/", "statusCode": 301 },
-    { "route": "/investidor-anjo-ou-diabo*", "redirect": "/", "statusCode": 301 },
-    { "route": "/mais-um-comeco*", "redirect": "/", "statusCode": 301 },
-    { "route": "/manual-para-um-e-commerce-b2b-de-sucesso*", "redirect": "/", "statusCode": 301 },
-    { "route": "/o-abandono-do-carrinho-de-compras*", "redirect": "/", "statusCode": 301 },
-    { "route": "/o-jeito-buscape-company-de-fracassar-e-os-apps-que-romero-rodrigues-usa-no-celular*", "redirect": "/", "statusCode": 301 },
-    { "route": "/os-anjos-dos-negocios-especial-inovacao-exame*", "redirect": "/", "statusCode": 301 },
-    { "route": "/palestra-em-curitiba-feira-da-gestao-2014-da-fae*", "redirect": "/", "statusCode": 301 },
-    { "route": "/palestra-na-feira-do-empreendedor-sebrae*", "redirect": "/", "statusCode": 301 },
-    { "route": "/perfil*", "redirect": "/sobre", "statusCode": 301 },
-    { "route": "/por-que-anjo*", "redirect": "/", "statusCode": 301 },
-    { "route": "/por-um-choque-de-inovacao-no-poder-publico*", "redirect": "/", "statusCode": 301 },
-    { "route": "/por-uma-internet-mais-segura*", "redirect": "/", "statusCode": 301 },
-    { "route": "/reflexoes-de-um-debutante*", "redirect": "/", "statusCode": 301 },
-    { "route": "/relatorio-completo-sobre-o-e-commerce*", "redirect": "/", "statusCode": 301 },
-    { "route": "/romero-revista-poder*", "redirect": "/", "statusCode": 301 },
-    { "route": "/romero-rodrigues-participa-de-evento-de-startups-em-florianopolis*", "redirect": "/", "statusCode": 301 },
-    { "route": "/saiba-como-extrair-o-maximo-do-comparador-de-precos-buscape*", "redirect": "/", "statusCode": 301 },
-    { "route": "/sao-paulo-tech-week-vai-ate-segunda*", "redirect": "/", "statusCode": 301 },
-    { "route": "/sem-crise-empreendedor*", "redirect": "/", "statusCode": 301 },
-    { "route": "/tendencias-do-digital-commerce*", "redirect": "/", "statusCode": 301 },
-    { "route": "/tendencias-para-a-tecnologia-em-2014*", "redirect": "/", "statusCode": 301 },
-    { "route": "/um-legado-para-gestao-startup*", "redirect": "/", "statusCode": 301 },
-    { "route": "/uma-historia-de-sucesso*", "redirect": "/trajetoria", "statusCode": 301 },
-    { "route": "/uma-nova-tendencia-chamada-coolhunting*", "redirect": "/", "statusCode": 301 },
-    { "route": "/universidade-buscape-company-e-endeavor-brasil-selam-parceria-para-capacitar-empreendedores*", "redirect": "/", "statusCode": 301 },
-    { "route": "/12-coisas-que-lider-de-sucesso-nao-toleram*", "redirect": "/", "statusCode": 301 },
-    { "route": "/15-guias-gratis-de-e-commerce*", "redirect": "/", "statusCode": 301 },
-    { "route": "/4-dicas-de-comediantes-para-falar-em-publico*", "redirect": "/", "statusCode": 301 },
-    { "route": "/5-dicas-de-lideranca-de-abraham-lincoln*", "redirect": "/", "statusCode": 301 },
-    { "route": "/5-dicas-valiosas-do-homem-mais-rico-do-brasil*", "redirect": "/", "statusCode": 301 },
-    { "route": "/5-licoes-empreendedoras-de-um-dos-maiores-fotografos-brasileiros*", "redirect": "/", "statusCode": 301 },
-    { "route": "/6-influenciadores-para-seguir-nas-redes-e-o-que-aprender-com-eles*", "redirect": "/", "statusCode": 301 },
-    { "route": "/black-friday-2014-movimenta-116-bilhao-na-black-friday*", "redirect": "/", "statusCode": 301 },
-    { "route": "/como-deve-ser-uma-startup*", "redirect": "/", "statusCode": 301 },
-    { "route": "/conselho-do-romero*", "redirect": "/", "statusCode": 301 },
-    { "route": "/convergencia-varejo-online-e-offline*", "redirect": "/", "statusCode": 301 },
-    { "route": "/e-o-empreendedorismo*", "redirect": "/", "statusCode": 301 },
-    { "route": "/em-tempos-de-crise-start-it-up*", "redirect": "/", "statusCode": 301 },
-    { "route": "/empreendedorismo-nos-bancos-da-escola*", "redirect": "/", "statusCode": 301 },
-    { "route": "/escrevendo-um-business-plan*", "redirect": "/", "statusCode": 301 },
-    { "route": "/marco-civil-sociedade-e-mercado-digital*", "redirect": "/", "statusCode": 301 },
-    { "route": "/mobilidade-seu-concorrente-esta-a-um-dedo-de-distancia*", "redirect": "/", "statusCode": 301 },
-    { "route": "/movimento-compre-do-pequeno*", "redirect": "/", "statusCode": 301 },
-    { "route": "/noticias*", "redirect": "/", "statusCode": 301 },
-    { "route": "/o-mundo-da-mobilidade*", "redirect": "/", "statusCode": 301 },
-    { "route": "/pela-neutralidade-nas-buscas-de-internet*", "redirect": "/", "statusCode": 301 },
-    { "route": "/poder-ao-consumidor*", "redirect": "/", "statusCode": 301 },
-    { "route": "/profile*", "redirect": "/sobre", "statusCode": 301 },
-    { "route": "/qual-e-a-estrategia-para-o-m-commerce*", "redirect": "/", "statusCode": 301 },
-    { "route": "/quem-e-seu-mentor*", "redirect": "/", "statusCode": 301 },
-    { "route": "/seis-dicas-para-melhorar-o-perfil-no-linkedin*", "redirect": "/", "statusCode": 301 },
-    { "route": "/series*", "redirect": "/", "statusCode": 301 },
-    { "route": "/seu-negocio-esta-pronto-para-o-homo-mobilis*", "redirect": "/", "statusCode": 301 },
-    { "route": "/status*", "redirect": "/", "statusCode": 301 },
-    { "route": "/tag/*", "redirect": "/", "statusCode": 301 },
-    { "route": "/category/*", "redirect": "/", "statusCode": 301 },
-    { "route": "/author/*", "redirect": "/", "statusCode": 301 },
-    { "route": "/page/*", "redirect": "/", "statusCode": 301 },
-    { "route": "/uncategorized*", "redirect": "/", "statusCode": 301 },
-    { "route": "/feed*", "redirect": "/", "statusCode": 301 },
-    { "route": "/comments/*", "redirect": "/", "statusCode": 301 },
-
-    { "route": "/assets/fonts/*", "headers": { "cache-control": "public, max-age=31536000, immutable" } },
-    { "route": "/assets/img/logos/*", "headers": { "cache-control": "public, max-age=604800" } },
-    { "route": "/assets/img/og/*", "headers": { "cache-control": "public, max-age=86400" } },
-    { "route": "/assets/img/icon/*", "headers": { "cache-control": "public, max-age=86400" } },
-    { "route": "/assets/img/*", "headers": { "cache-control": "public, max-age=2592000" } },
-    { "route": "/favicon.ico", "headers": { "cache-control": "public, max-age=86400" } },
-
-    { "route": "/robots.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
-    { "route": "/llms.txt", "headers": { "content-type": "text/plain; charset=utf-8" } },
-    { "route": "/sitemap.xml", "headers": { "content-type": "application/xml" } }
+    {
+      "route": "/data/*",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
+      "route": "/scripts/*",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
+      "route": "/CLAUDE.md",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
+      "route": "/SEO-IMPLEMENTATION.md",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
+      "route": "/",
+      "rewrite": "/home.html"
+    },
+    {
+      "route": "/trajetoria",
+      "rewrite": "/trajetoria.html"
+    },
+    {
+      "route": "/portfolio",
+      "rewrite": "/portfolio.html"
+    },
+    {
+      "route": "/ideias",
+      "rewrite": "/ideias.html"
+    },
+    {
+      "route": "/midia",
+      "rewrite": "/midia.html"
+    },
+    {
+      "route": "/sobre",
+      "rewrite": "/sobre.html"
+    },
+    {
+      "route": "/links",
+      "rewrite": "/links.html"
+    },
+    {
+      "route": "/en",
+      "rewrite": "/en/home.html"
+    },
+    {
+      "route": "/en/journey",
+      "rewrite": "/en/journey.html"
+    },
+    {
+      "route": "/en/portfolio",
+      "rewrite": "/en/portfolio.html"
+    },
+    {
+      "route": "/en/ideas",
+      "rewrite": "/en/ideas.html"
+    },
+    {
+      "route": "/en/press",
+      "rewrite": "/en/press.html"
+    },
+    {
+      "route": "/en/about",
+      "rewrite": "/en/about.html"
+    },
+    {
+      "route": "/en/links",
+      "rewrite": "/en/links.html"
+    },
+    {
+      "route": "/home.html",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/index.html",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/trajetoria.html",
+      "redirect": "/trajetoria",
+      "statusCode": 301
+    },
+    {
+      "route": "/portfolio.html",
+      "redirect": "/portfolio",
+      "statusCode": 301
+    },
+    {
+      "route": "/midia.html",
+      "redirect": "/midia",
+      "statusCode": 301
+    },
+    {
+      "route": "/sobre.html",
+      "redirect": "/sobre",
+      "statusCode": 301
+    },
+    {
+      "route": "/links.html",
+      "redirect": "/links",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/home.html",
+      "redirect": "/en",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/journey.html",
+      "redirect": "/en/journey",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/portfolio.html",
+      "redirect": "/en/portfolio",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/press.html",
+      "redirect": "/en/press",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/about.html",
+      "redirect": "/en/about",
+      "statusCode": 301
+    },
+    {
+      "route": "/en/links.html",
+      "redirect": "/en/links",
+      "statusCode": 301
+    },
+    {
+      "route": "/10-dicas-para-voce-conseguir-um-bom-investidor-anjo*",
+      "redirect": "/ideias/10-dicas-para-voce-conseguir-um-bom-investidor-anjo",
+      "statusCode": 301
+    },
+    {
+      "route": "/5-licoes-de-lideranca-que-voce-pode-aprender-com-game-of-thrones*",
+      "redirect": "/ideias/5-licoes-de-lideranca-que-voce-pode-aprender-com-game-of-thrones",
+      "statusCode": 301
+    },
+    {
+      "route": "/8-dicas-para-voce-melhorar-pessoal-e-profissionalmente*",
+      "redirect": "/ideias/8-dicas-para-voce-melhorar-pessoal-e-profissionalmente",
+      "statusCode": 301
+    },
+    {
+      "route": "/a-arte-de-empreender*",
+      "redirect": "/ideias/a-arte-de-empreender",
+      "statusCode": 301
+    },
+    {
+      "route": "/a-cultura-do-fracasso*",
+      "redirect": "/ideias/a-cultura-do-fracasso",
+      "statusCode": 301
+    },
+    {
+      "route": "/a-produtificacao-dos-servicos-entrevista-com-romero-rodrigues*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/como-usar-as-redes-sociais-para-atrair-talentos-para-a-sua-startup*",
+      "redirect": "/ideias/como-usar-as-redes-sociais-para-atrair-talentos-para-a-sua-startup",
+      "statusCode": 301
+    },
+    {
+      "route": "/dicas-para-levar-sua-ideia-ao-sucesso*",
+      "redirect": "/ideias/dicas-para-levar-sua-ideia-ao-sucesso",
+      "statusCode": 301
+    },
+    {
+      "route": "/disrupcao-mobilidade*",
+      "redirect": "/ideias/disrupcao-mobilidade",
+      "statusCode": 301
+    },
+    {
+      "route": "/empreender-e-a-arte-da-superacao*",
+      "redirect": "/ideias/empreender-e-a-arte-da-superacao",
+      "statusCode": 301
+    },
+    {
+      "route": "/empreender-empreendedores-meu-proximo-capitulo*",
+      "redirect": "/ideias/empreender-empreendedores-meu-proximo-capitulo",
+      "statusCode": 301
+    },
+    {
+      "route": "/entrevista-com-julio-vasconcellos-para-a-veja*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/entrevista-fora-de-serie*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/infografico-empreendedorismo*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/investidor-anjo-ou-diabo*",
+      "redirect": "/ideias/investidor-anjo-ou-diabo",
+      "statusCode": 301
+    },
+    {
+      "route": "/mais-um-comeco*",
+      "redirect": "/ideias/mais-um-comeco",
+      "statusCode": 301
+    },
+    {
+      "route": "/manual-para-um-e-commerce-b2b-de-sucesso*",
+      "redirect": "/ideias/manual-para-um-e-commerce-b2b-de-sucesso",
+      "statusCode": 301
+    },
+    {
+      "route": "/o-abandono-do-carrinho-de-compras*",
+      "redirect": "/ideias/o-abandono-do-carrinho-de-compras",
+      "statusCode": 301
+    },
+    {
+      "route": "/o-jeito-buscape-company-de-fracassar-e-os-apps-que-romero-rodrigues-usa-no-celular*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/os-anjos-dos-negocios-especial-inovacao-exame*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/palestra-em-curitiba-feira-da-gestao-2014-da-fae*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/palestra-na-feira-do-empreendedor-sebrae*",
+      "redirect": "/ideias/palestra-na-feira-do-empreendedor-sebrae",
+      "statusCode": 301
+    },
+    {
+      "route": "/perfil*",
+      "redirect": "/sobre",
+      "statusCode": 301
+    },
+    {
+      "route": "/por-que-anjo*",
+      "redirect": "/ideias/por-que-anjo",
+      "statusCode": 301
+    },
+    {
+      "route": "/por-um-choque-de-inovacao-no-poder-publico*",
+      "redirect": "/ideias/por-um-choque-de-inovacao-no-poder-publico",
+      "statusCode": 301
+    },
+    {
+      "route": "/por-uma-internet-mais-segura*",
+      "redirect": "/ideias/por-uma-internet-mais-segura",
+      "statusCode": 301
+    },
+    {
+      "route": "/reflexoes-de-um-debutante*",
+      "redirect": "/ideias/reflexoes-de-um-debutante",
+      "statusCode": 301
+    },
+    {
+      "route": "/relatorio-completo-sobre-o-e-commerce*",
+      "redirect": "/ideias/relatorio-completo-sobre-o-e-commerce",
+      "statusCode": 301
+    },
+    {
+      "route": "/romero-revista-poder*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/romero-rodrigues-participa-de-evento-de-startups-em-florianopolis*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/saiba-como-extrair-o-maximo-do-comparador-de-precos-buscape*",
+      "redirect": "/ideias/saiba-como-extrair-o-maximo-do-comparador-de-precos-buscape",
+      "statusCode": 301
+    },
+    {
+      "route": "/sao-paulo-tech-week-vai-ate-segunda*",
+      "redirect": "/ideias/sao-paulo-tech-week-vai-ate-segunda",
+      "statusCode": 301
+    },
+    {
+      "route": "/sem-crise-empreendedor*",
+      "redirect": "/ideias/sem-crise-empreendedor",
+      "statusCode": 301
+    },
+    {
+      "route": "/tendencias-do-digital-commerce*",
+      "redirect": "/ideias/tendencias-do-digital-commerce",
+      "statusCode": 301
+    },
+    {
+      "route": "/tendencias-para-a-tecnologia-em-2014*",
+      "redirect": "/ideias/tendencias-para-a-tecnologia-em-2014",
+      "statusCode": 301
+    },
+    {
+      "route": "/um-legado-para-gestao-startup*",
+      "redirect": "/ideias/um-legado-para-gestao-startup",
+      "statusCode": 301
+    },
+    {
+      "route": "/uma-historia-de-sucesso*",
+      "redirect": "/ideias/uma-historia-de-sucesso",
+      "statusCode": 301
+    },
+    {
+      "route": "/uma-nova-tendencia-chamada-coolhunting*",
+      "redirect": "/ideias/uma-nova-tendencia-chamada-coolhunting",
+      "statusCode": 301
+    },
+    {
+      "route": "/universidade-buscape-company-e-endeavor-brasil-selam-parceria-para-capacitar-empreendedores*",
+      "redirect": "/ideias/universidade-buscape-company-e-endeavor-brasil-selam-parceria-para-capacitar-empreendedores",
+      "statusCode": 301
+    },
+    {
+      "route": "/12-coisas-que-lider-de-sucesso-nao-toleram*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/15-guias-gratis-de-e-commerce*",
+      "redirect": "/ideias/15-guias-gratis-de-e-commerce",
+      "statusCode": 301
+    },
+    {
+      "route": "/4-dicas-de-comediantes-para-falar-em-publico*",
+      "redirect": "/ideias/4-dicas-de-comediantes-para-falar-em-publico",
+      "statusCode": 301
+    },
+    {
+      "route": "/5-dicas-de-lideranca-de-abraham-lincoln*",
+      "redirect": "/ideias/5-dicas-de-lideranca-de-abraham-lincoln",
+      "statusCode": 301
+    },
+    {
+      "route": "/5-dicas-valiosas-do-homem-mais-rico-do-brasil*",
+      "redirect": "/ideias/5-dicas-valiosas-do-homem-mais-rico-do-brasil",
+      "statusCode": 301
+    },
+    {
+      "route": "/5-licoes-empreendedoras-de-um-dos-maiores-fotografos-brasileiros*",
+      "redirect": "/ideias/5-licoes-empreendedoras-de-um-dos-maiores-fotografos-brasileiros",
+      "statusCode": 301
+    },
+    {
+      "route": "/6-influenciadores-para-seguir-nas-redes-e-o-que-aprender-com-eles*",
+      "redirect": "/ideias/6-influenciadores-para-seguir-nas-redes-e-o-que-aprender-com-eles",
+      "statusCode": 301
+    },
+    {
+      "route": "/black-friday-2014-movimenta-116-bilhao-na-black-friday*",
+      "redirect": "/ideias/black-friday-2014-movimenta-116-bilhao-na-black-friday",
+      "statusCode": 301
+    },
+    {
+      "route": "/como-deve-ser-uma-startup*",
+      "redirect": "/ideias/como-deve-ser-uma-startup",
+      "statusCode": 301
+    },
+    {
+      "route": "/conselho-do-romero*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/convergencia-varejo-online-e-offline*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/e-o-empreendedorismo*",
+      "redirect": "/ideias/e-o-empreendedorismo",
+      "statusCode": 301
+    },
+    {
+      "route": "/em-tempos-de-crise-start-it-up*",
+      "redirect": "/ideias/em-tempos-de-crise-start-it-up",
+      "statusCode": 301
+    },
+    {
+      "route": "/empreendedorismo-nos-bancos-da-escola*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/escrevendo-um-business-plan*",
+      "redirect": "/ideias/escrevendo-um-business-plan",
+      "statusCode": 301
+    },
+    {
+      "route": "/marco-civil-sociedade-e-mercado-digital*",
+      "redirect": "/ideias/marco-civil-sociedade-e-mercado-digital",
+      "statusCode": 301
+    },
+    {
+      "route": "/mobilidade-seu-concorrente-esta-a-um-dedo-de-distancia*",
+      "redirect": "/ideias/mobilidade-seu-concorrente-esta-a-um-dedo-de-distancia",
+      "statusCode": 301
+    },
+    {
+      "route": "/movimento-compre-do-pequeno*",
+      "redirect": "/ideias/movimento-compre-do-pequeno",
+      "statusCode": 301
+    },
+    {
+      "route": "/noticias*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/o-mundo-da-mobilidade*",
+      "redirect": "/ideias/o-mundo-da-mobilidade",
+      "statusCode": 301
+    },
+    {
+      "route": "/pela-neutralidade-nas-buscas-de-internet*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/poder-ao-consumidor*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/profile*",
+      "redirect": "/sobre",
+      "statusCode": 301
+    },
+    {
+      "route": "/qual-e-a-estrategia-para-o-m-commerce*",
+      "redirect": "/ideias/qual-e-a-estrategia-para-o-m-commerce",
+      "statusCode": 301
+    },
+    {
+      "route": "/quem-e-seu-mentor*",
+      "redirect": "/ideias/quem-e-seu-mentor",
+      "statusCode": 301
+    },
+    {
+      "route": "/seis-dicas-para-melhorar-o-perfil-no-linkedin*",
+      "redirect": "/ideias/seis-dicas-para-melhorar-o-perfil-no-linkedin",
+      "statusCode": 301
+    },
+    {
+      "route": "/series*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/seu-negocio-esta-pronto-para-o-homo-mobilis*",
+      "redirect": "/ideias/seu-negocio-esta-pronto-para-o-homo-mobilis",
+      "statusCode": 301
+    },
+    {
+      "route": "/status*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/tag/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/category/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/author/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/page/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/uncategorized*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/feed*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/comments/*",
+      "redirect": "/",
+      "statusCode": 301
+    },
+    {
+      "route": "/assets/fonts/*",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/assets/img/logos/*",
+      "headers": {
+        "cache-control": "public, max-age=604800"
+      }
+    },
+    {
+      "route": "/assets/img/og/*",
+      "headers": {
+        "cache-control": "public, max-age=86400"
+      }
+    },
+    {
+      "route": "/assets/img/icon/*",
+      "headers": {
+        "cache-control": "public, max-age=86400"
+      }
+    },
+    {
+      "route": "/assets/img/*",
+      "headers": {
+        "cache-control": "public, max-age=2592000"
+      }
+    },
+    {
+      "route": "/favicon.ico",
+      "headers": {
+        "cache-control": "public, max-age=86400"
+      }
+    },
+    {
+      "route": "/robots.txt",
+      "headers": {
+        "content-type": "text/plain; charset=utf-8"
+      }
+    },
+    {
+      "route": "/llms.txt",
+      "headers": {
+        "content-type": "text/plain; charset=utf-8"
+      }
+    },
+    {
+      "route": "/sitemap.xml",
+      "headers": {
+        "content-type": "application/xml"
+      }
+    }
   ],
   "responseOverrides": {
-    "401": { "rewrite": "/404.html", "statusCode": 404 },
-    "403": { "rewrite": "/404.html", "statusCode": 404 },
-    "404": { "rewrite": "/404.html", "statusCode": 404 }
+    "401": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    },
+    "403": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    },
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "strict-origin-when-cross-origin"
   },
-  "mimeTypes": { ".webp": "image/webp" }
+  "mimeTypes": {
+    ".webp": "image/webp"
+  }
 }

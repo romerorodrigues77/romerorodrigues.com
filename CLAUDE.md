@@ -32,6 +32,27 @@ Se o WebP faltar, o `portfolio.py` avisa (`aviso: nova-empresa.png sem WebP`) e 
 Trocando o logo de uma empresa que já existe, use um nome de arquivo novo (ex.: `pismo-2026.png`) e atualize a planilha:
 os logos têm cache de 1 semana, e com o mesmo nome quem já visitou o site pode continuar vendo o antigo.
 
+## Ideias
+
+A fonte da verdade da página `/ideias` (EN: `/en/ideas`) e da seção Ideias da home é `data/ideias.xlsx`
+(aba Textos; instruções na aba Como usar). Uma linha por texto que o Romero escreveu, do mais recente
+para o mais antigo. Texto publicado fora (LinkedIn, Substack, TechCrunch, NeoFeed, Headline) entra como
+link para o veículo. Texto do blog antigo mora aqui: o corpo fica em `conteudo/ideias/<slug>.md` e vira
+a página `/ideias/<slug>`, gerada pelo `pages.py`.
+
+    python3 scripts/ideias.py check    # valida, não altera nada
+    python3 scripts/ideias.py build    # regenera a lista da /ideias, a seção da home e o total
+    python3 scripts/ideias.py importar arquivo.docx   # traz textos do blog antigo a partir do .docx curado
+
+O slug é sempre o do blog antigo: é o que faz o 301 da URL velha levar direto ao texto
+(`/a-arte-de-empreender/` → `/ideias/a-arte-de-empreender`, no `staticwebapp.config.json`).
+Texto novo que vira página precisa de linha nova lá também, redirecionando a URL antiga.
+As páginas ficam em `ideias/<slug>/index.html`: o Azure serve pasta com index sem precisar de regra.
+
+Colunas `Título em inglês` e `URL em inglês`: quando existem, a `/en/ideas` usa a versão em inglês;
+quando não existem, mostra a versão em português marcando o idioma. Na lista, os 10 primeiros aparecem
+e o resto fica atrás de "Ver textos anteriores" — escondido só por JavaScript, então o buscador vê todos.
+
 ## Na mídia
 
 A fonte da verdade da página `/midia` (EN: `/en/press`) e da seção Na mídia da home é `data/midia.xlsx`:
@@ -51,23 +72,24 @@ Ideias, na home, é o que Romero escreve; Na mídia é o que escrevem sobre ele.
 
 ## Páginas reais e SEO
 
-O `index.html` é o arquivo de autoria: tem as 6 views e roteia por hash só em desenvolvimento local
+O `index.html` é o arquivo de autoria: tem as 7 views e roteia por hash só em desenvolvimento local
 (`file:`, `localhost`, `127.0.0.1`). Em produção cada rota é um arquivo gerado. Ordem de build:
 
     python3 scripts/portfolio.py build   # cards, carrossel, filtros, total
     python3 scripts/midia.py build       # página /midia e seção Na mídia da home
+    python3 scripts/ideias.py build      # página /ideias e seção Ideias da home
     python3 scripts/pages.py build       # paginas reais, head SEO, sitemap
     python3 scripts/pages.py check       # valida, não altera nada
 
-O `pages.py` acusa erro se a planilha de portfólio ou a de mídia tiverem mudado sem o build correspondente.
+O `pages.py` acusa erro se a planilha de portfólio, a de mídia ou a de ideias tiverem mudado sem o build correspondente.
 
-`home.html`, `trajetoria.html`, `portfolio.html`, `midia.html`, `sobre.html`, `links.html`, `404.html` e `sitemap.xml` são **gerados**.
-Em produção `/` e `/index.html` servem o `home.html` (só a view da home); o `index.html` com as 6 views é só para autoria.
+`home.html`, `trajetoria.html`, `portfolio.html`, `ideias.html`, `midia.html`, `sobre.html`, `links.html`, `404.html`, `ideias/<slug>/index.html` e `sitemap.xml` são **gerados**.
+Em produção `/` e `/index.html` servem o `home.html` (só a view da home); o `index.html` com as 7 views é só para autoria.
 Não edite à mão: edite `index.html` (ou `data/pages.json`, que guarda title, description, imagem OG,
 JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:START -->` e
 `<!-- SEO:END -->` do `index.html` também é gerado.
 
-Versão em inglês: `/en`, `/en/journey`, `/en/portfolio`, `/en/press`, `/en/about`, `/en/links`, geradas em `en/` a partir das mesmas
+Versão em inglês: `/en`, `/en/journey`, `/en/portfolio`, `/en/ideas`, `/en/press`, `/en/about`, `/en/links`, geradas em `en/` a partir das mesmas
 views, com `data/en.json` (traduções frase a frase, o que manter, o que remover). A versão EN mostra só a Headline: o que é
 da XP sai. Mudou ou entrou texto em português? `pages.py check` acusa a tradução que falta; acrescente em `data/en.json`.
 

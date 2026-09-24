@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- gerado por scripts/pages.py — não edite à mão -->
-<!-- impressões: home.html=bc65e9ea359b trajetoria.html=61876a70fdcc portfolio.html=6ae9287feba4 midia.html=477492468e0f sobre.html=dd15c8b6bc98 links.html=7a75f8eb14de en/home.html=a60b10e5bd18 en/journey.html=f446fa6de5b0 en/portfolio.html=1a5921c2dfcf en/press.html=b689661fb556 en/about.html=85bf5e04e016 en/links.html=bf6030a79d5d -->
+<!-- impressões: home.html=f0eef42bc554 trajetoria.html=cb5cd00cb7ef portfolio.html=6639dc561f5c ideias.html=be39fc0e728d midia.html=ce5e0e946b40 sobre.html=349e7f58d21a links.html=4a079c19b128 en/home.html=dfe256f5f094 en/journey.html=c68447cddc3a en/portfolio.html=856a6b636489 en/ideas.html=aa5c1c3e921a en/press.html=12f3ab51a10a en/about.html=fe01a06ef448 en/links.html=1ef13b771364 ideias/disrupcao-mobilidade/index.html=4edf4522398b ideias/6-influenciadores-para-seguir-nas-redes-e-o-que-aprender-com-eles/index.html=2ed7b9305048 ideias/escrevendo-um-business-plan/index.html=d8a33a75254b ideias/empreender-empreendedores-meu-proximo-capitulo/index.html=f65e55660b22 ideias/sao-paulo-tech-week-vai-ate-segunda/index.html=fa6cc49f420f ideias/movimento-compre-do-pequeno/index.html=92130679bb50 ideias/seu-negocio-esta-pronto-para-o-homo-mobilis/index.html=af795f50b104 ideias/em-tempos-de-crise-start-it-up/index.html=ffe39e14ade3 ideias/sem-crise-empreendedor/index.html=9c7c0d8bc582 ideias/5-licoes-de-lideranca-que-voce-pode-aprender-com-game-of-thrones/index.html=2e8f61c8ea7b ideias/8-dicas-para-voce-melhorar-pessoal-e-profissionalmente/index.html=7e1a1fddcb7c ideias/5-dicas-valiosas-do-homem-mais-rico-do-brasil/index.html=fd9f553d049c ideias/5-licoes-empreendedoras-de-um-dos-maiores-fotografos-brasileiros/index.html=eace3f5b42f0 ideias/15-guias-gratis-de-e-commerce/index.html=740d536c3938 ideias/quem-e-seu-mentor/index.html=382271361efd ideias/qual-e-a-estrategia-para-o-m-commerce/index.html=abf615a8128c ideias/4-dicas-de-comediantes-para-falar-em-publico/index.html=56e66c56fc8a ideias/relatorio-completo-sobre-o-e-commerce/index.html=615da9901a8f ideias/5-dicas-de-lideranca-de-abraham-lincoln/index.html=2b0a8814ed74 ideias/por-que-anjo/index.html=c48370524062 ideias/empreender-e-a-arte-da-superacao/index.html=f93730e77a7d ideias/black-friday-2014-movimenta-116-bilhao-na-black-friday/index.html=d0b4fbd3995b ideias/por-um-choque-de-inovacao-no-poder-publico/index.html=d24b46b417d7 ideias/investidor-anjo-ou-diabo/index.html=2b4e05d83a10 ideias/e-o-empreendedorismo/index.html=e72d005004b0 ideias/mobilidade-seu-concorrente-esta-a-um-dedo-de-distancia/index.html=33b3923b0a45 ideias/palestra-na-feira-do-empreendedor-sebrae/index.html=6b4c59137cec ideias/10-dicas-para-voce-conseguir-um-bom-investidor-anjo/index.html=70dfad772ab2 ideias/reflexoes-de-um-debutante/index.html=f798e086668e ideias/manual-para-um-e-commerce-b2b-de-sucesso/index.html=ac1cbb1fece9 ideias/tendencias-para-a-tecnologia-em-2014/index.html=8ce236b29169 ideias/como-usar-as-redes-sociais-para-atrair-talentos-para-a-sua-startup/index.html=52f2e510fc26 ideias/um-legado-para-gestao-startup/index.html=dae2d8a65182 ideias/seis-dicas-para-melhorar-o-perfil-no-linkedin/index.html=c28f2367fe76 ideias/marco-civil-sociedade-e-mercado-digital/index.html=c3202da2e354 ideias/uma-historia-de-sucesso/index.html=896f0b72d5c7 ideias/a-cultura-do-fracasso/index.html=51f6338625ba ideias/saiba-como-extrair-o-maximo-do-comparador-de-precos-buscape/index.html=44b63dfae663 ideias/universidade-buscape-company-e-endeavor-brasil-selam-parceria-para-capacitar-empreendedores/index.html=24768725424d ideias/como-deve-ser-uma-startup/index.html=6b76c1ea68f3 ideias/o-mundo-da-mobilidade/index.html=b2b565439902 ideias/uma-nova-tendencia-chamada-coolhunting/index.html=91a6bae3f53d ideias/o-abandono-do-carrinho-de-compras/index.html=44b030ac3f58 ideias/tendencias-do-digital-commerce/index.html=ba7714eca686 ideias/dicas-para-levar-sua-ideia-ao-sucesso/index.html=b8b48655cd26 ideias/a-arte-de-empreender/index.html=da4c56f3a220 ideias/mais-um-comeco/index.html=45b86572a814 ideias/por-uma-internet-mais-segura/index.html=306456101828 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://romerorodrigues.com/</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/trajetoria</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/portfolio</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/midia</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/sobre</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/links</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/en</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/en/journey</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/en/portfolio</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/en/ideas</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/en/press</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/en/about</loc><lastmod>2026-09-24</lastmod></url>
   <url><loc>https://romerorodrigues.com/en/links</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/disrupcao-mobilidade</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/6-influenciadores-para-seguir-nas-redes-e-o-que-aprender-com-eles</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/escrevendo-um-business-plan</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/empreender-empreendedores-meu-proximo-capitulo</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/sao-paulo-tech-week-vai-ate-segunda</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/movimento-compre-do-pequeno</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/seu-negocio-esta-pronto-para-o-homo-mobilis</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/em-tempos-de-crise-start-it-up</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/sem-crise-empreendedor</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/5-licoes-de-lideranca-que-voce-pode-aprender-com-game-of-thrones</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/8-dicas-para-voce-melhorar-pessoal-e-profissionalmente</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/5-dicas-valiosas-do-homem-mais-rico-do-brasil</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/5-licoes-empreendedoras-de-um-dos-maiores-fotografos-brasileiros</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/15-guias-gratis-de-e-commerce</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/quem-e-seu-mentor</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/qual-e-a-estrategia-para-o-m-commerce</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/4-dicas-de-comediantes-para-falar-em-publico</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/relatorio-completo-sobre-o-e-commerce</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/5-dicas-de-lideranca-de-abraham-lincoln</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/por-que-anjo</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/empreender-e-a-arte-da-superacao</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/black-friday-2014-movimenta-116-bilhao-na-black-friday</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/por-um-choque-de-inovacao-no-poder-publico</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/investidor-anjo-ou-diabo</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/e-o-empreendedorismo</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/mobilidade-seu-concorrente-esta-a-um-dedo-de-distancia</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/palestra-na-feira-do-empreendedor-sebrae</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/10-dicas-para-voce-conseguir-um-bom-investidor-anjo</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/reflexoes-de-um-debutante</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/manual-para-um-e-commerce-b2b-de-sucesso</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/tendencias-para-a-tecnologia-em-2014</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/como-usar-as-redes-sociais-para-atrair-talentos-para-a-sua-startup</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/um-legado-para-gestao-startup</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/seis-dicas-para-melhorar-o-perfil-no-linkedin</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/marco-civil-sociedade-e-mercado-digital</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/uma-historia-de-sucesso</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/a-cultura-do-fracasso</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/saiba-como-extrair-o-maximo-do-comparador-de-precos-buscape</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/universidade-buscape-company-e-endeavor-brasil-selam-parceria-para-capacitar-empreendedores</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/como-deve-ser-uma-startup</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/o-mundo-da-mobilidade</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/uma-nova-tendencia-chamada-coolhunting</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/o-abandono-do-carrinho-de-compras</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/tendencias-do-digital-commerce</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/dicas-para-levar-sua-ideia-ao-sucesso</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/a-arte-de-empreender</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/mais-um-comeco</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>https://romerorodrigues.com/ideias/por-uma-internet-mais-segura</loc><lastmod>2026-09-24</lastmod></url>
 </urlset>

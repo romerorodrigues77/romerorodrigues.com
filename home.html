@@ -327,6 +327,19 @@ a.press-row:hover { color: var(--signal); }
   .press-row .tags:empty { display: none; }
 }
 
+/* Ideias: lista e texto */
+.press-mais { margin-top: 28px; }
+.artigo .prose { font-size: 19px; line-height: 1.6; max-width: 62ch; }
+.artigo .prose p + p, .artigo .prose ul { margin-top: 1.1em; }
+.artigo .prose h2 { font-size: clamp(21px, 2.1vw, 27px); letter-spacing: -0.02em; line-height: 1.2; margin: 1.6em 0 .5em; }
+.artigo .prose ul { padding-left: 1.1em; }
+.artigo .prose li + li { margin-top: .4em; }
+.artigo .prose a { border-bottom: 1px solid var(--line); }
+.artigo .prose a:hover { color: var(--signal); border-color: currentColor; }
+.voltar { font-size: 15px; color: var(--mute); margin-bottom: 20px; }
+.artigo-meta { font-size: 15px; color: var(--mute); margin-top: 20px; }
+.artigo-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; max-width: 62ch; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 15px; }
+
 /* About / press */
 .about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
 .about .prose p + p { margin-top: 1.1em; }
@@ -383,7 +396,7 @@ a.press-row:hover { color: var(--signal); }
 </style>
 </head>
 <body>
-<div class="view" data-route="" data-title="Romero Rodrigues"><header class="site-header"><div class="wrap"><a class="brand" href="/">Romero Rodrigues</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Principal"><a href="/trajetoria">Trajetória</a><a href="/portfolio">Portfólio</a><a href="/#ideias">Ideias</a><a href="/midia">Na mídia</a><a href="/#projetos">Projetos</a><a href="/sobre">Sobre</a></nav></div></header><main>
+<div class="view" data-route="" data-title="Romero Rodrigues"><header class="site-header"><div class="wrap"><a class="brand" href="/">Romero Rodrigues</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Principal"><a href="/trajetoria">Trajetória</a><a href="/portfolio">Portfólio</a><a href="/ideias">Ideias</a><a href="/midia">Na mídia</a><a href="/#projetos">Projetos</a><a href="/sobre">Sobre</a></nav></div></header><main>
 <section class="hero"><div class="wrap">
   <div class="hero-grid">
     <div>
@@ -430,9 +443,9 @@ a.press-row:hover { color: var(--signal); }
 <section class="section" id="ideias"><div class="wrap">
   <div class="section-head">
     <h2 class="h2">Ideias</h2>
-    <a class="link" href="https://substack.com/@romerorodrigues" target="_blank" rel="noopener">Todos os textos no Substack</a>
+    <a class="link" href="/ideias">Ver todos os textos</a>
   </div>
-  <ul class="rows"><li><a class="row" href="https://neofeed.com.br/insiders/artigo-o-maior-ipo-da-historia-ja-tinha-424-anos/" target="_blank" rel="noopener"><span class="src">NeoFeed</span><span class="ttl">O maior IPO da história já tinha 424 anos</span><span class="go">Ler</span></a></li><li><a class="row" href="https://neofeed.com.br/insiders/o-efeito-porsche-930-da-ia-por-que-o-impacto-ainda-nao-apareceu-e-esta-prestes-a-explodir" target="_blank" rel="noopener"><span class="src">NeoFeed</span><span class="ttl">O efeito Porsche 930 da IA: por que o impacto ainda não apareceu e está prestes a explodir</span><span class="go">Ler</span></a></li><li><a class="row" href="https://techcrunch.com/2017/05/13/brazils-fintech-boom-offers-new-vertical-opportunities-for-investors/" target="_blank" rel="noopener"><span class="src">TechCrunch</span><span class="ttl" lang="en">Brazil’s fintech boom offers new vertical opportunities for investors</span><span class="go">Ler</span></a></li><li><a class="row" href="https://blog.headline.com/p/local-to-global-fintech-innovation" target="_blank" rel="noopener"><span class="src">Headline</span><span class="ttl" lang="en">Local to Global Fintech Innovation: Celebrating Pismo’s $1B Acquisition by Visa</span><span class="go">Ler</span></a></li></ul>
+  <!-- IDEIAS:HOME --><ul class="rows"><li><a class="row" href="https://neofeed.com.br/insiders/artigo-o-maior-ipo-da-historia-ja-tinha-424-anos" target="_blank" rel="noopener" data-en-href="https://romerorodrigues.substack.com/p/the-biggest-ipo-in-history-is-424"><span class="src">NeoFeed</span><span class="ttl" data-en="The Biggest IPO in History Is 424 Years Old">O maior IPO da história já tinha 424 anos</span><span class="go">Ler</span></a></li><li><a class="row" href="https://neofeed.com.br/insiders/o-efeito-porsche-930-da-ia-por-que-o-impacto-ainda-nao-apareceu-e-esta-prestes-a-explodir" target="_blank" rel="noopener" data-en-href="https://romerorodrigues.substack.com/p/the-widowmaker"><span class="src">NeoFeed</span><span class="ttl" data-en="The Widowmaker">O efeito Porsche 930 da IA: por que o impacto ainda não apareceu e está prestes a explodir</span><span class="go">Ler</span></a></li><li><a class="row" href="https://blog.headline.com/p/local-to-global-fintech-innovation" target="_blank" rel="noopener"><span class="src">Headline</span><span class="ttl" lang="en">Local to Global Fintech Innovation: Celebrating Pismo’s $1B Acquisition by Visa</span><span class="go">Ler</span></a></li><li><a class="row" href="https://blog.headline.com/p/from-silicon-valley-to-rio-our-global" target="_blank" rel="noopener"><span class="src">Headline</span><span class="ttl" lang="en">From Silicon Valley to Rio: Our Global Approach to Investing</span><span class="go">Ler</span></a></li></ul><!-- /IDEIAS:HOME -->
 </div></section>
 
 <section class="section" id="na-midia"><div class="wrap">
@@ -683,6 +696,20 @@ a.press-row:hover { color: var(--signal); }
     if (a.dataset.posicao) p.posicao = Number(a.dataset.posicao);
     if (a.dataset.categoria) p.categoria = a.dataset.categoria;
     window.gtag("event", a.dataset.ga, p);
+  });
+
+  // Lista de ideias: mostra as primeiras e revela o resto no clique
+  document.querySelectorAll("[data-mais]").forEach(function (lista) {
+    var limite = parseInt(lista.getAttribute("data-mais"), 10);
+    var itens = Array.prototype.slice.call(lista.children, limite);
+    var botao = lista.parentNode.querySelector("[data-mais-btn]");
+    if (!itens.length || !botao) return;
+    itens.forEach(function (li) { li.hidden = true; });
+    botao.addEventListener("click", function () {
+      itens.forEach(function (li) { li.hidden = false; });
+      botao.parentNode.removeChild(botao);
+      itens[0].querySelector("a").focus();
+    });
   });
 
   // Copy bios

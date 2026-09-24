@@ -305,6 +305,19 @@ a.press-row:hover { color: var(--signal); }
   .press-row .tags:empty { display: none; }
 }
 
+/* Ideias: lista e texto */
+.press-mais { margin-top: 28px; }
+.artigo .prose { font-size: 19px; line-height: 1.6; max-width: 62ch; }
+.artigo .prose p + p, .artigo .prose ul { margin-top: 1.1em; }
+.artigo .prose h2 { font-size: clamp(21px, 2.1vw, 27px); letter-spacing: -0.02em; line-height: 1.2; margin: 1.6em 0 .5em; }
+.artigo .prose ul { padding-left: 1.1em; }
+.artigo .prose li + li { margin-top: .4em; }
+.artigo .prose a { border-bottom: 1px solid var(--line); }
+.artigo .prose a:hover { color: var(--signal); border-color: currentColor; }
+.voltar { font-size: 15px; color: var(--mute); margin-bottom: 20px; }
+.artigo-meta { font-size: 15px; color: var(--mute); margin-top: 20px; }
+.artigo-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; max-width: 62ch; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 15px; }
+
 /* About / press */
 .about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
 .about .prose p + p { margin-top: 1.1em; }
@@ -361,7 +374,7 @@ a.press-row:hover { color: var(--signal); }
 </style>
 </head>
 <body>
-<div class="view" data-route="404" data-title="Página não encontrada · Romero Rodrigues"><header class="site-header"><div class="wrap"><a class="brand" href="/">Romero Rodrigues</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Principal"><a href="/trajetoria">Trajetória</a><a href="/portfolio">Portfólio</a><a href="/#ideias">Ideias</a><a href="/midia">Na mídia</a><a href="/#projetos">Projetos</a><a href="/sobre">Sobre</a></nav></div></header><main>
+<div class="view" data-route="404" data-title="Página não encontrada · Romero Rodrigues"><header class="site-header"><div class="wrap"><a class="brand" href="/">Romero Rodrigues</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Principal"><a href="/trajetoria">Trajetória</a><a href="/portfolio">Portfólio</a><a href="/ideias">Ideias</a><a href="/midia">Na mídia</a><a href="/#projetos">Projetos</a><a href="/sobre">Sobre</a></nav></div></header><main>
 <section class="intro"><div class="wrap">
   <h1>Página não encontrada</h1>
   <p class="lede">O endereço que você tentou abrir não existe ou mudou de lugar.</p>
@@ -553,6 +566,20 @@ a.press-row:hover { color: var(--signal); }
     if (a.dataset.posicao) p.posicao = Number(a.dataset.posicao);
     if (a.dataset.categoria) p.categoria = a.dataset.categoria;
     window.gtag("event", a.dataset.ga, p);
+  });
+
+  // Lista de ideias: mostra as primeiras e revela o resto no clique
+  document.querySelectorAll("[data-mais]").forEach(function (lista) {
+    var limite = parseInt(lista.getAttribute("data-mais"), 10);
+    var itens = Array.prototype.slice.call(lista.children, limite);
+    var botao = lista.parentNode.querySelector("[data-mais-btn]");
+    if (!itens.length || !botao) return;
+    itens.forEach(function (li) { li.hidden = true; });
+    botao.addEventListener("click", function () {
+      itens.forEach(function (li) { li.hidden = false; });
+      botao.parentNode.removeChild(botao);
+      itens[0].querySelector("a").focus();
+    });
   });
 
   // Copy bios

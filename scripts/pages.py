@@ -234,6 +234,26 @@ def midia_rows():
         return midia, rows, vehicles
 
 
+def ideias_rows():
+    """(módulo, textos), lidos da planilha pelo ideias.py."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        import ideias
+        return ideias, ideias.read_xlsx(ideias.XLSX_PATH)
+
+
+def artigo_ld(cfg, ideias, r, lang="pt"):
+    """BlogPosting de um texto que mora aqui."""
+    base = cfg["base"]
+    url = f"{base}/ideias/{r['slug']}"
+    return {"@context": "https://schema.org", "@type": "BlogPosting", "@id": f"{url}#texto", "url": url,
+            "headline": r["titulo"], "datePublished": r["data"], "inLanguage": "pt-BR",
+            "author": {"@id": cfg["pessoa"]["@id"]}, "publisher": {"@id": cfg["pessoa"]["@id"]},
+            "isPartOf": {"@id": f"{base}/ideias#textos"}, "wordCount": r["palavras"],
+            "mainEntityOfPage": {"@id": f"{url}#pagina"}}
+
+
 def subject_of(cfg, ctx):
     """As matérias marcadas em subjectOf na midia.xlsx, para o nó Person de todas as páginas."""
     midia, rows, vehicles = ctx["_midia"]
@@ -287,6 +307,29 @@ def extra_ld(cfg, route, ctx, lang="pt"):
                 {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#empresas",
                  "name": frase[2], "inLanguage": code, "numberOfItems": len(items),
                  "itemListOrder": "https://schema.org/ItemListOrderAscending", "itemListElement": items}]
+    if route == "ideias":
+        ideias, rows = ctx["_ideias"]
+        pub = ideias.published(rows)
+        items = []
+        for i, r in enumerate(pub, 1):
+            if ideias.interno(r):
+                item = {"@type": "BlogPosting", "@id": f"{base}/ideias/{r['slug']}#texto",
+                        "url": f"{base}/ideias/{r['slug']}", "headline": r["titulo"],
+                        "datePublished": r["data"], "inLanguage": "pt-BR"}
+            else:
+                usa_en = lang == "en" and r["url_en"]
+                item = {"@type": "Article", "url": r["url_en"] if usa_en else r["url"],
+                        "headline": r["titulo_en"] if usa_en else r["titulo"],
+                        "datePublished": r["data"],
+                        "inLanguage": "en" if (usa_en or r["idioma"] == "en") else "pt-BR",
+                        "publisher": {"@type": "Organization", "name": ideias.onde(r)}}
+            item["author"] = person
+            items.append({"@type": "ListItem", "position": i, "item": item})
+        nome = "Textos de Romero Rodrigues" if lang == "pt" else "Texts by Romero Rodrigues"
+        return [{**pagina, "@type": "CollectionPage", "mainEntity": {"@id": f"{url}#textos"}},
+                {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#textos", "name": nome,
+                 "inLanguage": code, "numberOfItems": len(items),
+                 "itemListOrder": "https://schema.org/ItemListOrderDescending", "itemListElement": items}]
     if route == "midia":
         midia, rows, vehicles = ctx["_midia"]
         items = [{"@type": "ListItem", "position": i, "item": midia.creative_work(r, vehicles, person)}
@@ -444,9 +487,27 @@ def en_view(cfg, route, view, t, errors):
         if pt != "/":
             view = view.replace(f'href="{pt}#', f'href="{url}#')
     view = view.replace('href="/#', 'href="/en#')
+    view = versao_en(view)
     pt_url = cfg["rotas"][route]["url"]
     view = view.replace(LANG_LINK, f'<a href="{pt_url}" hreflang="pt-BR" lang="pt-BR">Português</a>')
     return translate_html(view, t, en)
+
+
+def versao_en(view):
+    """Onde o texto tem versão em inglês (data-en-href), a lista EN usa ela."""
+    def troca(m):
+        tag = m.group(0)
+        destino = re.search(r'data-en-href="([^"]+)"', tag).group(1)
+        tag = re.sub(r'href="[^"]*"', f'href="{destino}"', tag, count=1)
+        tag = re.sub(r'\s*data-en-href="[^"]*"', "", tag)
+        if 'target="_blank"' not in tag:  # a versão em inglês está fora do site
+            tag = tag.replace(">", ' target="_blank" rel="noopener">', 1)
+        return tag
+    view = re.sub(r'<a [^>]*data-en-href="[^"]*"[^>]*>', troca, view)
+
+    def titulo(m):
+        return f'<span class="ttl" lang="en">{m.group(1)}</span>'
+    return re.sub(r'<span class="ttl"[^>]*data-en="([^"]*)"[^>]*>[^<]*</span>', titulo, view)
 
 
 def en_tail(cfg, tail, errors):
@@ -474,6 +535,96 @@ def datas_modificacao(cfg, prints, old):
         igual = old_prints.get(arquivo) == fp and loc in old_lastmod
         datas[arquivo] = old_lastmod[loc] if igual else hoje
     return datas
+
+
+def resumo(html_corpo, limite=155):
+    """Primeiras palavras do texto, para a meta description."""
+    texto = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html_corpo)).strip()
+    texto = html.unescape(texto)
+    if len(texto) <= limite:
+        return texto
+    corte = texto[:limite].rsplit(" ", 1)[0]
+    return corte.rstrip(" ,;:.") + "…"
+
+
+def seo_artigo(cfg, ctx, r, ld_extra):
+    """<head> de uma página de texto: sem par em inglês, com BlogPosting e trilha."""
+    ideias, _ = ctx["_ideias"]
+    med = cfg.get("medicao", {})
+    base = cfg["base"]
+    url = f"{base}/ideias/{r['slug']}"
+    desc = resumo(r["html"])
+    img = og_image(cfg, {})
+    size = og_size(img, cfg)
+    linhas = [
+        "<!-- SEO:START -->",
+        f'<meta name="description" content="{esc(desc)}">',
+        f'<link rel="canonical" href="{esc(url)}">',
+        '<meta property="og:type" content="article">',
+        '<meta property="og:site_name" content="Romero Rodrigues">',
+        '<meta property="og:locale" content="pt_BR">',
+        f'<meta property="og:url" content="{esc(url)}">',
+        f'<meta property="og:title" content="{esc(r["titulo"])}">',
+        f'<meta property="og:description" content="{esc(desc)}">',
+        f'<meta property="og:image" content="{esc(img)}">',
+        *([f'<meta property="og:image:width" content="{size[0]}">',
+           f'<meta property="og:image:height" content="{size[1]}">'] if size else []),
+        '<meta property="og:image:alt" content="Romero Rodrigues">',
+        f'<meta property="article:published_time" content="{esc(r["data"])}">',
+        '<meta property="article:author" content="Romero Rodrigues">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        '<meta name="twitter:site" content="@romerorodrigues">',
+        *ga4(med, base),
+        ld_script(cfg["pessoa"]),
+        *[ld_script(x) for x in ld_extra],
+        "<!-- SEO:END -->",
+    ]
+    return "\n".join(linhas)
+
+
+def artigos_ideias(head, home_view, tail, cfg, ctx):
+    """Uma página por texto do blog antigo: [(arquivo, url, html)]."""
+    ideias, rows = ctx["_ideias"]
+    header = re.search(r'<header class="site-header">.*?</header>', home_view, re.S).group(0)
+    footer = re.search(r'<footer class="site-footer">.*?</footer>', home_view, re.S).group(0)
+    header = header.replace('<a href="/ideias">', '<a href="/ideias" aria-current="page">')
+    base = cfg["base"]
+    lista = ideias.artigos(rows)
+    saida = []
+    for i, r in enumerate(lista):
+        anterior = lista[i + 1] if i + 1 < len(lista) else None   # mais antigo
+        proximo = lista[i - 1] if i > 0 else None                  # mais recente
+        url = f"/ideias/{r['slug']}"
+        pagina_ld = {"@context": "https://schema.org", "@type": "WebPage", "@id": f"{base}{url}#pagina",
+                     "url": base + url, "name": r["titulo"], "inLanguage": "pt-BR",
+                     "isPartOf": {"@id": f"{base}/#website"}, "about": {"@id": cfg["pessoa"]["@id"]},
+                     "dateModified": DATA_MARCA}
+        trilha = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Início", "item": f"{base}/"},
+            {"@type": "ListItem", "position": 2, "name": "Ideias", "item": f"{base}/ideias"},
+            {"@type": "ListItem", "position": 3, "name": r["titulo"]}]}
+        cabeca = with_head(head, f"{r['titulo']} · Romero Rodrigues",
+                           seo_artigo(cfg, ctx, r, [artigo_ld(cfg, ideias, r), pagina_ld, trilha]),
+                           route="ideias-texto")
+        navegar = []
+        if proximo:
+            navegar.append(f'<a class="link" href="/ideias/{esc(proximo["slug"])}">Texto seguinte</a>')
+        navegar.append('<a class="link" href="/ideias">Todos os textos</a>')
+        if anterior:
+            navegar.append(f'<a class="link" href="/ideias/{esc(anterior["slug"])}">Texto anterior</a>')
+        view = (f'<div class="view" data-route="ideias-texto" data-title="{esc(r["titulo"])} · Romero Rodrigues">'
+                f'{header}<main><article class="artigo">\n'
+                f'<section class="intro"><div class="wrap">\n'
+                f'  <p class="voltar"><a class="link" href="/ideias">Ideias</a></p>\n'
+                f'  <h1>{esc(r["titulo"])}</h1>\n'
+                f'  <p class="artigo-meta">Publicado em {esc(ideias.fmt_date(r["data"]))}, no blog que mantive até 2016.</p>\n'
+                f'</div></section>\n'
+                f'<section style="padding-bottom:96px"><div class="wrap">\n'
+                f'  <div class="prose">{r["html"]}</div>\n'
+                f'  <nav class="artigo-nav" aria-label="Outros textos">{"".join(navegar)}</nav>\n'
+                f'</div></section>\n</article></main>{footer}</div>')
+        saida.append((f"ideias/{r['slug']}/index.html", url, cabeca + view + tail))
+    return saida
 
 
 def sitemap(cfg, prints, datas):
@@ -513,6 +664,15 @@ def render(cfg):
         errors += [f"midia.xlsx: {e}" for e in m_errors]
     elif midia.build(m_rows, m_vehicles, dry=True)[1]:
         errors.append("index.html desatualizado em relação à data/midia.xlsx: rode python3 scripts/midia.py build antes")
+    ctx["_ideias"] = ideias_rows()
+    ideias, i_rows = ctx["_ideias"]
+    i_errors, _ = ideias.validate(i_rows)
+    if i_errors:
+        errors += [f"ideias.xlsx: {e}" for e in i_errors]
+    elif ideias.build(i_rows, dry=True)[1]:
+        errors.append("index.html desatualizado em relação à data/ideias.xlsx: rode python3 scripts/ideias.py build antes")
+    ctx["total_ideias"] = str(len(ideias.published(i_rows)))
+
     subject = subject_of(cfg, ctx)
     if subject:
         cfg["pessoa"]["subjectOf"] = subject
@@ -547,6 +707,10 @@ def render(cfg):
         m_pub = midia.published(m_rows)
         names |= midia.keep_names(m_pub, m_vehicles)
         cfg["en"]["textos"].update(midia.en_textos(m_pub))
+        # títulos das ideias ficam como publicados; datas e rótulos traduzem
+        i_pub = ideias.published(i_rows)
+        names |= ideias.keep_titles(i_pub)
+        cfg["en"]["textos"].update(ideias.en_textos(i_pub))
         t = Dicionario(cfg["en"], names - {""})
         t.total = str(len([r for r in pub if r["nome"] not in cfg["en"]["remover_empresas"]]))
         ctx["_t"] = t
@@ -563,6 +727,8 @@ def render(cfg):
         for k in sorted(set(t.textos) - t.used):
             print(f"aviso: tradução nunca usada em data/en.json: {k!r}")
 
+    for arquivo, url, page in artigos_ideias(head, views[""], tail, cfg, ctx):
+        pages.append((arquivo, url, page))
     prints = [(a, u, hashlib.sha256(p.encode("utf-8")).hexdigest()[:12]) for a, u, p in pages]
     datas = datas_modificacao(cfg, prints, read(SITEMAP_PATH))
     for arquivo, _, page in pages:

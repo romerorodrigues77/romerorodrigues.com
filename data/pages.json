@@ -25,6 +25,12 @@
       "title": "Portfólio: as empresas investidas por Romero Rodrigues",
       "description": "Todas as empresas em que investi como gestor, anjo ou conselheiro, com status atual: ativas, adquiridas, IPO e encerradas."
     },
+    "ideias": {
+      "arquivo": "ideias.html",
+      "url": "/ideias",
+      "title": "Ideias: os textos de Romero Rodrigues",
+      "description": "O que escrevi sobre empreender, investir, e-commerce e tecnologia, de 2013 até hoje: {total_ideias} textos, em veículos e no blog."
+    },
     "midia": {
       "arquivo": "midia.html",
       "url": "/midia",
