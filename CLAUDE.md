@@ -50,7 +50,8 @@ Texto novo que vira página precisa de linha nova lá também, redirecionando a 
 As páginas ficam em `ideias/<slug>/index.html`: o Azure serve pasta com index sem precisar de regra.
 
 Colunas `Título em inglês` e `URL em inglês`: quando existem, a `/en/ideas` usa a versão em inglês;
-quando não existem, mostra a versão em português marcando o idioma. Na lista, os 10 primeiros aparecem
+quando não existem, mostra a versão em português marcando o idioma. Se a versão em inglês está noutro
+veículo (NeoFeed → Substack), a linha EN mostra o veículo de destino, deduzido do domínio da URL em inglês. Na lista, os 10 primeiros aparecem
 e o resto fica atrás de "Ver textos anteriores" — escondido só por JavaScript, então o buscador vê todos.
 
 ## Na mídia

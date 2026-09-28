@@ -505,6 +505,18 @@ def versao_en(view):
         return tag
     view = re.sub(r'<a [^>]*data-en-href="[^"]*"[^>]*>', troca, view)
 
+    def veiculo(m):
+        """A versão em inglês está noutro veículo: a linha mostra o veículo de destino."""
+        tag, corpo = m.group(1), m.group(2)
+        nome = re.search(r'data-en-onde="([^"]*)"', tag).group(1)
+        ler = re.search(r'data-en-ler="([^"]*)"', tag).group(1)
+        tag = re.sub(r'\s*data-en-(?:onde|ler)="[^"]*"', "", tag)
+        tag = re.sub(r'data-onde="[^"]*"', f'data-onde="{nome}"', tag)
+        corpo = re.sub(r'(<span class="src">)[^<]*', rf'\g<1>{nome}', corpo, count=1)
+        corpo = re.sub(r'(<span class="tags">)[^<]*', rf'\g<1>{ler}', corpo, count=1)
+        return tag + corpo + "</a>"
+    view = re.sub(r'(<a [^>]*data-en-onde="[^"]*"[^>]*>)(.*?)</a>', veiculo, view, flags=re.S)
+
     def titulo(m):
         return f'<span class="ttl" lang="en">{m.group(1)}</span>'
     return re.sub(r'<span class="ttl"[^>]*data-en="([^"]*)"[^>]*>[^<]*</span>', titulo, view)
