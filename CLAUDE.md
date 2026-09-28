@@ -12,6 +12,8 @@ Não edite os cards do portfólio direto no `index.html`: edite a planilha e rod
     python3 scripts/portfolio.py build   # regenera cards, carrossel da home, filtros e total de empresas
 
 `build` reescreve só esses blocos gerados. Logos ficam em `assets/img/logos/` com o nome da empresa (ex.: `pismo.png`) e a planilha guarda o nome do arquivo.
+A coluna Perfis guarda os perfis da empresa em outros sites (hoje, Crunchbase), separados por `;`. Não aparecem no card:
+viram `sameAs` da empresa no JSON-LD do `/portfolio`. Só entra perfil conferido (site igual ao do card, ou o Romero no perfil).
 Se o HTML do portfólio foi alterado à mão, `export --force` recria a planilha a partir dele (sobrescreve edições da planilha).
 
 ### Logo novo ou trocado
