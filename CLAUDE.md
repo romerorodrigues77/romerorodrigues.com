@@ -34,6 +34,10 @@ Se o WebP faltar, o `portfolio.py` avisa (`aviso: nova-empresa.png sem WebP`) e 
 Trocando o logo de uma empresa que já existe, use um nome de arquivo novo (ex.: `pismo-2026.png`) e atualize a planilha:
 os logos têm cache de 1 semana, e com o mesmo nome quem já visitou o site pode continuar vendo o antigo.
 
+Um logo por empresa: a Trajetória usa os mesmos arquivos do portfólio. Trocando o logo de uma empresa que aparece
+lá, atualize também o `index.html` (o `"logo"` no JSON `tl-data` e o `<img>` do `.lg`, com `width`/`height` do WebP novo),
+rode o build e apague o PNG e o WebP antigos quando nada mais os usar (`git grep` confere).
+
 ## Ideias
 
 A fonte da verdade da página `/ideias` (EN: `/en/ideas`) e da seção Ideias da home é `data/ideias.xlsx`
