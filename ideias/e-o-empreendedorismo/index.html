@@ -100,7 +100,7 @@ h1, h2, h3 { margin: 0; font-weight: 500; }
 .lang-switch { margin-left: 28px; font-size: 12px; letter-spacing: .08em; color: var(--mute); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; line-height: 1; transition: color .15s, border-color .15s; }
 .lang-switch:hover { color: var(--ink); border-color: var(--ink); }
 /* Aviso para quem navega em outro idioma: oferece o inglês, sem redirecionar */
-.lang-aviso { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; padding: 10px var(--gut); font-size: 14px; background: var(--ink); color: #fff; }
+.lang-aviso { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; padding: 10px var(--gut) calc(10px + env(safe-area-inset-bottom, 0px)); font-size: 14px; background: var(--ink); color: #fff; }  /* fixa embaixo: aparece sem empurrar o conteúdo (CLS) */
 .lang-aviso a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .lang-aviso button { background: none; border: 0; color: #fff; font: inherit; font-size: 18px; line-height: 1; cursor: pointer; padding: 4px 8px; }
 
@@ -516,7 +516,7 @@ a.press-row:hover { color: var(--signal); }
     function fechar() { try { localStorage.setItem("lang-aviso", "1"); } catch (e) {} }
     bar.querySelector("a").addEventListener("click", fechar);
     bar.querySelector("button").addEventListener("click", function () { fechar(); bar.remove(); });
-    header.parentNode.insertBefore(bar, header.nextSibling);
+    document.body.appendChild(bar);
   })();
 
   function readJSON(id) {
