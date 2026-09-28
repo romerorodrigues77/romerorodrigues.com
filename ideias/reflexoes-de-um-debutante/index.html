@@ -312,6 +312,11 @@ a.tomb:hover, .tomb:has(a.tomb-site):hover { border-color: var(--ink); }
 }
 .press-tools select:hover { border-bottom-color: var(--ink); }
 .press-order { display: flex; gap: 20px; margin-left: auto; }
+/* Portfólio: Saídas / Acima de US$ 1 bi à esquerda, ordenação à direita */
+.port-tools .press-order:first-child { margin-left: 0; }
+.port-tools .press-order:last-child { margin-left: auto; align-items: center; }
+.port-label { font-size: 13px; color: var(--mute); }
+.port-tools sup { font-size: 11px; margin-left: 3px; font-feature-settings: "tnum" 1; }
 .press-order button {
   background: none; border: 0; border-bottom: 1px solid transparent; font: inherit; font-size: 15px; color: var(--mute);
   cursor: pointer; min-height: 44px; padding: 0;
@@ -552,18 +557,58 @@ a.press-row:hover { color: var(--signal); }
     var count = root.querySelector(".result-count");
     var noun = root.getAttribute("data-noun") || "itens";
     var active = "all";
+    // Portfólio: filtros de resultado (Saídas, Acima de US$ 1 bi) e ordenação
+    var resBtns = root.querySelectorAll("button[data-res]");
+    var sortBtns = root.querySelectorAll("button[data-sort]");
+    var res = "", sort = "destaque", anoDesc = true;
+    var list = items.length ? items[0].parentNode : null;
+    var original = Array.prototype.slice.call(items);
+    function norm(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
+    function ordenar() {
+      if (!list || !sortBtns.length) return;
+      var arr = original.slice();
+      if (sort === "nome") arr.sort(function (a, b) { return norm(a.dataset.name).localeCompare(norm(b.dataset.name)); });
+      if (sort === "ano") arr.sort(function (a, b) {
+        var x = parseInt(a.dataset.ano, 10), y = parseInt(b.dataset.ano, 10);
+        if (isNaN(x) !== isNaN(y)) return isNaN(x) ? 1 : -1;  // sem ano vai para o fim
+        return anoDesc ? (y || 0) - (x || 0) : (x || 0) - (y || 0);
+      });
+      arr.forEach(function (it) { list.appendChild(it); });
+    }
     function apply() {
       var q = search ? search.value.trim().toLowerCase() : "";
       var n = 0;
       items.forEach(function (it) {
         var cats = it.getAttribute("data-cats").split(" ");
         var name = (it.getAttribute("data-name") || "").toLowerCase();
-        var ok = (active === "all" || cats.indexOf(active) >= 0) && (!q || name.indexOf(q) >= 0);
+        var ok = (active === "all" || cats.indexOf(active) >= 0) && (!q || name.indexOf(q) >= 0) &&
+          (!res || (it.getAttribute("data-res") || "").split(" ").indexOf(res) >= 0);
         it.hidden = !ok;
         if (ok) n++;
       });
       if (count) count.textContent = n + " " + (n === 1 ? (root.getAttribute("data-noun-one") || noun) : noun);
     }
+    resBtns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        res = res === b.dataset.res ? "" : b.dataset.res;  // clicar de novo desliga
+        resBtns.forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.res === res ? "true" : "false"); });
+        apply();
+      });
+    });
+    sortBtns.forEach(function (b) {
+      var base = b.textContent;
+      b.addEventListener("click", function () {
+        if (b.dataset.sort === "ano" && sort === "ano") anoDesc = !anoDesc;  // segundo clique inverte
+        else if (b.dataset.sort === "ano") anoDesc = true;
+        sort = b.dataset.sort;
+        sortBtns.forEach(function (x) {
+          x.setAttribute("aria-pressed", x === b ? "true" : "false");
+          if (x.dataset.sort === "ano") x.textContent = x === b ? x.dataset.label + (anoDesc ? " ↓" : " ↑") : x.dataset.label;
+        });
+        ordenar();
+      });
+      b.dataset.label = base;
+    });
     tabs.forEach(function (t) {
       t.addEventListener("click", function () {
         active = t.dataset.filter;

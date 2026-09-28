@@ -57,6 +57,8 @@ COLUMNS = [
     ("nota", "Nota", 26, "Segunda linha do card, ex.: 'Vendida à Visa'."),
     ("ano", "Ano", 8, "Ano do início da relação."),
     ("status", "Status", 20, "Texto no canto do card: Ativa, Saída, Encerrada, Adquirida · 2021, Listada na B3, US$ 1 bi · 2024..."),
+    ("saida", "Saída", 8, "x = teve exit (venda, fusão, saída da participação). Alimenta o filtro Saídas do portfólio."),
+    ("bi", "US$ 1 bi+", 10, "x = passou de US$ 1 bilhão de valor. Alimenta o filtro Acima de US$ 1 bi do portfólio."),
     ("site", "Site", 34, "URL do site. Vazio = card sem link."),
     ("perfis", "Perfis", 40, "Opcional. Perfis da empresa em outros sites (Crunchbase, Wikidata, LinkedIn), separados por ';'. Não aparecem no card: vão para os dados estruturados (sameAs), que ligam a empresa à mesma empresa nesses sites."),
     ("logo", "Logo", 17, "Arquivo em assets/img/logos/. Vazio = mostra o nome em texto."),
@@ -71,6 +73,9 @@ COLUMNS = [
 KEYS = [c[0] for c in COLUMNS]
 HEADERS = {c[0]: c[1] for c in COLUMNS}
 REL_CODES = [r[0] for r in RELATIONS]
+RESULT_CODES = ["saida", "bi"]  # filtros de resultado do portfólio: combinam com os de relação
+RESULT_LABEL = {"saida": "Saídas", "bi": "Acima de US$ 1 bi"}
+TOOLS_RE = re.compile(r'(<!-- PORTFOLIO:FERRAMENTAS -->)(.*?)(<!-- /PORTFOLIO:FERRAMENTAS -->)', re.S)
 REL_LABEL = {r[0]: r[3] for r in RELATIONS}
 FILTER_LABEL = {r[0]: r[2] for r in RELATIONS}
 
@@ -172,6 +177,7 @@ def read_xlsx(path):
         row = {k: cell_str(r[k]) for k in KEYS}
         row["_line"] = n
         row["cats"] = [c for c in REL_CODES if marked(r[c])]
+        row["res"] = [c for c in RESULT_CODES if marked(r[c])]
         row["publicar"] = marked(r["publicar"])
         rows.append(row)
     return rows
@@ -269,7 +275,9 @@ def render_tomb(r):
         news = (f'<a class="tomb-news" href="{esc(r["materia_url"])}" target="_blank" rel="noopener">'
                 f'<span lang="{idioma(r["materia_titulo"])}" title="{esc(r["materia_titulo"])}">{esc(r["materia_titulo"])}</span>{small}</a>')
     foot = f'<div class="tomb-foot"><span class="yr">{esc(r["ano"])}</span><span class="val">{esc(r["status"])}</span></div>'
-    return (f'<li id="{slug(r["nome"])}" data-cats="{" ".join(r["cats"])}" data-name="{esc(r["nome"])}">'
+    res = f' data-res="{" ".join(r["res"])}"' if r["res"] else ""
+    ano = f' data-ano="{esc(r["ano"])}"' if r["ano"] else ""
+    return (f'<li id="{slug(r["nome"])}" data-cats="{" ".join(r["cats"])}" data-name="{esc(r["nome"])}"{res}{ano}>'
             f'<div class="tomb">{site}{news}{foot}</div></li>')
 
 
@@ -296,6 +304,18 @@ def render_filters(pub, current):
         for c, label, n in btns)
 
 
+def render_tools(pub):
+    """Filtros de resultado (Saídas, Acima de US$ 1 bi) e ordenação, abaixo das abas de relação."""
+    res = "".join(
+        f'<button type="button" data-res="{c}" aria-pressed="false">{RESULT_LABEL[c]}<sup>{sum(c in r["res"] for r in pub)}</sup></button>'
+        for c in RESULT_CODES)
+    ordem = "".join(
+        f'<button type="button" data-sort="{k}" aria-pressed="{"true" if k == "destaque" else "false"}">{t}</button>'
+        for k, t in (("destaque", "Destaque"), ("nome", "Nome"), ("ano", "Ano")))
+    return (f'<div class="press-tools port-tools"><div class="press-order" role="group" aria-label="Resultado">{res}</div>'
+            f'<div class="press-order" role="group" aria-label="Ordenar"><span class="port-label">Ordenar</span>{ordem}</div></div>')
+
+
 def sub_once(regex, fn, text, what):
     new, n = regex.subn(fn, text, count=1)
     if n != 1:
@@ -310,6 +330,7 @@ def build(rows, dry=False):
     out = sub_once(TOMBS_RE, lambda m: m.group(1) + "".join(render_tomb(r) for r in pub) + m.group(3), src, "lista de cards")
     out = sub_once(MARQUEE_RE, lambda m: m.group(1) + render_marquee(home) + m.group(3), out, "carrossel da home")
     out = sub_once(FILTERS_RE, lambda m: m.group(1) + render_filters(pub, m.group(2)) + m.group(3), out, "filtros")
+    out = sub_once(TOOLS_RE, lambda m: m.group(1) + render_tools(pub) + m.group(3), out, "filtros de resultado e ordenação")
     for rx in TOTAL_RES:
         out = sub_once(rx, lambda m: f"{m.group(1)}{len(pub)}{m.group(2)}", out, rx.pattern)
     changed = out != src
@@ -386,14 +407,14 @@ def write_xlsx(rows, path):
         cell = ws.cell(row=1, column=i)
         cell.font = Font(bold=True, color="FFFFFF")
         cell.fill = rel_fill if key in REL_CODES else head_fill
-        cell.alignment = Alignment(horizontal="center" if key in REL_CODES + ["publicar", "home", "prioridade", "ano"] else "left",
+        cell.alignment = Alignment(horizontal="center" if key in REL_CODES + RESULT_CODES + ["publicar", "home", "prioridade", "ano"] else "left",
                                    vertical="center", wrap_text=True)
         cell.comment = Comment(note, "portfolio.py")
         ws.column_dimensions[get_column_letter(i)].width = width
     for n, r in enumerate(rows, start=2):
         ws.append([r[k] if k != "rotulo_final" else label_formula(n) for k in KEYS])
     last = len(rows) + 1
-    center = {KEYS.index(k) + 1 for k in REL_CODES + ["publicar", "home", "prioridade", "ano"]}
+    center = {KEYS.index(k) + 1 for k in REL_CODES + RESULT_CODES + ["publicar", "home", "prioridade", "ano"]}
     calc_col = KEYS.index("rotulo_final") + 1
     for row in ws.iter_rows(min_row=2, max_row=last):
         for c in row:
@@ -410,7 +431,7 @@ def write_xlsx(rows, path):
     xv = DataValidation(type="list", formula1='"x"', allow_blank=True,
                         error="Use x para marcar ou deixe vazio.", errorTitle="Valor inválido")
     ws.add_data_validation(xv)
-    for k in REL_CODES + ["publicar"]:
+    for k in REL_CODES + RESULT_CODES + ["publicar"]:
         L = get_column_letter(KEYS.index(k) + 1)
         xv.add(f"{L}2:{L}{limit}")
     lists = wb.create_sheet("Listas")
@@ -445,6 +466,7 @@ def write_xlsx(rows, path):
         ("  ou, se vazio, é montado a partir das relações marcadas. A coluna Rótulo no site mostra o resultado.", False),
         ("Logo: nome do arquivo em assets/img/logos/. Para um logo novo, salve o arquivo lá (ex.: empresa.png) e escreva o nome aqui.", False),
         ("Matéria: link, título e fonte · data aparecem como destaque no card.", False),
+        ("Saída e US$ 1 bi+: marque x. Alimentam os filtros Saídas e Acima de US$ 1 bi da página (combinam com as abas).", False),
         ("Perfis: links da empresa no Crunchbase, Wikidata ou LinkedIn, separados por ';'. Não aparecem no card;", False),
         ("  entram nos dados estruturados da página, para o Google e as IAs ligarem a empresa ao seu portfólio.", False),
         ("Observações internas não vão para o site.", False),
