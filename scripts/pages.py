@@ -303,6 +303,8 @@ def extra_ld(cfg, route, ctx, lang="pt"):
             org = {"@type": "Organization", "name": r["nome"]}
             if r["site"]:
                 org["url"] = r["site"]
+            if portfolio.perfis(r):
+                org["sameAs"] = portfolio.perfis(r)  # a mesma empresa no Crunchbase, Wikidata...
             org["description"] = desc
             items.append({"@type": "ListItem", "position": i, "item": org})
         return [{**pagina, "@type": "CollectionPage", "mainEntity": {"@id": f"{url}#empresas"}},

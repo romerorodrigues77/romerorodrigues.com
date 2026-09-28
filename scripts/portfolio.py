@@ -58,6 +58,7 @@ COLUMNS = [
     ("ano", "Ano", 8, "Ano do início da relação."),
     ("status", "Status", 20, "Texto no canto do card: Ativa, Saída, Encerrada, Adquirida · 2021, Listada na B3, US$ 1 bi · 2024..."),
     ("site", "Site", 34, "URL do site. Vazio = card sem link."),
+    ("perfis", "Perfis", 40, "Opcional. Perfis da empresa em outros sites (Crunchbase, Wikidata, LinkedIn), separados por ';'. Não aparecem no card: vão para os dados estruturados (sameAs), que ligam a empresa à mesma empresa nesses sites."),
     ("logo", "Logo", 17, "Arquivo em assets/img/logos/. Vazio = mostra o nome em texto."),
     ("logo2", "Logo 2", 17, "Opcional. Segundo logo empilhado (ex.: Movile + iFood)."),
     ("logo_texto", "Logo em texto", 16, "Opcional. Texto mostrado antes do logo (ex.: Bcash). Sem logo, o nome já aparece em texto."),
@@ -176,6 +177,10 @@ def read_xlsx(path):
     return rows
 
 
+def perfis(r):
+    return [p.strip() for p in r.get("perfis", "").split(";") if p.strip()]
+
+
 def num(s, default):
     try:
         return float(s)
@@ -210,6 +215,9 @@ def validate(rows):
         for k in ("site", "materia_url"):
             if r[k] and not re.match(r"https?://", r[k]):
                 errors.append(f"{where}: {HEADERS[k]} deve começar com http:// ou https://")
+        for perfil in perfis(r):
+            if not re.match(r"https?://", perfil):
+                errors.append(f"{where}: perfil deve começar com http:// ou https://: {perfil!r}")
         if r["ano"] and not re.fullmatch(r"\d{4}", r["ano"]):
             warnings.append(f"{where}: ano fora do padrão: {r['ano']!r}")
         if r["home"]:
@@ -429,6 +437,8 @@ def write_xlsx(rows, path):
         ("  ou, se vazio, é montado a partir das relações marcadas. A coluna Rótulo no site mostra o resultado.", False),
         ("Logo: nome do arquivo em assets/img/logos/. Para um logo novo, salve o arquivo lá (ex.: empresa.png) e escreva o nome aqui.", False),
         ("Matéria: link, título e fonte · data aparecem como destaque no card.", False),
+        ("Perfis: links da empresa no Crunchbase, Wikidata ou LinkedIn, separados por ';'. Não aparecem no card;", False),
+        ("  entram nos dados estruturados da página, para o Google e as IAs ligarem a empresa ao seu portfólio.", False),
         ("Observações internas não vão para o site.", False),
         ("", False),
         ("Passe o mouse no cabeçalho de cada coluna para ver a explicação.", False),
