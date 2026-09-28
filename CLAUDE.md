@@ -14,6 +14,8 @@ Não edite os cards do portfólio direto no `index.html`: edite a planilha e rod
 `build` reescreve só esses blocos gerados. Logos ficam em `assets/img/logos/` com o nome da empresa (ex.: `pismo.png`) e a planilha guarda o nome do arquivo.
 A coluna Perfis guarda os perfis da empresa em outros sites (hoje, Crunchbase), separados por `;`. Não aparecem no card:
 viram `sameAs` da empresa no JSON-LD do `/portfolio`. Só entra perfil conferido (site igual ao do card, ou o Romero no perfil).
+As colunas Saída e US$ 1 bi+ (x) alimentam os filtros Saídas e Acima de US$ 1 bi da página, que combinam com as abas
+de relação e a busca; a página também ordena por destaque (a ordem da coluna Prioridade), nome e ano.
 Se o HTML do portfólio foi alterado à mão, `export --force` recria a planilha a partir dele (sobrescreve edições da planilha).
 
 ### Logo novo ou trocado
