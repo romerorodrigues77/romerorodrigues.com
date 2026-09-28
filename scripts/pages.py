@@ -364,6 +364,7 @@ def standalone(head, view, tail):
     m = VIEW_RE.match(view)
     view = m.group(0).replace(" hidden>", ">") + view[m.end():]
     view = view.replace('src="assets/', 'src="/assets/')
+    view = view.replace('href="assets/', 'href="/assets/')  # download das fotos: em /en/about o relativo cairia em /en/assets
     view = re.sub(r'srcset="([^"]*)"', lambda m: 'srcset="' + re.sub(r"(^|, )assets/", r"\1/assets/", m.group(1)) + '"', view)
     return head + view + tail
 

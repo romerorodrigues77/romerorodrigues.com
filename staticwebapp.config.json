@@ -25,6 +25,12 @@
       ]
     },
     {
+      "route": "/conteudo/*",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
       "route": "/",
       "rewrite": "/home.html"
     },
