@@ -52,6 +52,7 @@ NOTFOUND_MAIN = """<main>
 <section class="intro"><div class="wrap">
   <h1>Página não encontrada</h1>
   <p class="lede">O endereço que você tentou abrir não existe ou mudou de lugar.</p>
+  <p class="lede" lang="en" style="margin-top:12px">This page does not exist or has moved. <a class="link" href="/en" hreflang="en">Go to the English site</a>.</p>
 </div></section>
 <section style="padding-bottom:120px"><div class="wrap">
   <p style="display:flex;flex-wrap:wrap;gap:24px"><a class="link" href="/">Página inicial</a><a class="link" href="/trajetoria">Trajetória</a><a class="link" href="/portfolio">Portfólio</a><a class="link" href="/midia">Na mídia</a></p>
@@ -205,6 +206,8 @@ def seo_block(cfg, route, ctx, lang="pt"):
             lines.append(f'<meta name="msvalidate.01" content="{esc(med["bing_site_verification"])}">')
     lines += ga4(med, cfg["base"])
     person = cfg["pessoa"] if lang == "pt" else {**cfg["pessoa"], **cfg["en"]["pessoa"]}
+    if lang == "en" and person.get("subjectOf"):  # a versão em inglês não mostra o que é da XP
+        person = {**person, "subjectOf": [n for n in person["subjectOf"] if not re.search(r"\bXP\b", json.dumps(n, ensure_ascii=False))]}
     person = json.loads(fill(json.dumps(person, ensure_ascii=False), ctx))
     lines.append(ld_script(person))
     lines += [ld_script(x) for x in extra_ld(cfg, route, ctx, lang)]
@@ -395,6 +398,13 @@ TEXT_ATTRS = ("alt", "aria-label", "data-title", "placeholder", "data-noun", "da
 ATTR_RE = re.compile(r'(\s(?:%s)=")([^"]*)(")' % "|".join(TEXT_ATTRS))
 LETTER_RE = re.compile(r"[A-Za-zÀ-ÿ]")
 LANG_LINK = '<a href="/en" hreflang="en" lang="en">English</a>'
+HEAD_LANG = '<a class="lang-switch" href="/en" hreflang="en" lang="en" aria-label="English version">EN</a>'
+
+
+def lang_para(view, url_en):
+    """Links de idioma (rodapé e cabeçalho) apontando para a página equivalente em inglês."""
+    view = view.replace(LANG_LINK, LANG_LINK.replace('href="/en"', f'href="{url_en}"'))
+    return view.replace(HEAD_LANG, HEAD_LANG.replace('href="/en"', f'href="{url_en}"'))
 
 
 class Dicionario:
@@ -497,6 +507,7 @@ def en_view(cfg, route, view, t, errors):
     view = versao_en(view)
     pt_url = cfg["rotas"][route]["url"]
     view = view.replace(LANG_LINK, f'<a href="{pt_url}" hreflang="pt-BR" lang="pt-BR">Português</a>')
+    view = view.replace(HEAD_LANG, f'<a class="lang-switch" href="{pt_url}" hreflang="pt-BR" lang="pt-BR" aria-label="Versão em português">PT</a>')
     return translate_html(view, t, en)
 
 
@@ -617,6 +628,7 @@ def artigos_ideias(head, home_view, tail, cfg, ctx):
     header = re.search(r'<header class="site-header">.*?</header>', home_view, re.S).group(0)
     footer = re.search(r'<footer class="site-footer">.*?</footer>', home_view, re.S).group(0)
     header = header.replace('<a href="/ideias">', '<a href="/ideias" aria-current="page">')
+    header = header.replace(HEAD_LANG, HEAD_LANG.replace('href="/en"', 'href="/en/ideas"'))  # texto só em português: vai para a lista em inglês
     base = cfg["base"]
     lista = ideias.artigos(rows)
     saida = []
@@ -725,7 +737,7 @@ def render(cfg):
         rota = cfg["rotas"][route]
         view = views[route]
         if rota["url"] in en_map:
-            view = view.replace(LANG_LINK, LANG_LINK.replace('href="/en"', f'href="{en_map[rota["url"]]}"'))
+            view = lang_para(view, en_map[rota["url"]])
         page = standalone(with_head(head, fill(rota["title"], ctx), seo_block(cfg, route, ctx), route=route), view, tail)
         pages.append((rota["arquivo"], rota["url"], page))
         check_page(f"/{route}", view, page, errors)

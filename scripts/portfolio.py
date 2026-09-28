@@ -233,6 +233,14 @@ def validate(rows):
 
 # ---------------------------------------------------------------- dados -> HTML
 
+PT_MARCAS = re.compile(r"[ãõçáéíóúâêô]|\b(de|da|do|das|dos|para|com|em|que|uma|não|compra|como)\b", re.I)
+
+
+def idioma(texto):
+    """Idioma do título da matéria (a versão em inglês mostra títulos como publicados, em português ou inglês)."""
+    return "pt-BR" if PT_MARCAS.search(texto) else "en"
+
+
 def render_tomb(r):
     shown = r["nome_exibido"] or r["nome"]
     files = [f for f in (r["logo"], r["logo2"]) if f]
@@ -259,7 +267,7 @@ def render_tomb(r):
     if r["materia_url"]:
         small = f'<small>{esc(r["materia_fonte"])}</small>' if r["materia_fonte"] else ""
         news = (f'<a class="tomb-news" href="{esc(r["materia_url"])}" target="_blank" rel="noopener">'
-                f'{esc(r["materia_titulo"])}{small}</a>')
+                f'<span lang="{idioma(r["materia_titulo"])}" title="{esc(r["materia_titulo"])}">{esc(r["materia_titulo"])}</span>{small}</a>')
     foot = f'<div class="tomb-foot"><span class="yr">{esc(r["ano"])}</span><span class="val">{esc(r["status"])}</span></div>'
     return (f'<li id="{slug(r["nome"])}" data-cats="{" ".join(r["cats"])}" data-name="{esc(r["nome"])}">'
             f'<div class="tomb">{site}{news}{foot}</div></li>')
@@ -351,7 +359,7 @@ def parse_html():
             "logo_texto": word if imgs else ("" if word == (shown or name) else word),
             "logo_alt": "; ".join(alts) if any(a != name for a in alts) else "",
             "materia_url": g(r'class="tomb-news" href="([^"]*)"', it),
-            "materia_titulo": g(r'class="tomb-news"[^>]*>(.*?)<small>', it) or g(r'class="tomb-news"[^>]*>(.*?)</a>', it),
+            "materia_titulo": re.sub(r"<[^>]+>", "", g(r'class="tomb-news"[^>]*>(.*?)<small>', it) or g(r'class="tomb-news"[^>]*>(.*?)</a>', it)),
             "materia_fonte": g(r'class="tomb-news".*?<small>(.*?)</small>', it),
         })
         for c in REL_CODES:

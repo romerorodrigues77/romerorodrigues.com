@@ -101,6 +101,10 @@ JSON-LD da pessoa e IDs de medição) e rode o build. O bloco entre `<!-- SEO:ST
 Versão em inglês: `/en`, `/en/journey`, `/en/portfolio`, `/en/ideas`, `/en/press`, `/en/about`, `/en/links`, geradas em `en/` a partir das mesmas
 views, com `data/en.json` (traduções frase a frase, o que manter, o que remover). A versão EN mostra só a Headline: o que é
 da XP sai. Mudou ou entrou texto em português? `pages.py check` acusa a tradução que falta; acrescente em `data/en.json`.
+Troca de idioma: botão EN/PT no cabeçalho (e "English"/"Português" no rodapé), apontando para a página equivalente;
+nos textos de `/ideias/<slug>`, que só existem em português, o EN leva à `/en/ideas`. Quem navega com o navegador em
+outro idioma vê uma faixa oferecendo o inglês; não há redirecionamento automático (esconderia as páginas em
+português de quem indexa o site). No JSON-LD em inglês, as matérias do `subjectOf` que citam a XP saem.
 
 Toda `<img>` precisa de `width` e `height` reais (`pages.py check` acusa). Nos logos do portfólio o `portfolio.py` já põe.
 Logos, fotos em WebP, favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow; a imagem OG também precisa do
