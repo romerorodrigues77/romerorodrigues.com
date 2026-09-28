@@ -100,7 +100,7 @@ Toda `<img>` precisa de `width` e `height` reais (`pages.py check` acusa). Nos l
 Logos, fotos em WebP, favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow; a imagem OG também precisa do
 Google Chrome). Sem argumento gera tudo; `logos`, `fotos`, `icones` ou `og` geram só a etapa pedida.
 
-`staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
+`staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, `/conteudo/*` (o markdown dos textos duplicaria as páginas), este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`
 (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
 e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (idem as outras rotas; rota nova precisa de linha nova lá).
