@@ -51,7 +51,9 @@ As páginas ficam em `ideias/<slug>/index.html`: o Azure serve pasta com index s
 
 Colunas `Título em inglês` e `URL em inglês`: quando existem, a `/en/ideas` usa a versão em inglês;
 quando não existem, mostra a versão em português marcando o idioma. Se a versão em inglês está noutro
-veículo (NeoFeed → Substack), a linha EN mostra o veículo de destino, deduzido do domínio da URL em inglês. Na lista, os 10 primeiros aparecem
+veículo (NeoFeed → Substack), a linha EN mostra o veículo de destino, deduzido do domínio da URL em inglês.
+Se a URL em inglês é a de outra linha da planilha (versão em português, no LinkedIn, de um texto do TechCrunch),
+a `/en/ideas` mostra só a outra linha, e o total em inglês desconta essas. Na lista, os 10 primeiros aparecem
 e o resto fica atrás de "Ver textos anteriores" — escondido só por JavaScript, então o buscador vê todos.
 
 ## Na mídia
