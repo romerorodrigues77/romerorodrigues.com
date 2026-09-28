@@ -565,6 +565,15 @@ def resumo(html_corpo, limite=155):
     return corte.rstrip(" ,;:.") + "…"
 
 
+TITULO_MAX = 60  # acima disso o Google corta o título no resultado
+
+
+def titulo_artigo(titulo):
+    """Título longo vai sozinho: o Google já mostra o nome do site acima do resultado."""
+    completo = f"{titulo} · Romero Rodrigues"
+    return completo if len(completo) <= TITULO_MAX else titulo
+
+
 def seo_artigo(cfg, ctx, r, ld_extra):
     """<head> de uma página de texto: sem par em inglês, com BlogPosting e trilha."""
     ideias, _ = ctx["_ideias"]
@@ -622,7 +631,7 @@ def artigos_ideias(head, home_view, tail, cfg, ctx):
             {"@type": "ListItem", "position": 1, "name": "Início", "item": f"{base}/"},
             {"@type": "ListItem", "position": 2, "name": "Ideias", "item": f"{base}/ideias"},
             {"@type": "ListItem", "position": 3, "name": r["titulo"]}]}
-        cabeca = with_head(head, f"{r['titulo']} · Romero Rodrigues",
+        cabeca = with_head(head, titulo_artigo(r["titulo"]),
                            seo_artigo(cfg, ctx, r, [artigo_ld(cfg, ideias, r), pagina_ld, trilha]),
                            route="ideias-texto")
         navegar = []

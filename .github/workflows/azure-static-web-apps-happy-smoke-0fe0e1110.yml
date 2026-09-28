@@ -22,6 +22,7 @@ jobs:
         with:
           submodules: true
           lfs: false
+          fetch-depth: 2  # o IndexNow compara o sitemap com o do commit anterior
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
@@ -46,6 +47,10 @@ jobs:
           output_location: "." # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
+      - name: Avisar buscadores (IndexNow)
+        if: github.event_name == 'push'
+        continue-on-error: true  # aviso a buscador não deve derrubar o deploy
+        run: python3 scripts/indexnow.py mudancas
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
