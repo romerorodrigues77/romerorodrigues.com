@@ -104,3 +104,10 @@ Google Chrome). Sem argumento gera tudo; `logos`, `fotos`, `icones` ou `og` gera
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`
 (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
 e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (idem as outras rotas; rota nova precisa de linha nova lá).
+
+## IndexNow
+
+No deploy do `main`, o workflow roda `python3 scripts/indexnow.py mudancas`: compara o `sitemap.xml` com o do commit
+anterior e avisa Bing e outros buscadores das URLs novas, alteradas ou removidas. A chave fica em `/<chave>.txt` na raiz
+(pública por definição; não apague nem bloqueie). `todas` reenvia o sitemap inteiro; `--dry` só mostra. O Google não usa
+IndexNow: para ele vale o sitemap no Search Console.

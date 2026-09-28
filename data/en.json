@@ -62,10 +62,26 @@
       }
     ],
     "knowsAbout": [
-      "Venture capital",
-      "Startups",
-      "E-commerce",
-      "Artificial intelligence"
+      {
+        "@type": "Thing",
+        "name": "Venture capital",
+        "sameAs": "https://www.wikidata.org/wiki/Q219409"
+      },
+      {
+        "@type": "Thing",
+        "name": "Startups",
+        "sameAs": "https://www.wikidata.org/wiki/Q129238"
+      },
+      {
+        "@type": "Thing",
+        "name": "E-commerce",
+        "sameAs": "https://www.wikidata.org/wiki/Q484847"
+      },
+      {
+        "@type": "Thing",
+        "name": "Artificial intelligence",
+        "sameAs": "https://www.wikidata.org/wiki/Q11660"
+      }
     ]
   },
   "remover": [
