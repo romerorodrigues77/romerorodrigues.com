@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/assets/img/icon/apple-touch-icon.png">
 <title>Romero Rodrigues — Fundador do Buscapé, investidor</title>
 <!-- SEO:START -->
-<meta name="description" content="Fundei o Buscapé, vendi para a Naspers/Prosus e hoje invisto. Managing Partner da Headline Brasil, R$ 2,0 bi sob gestão e 125 empresas no portfólio.">
+<meta name="description" content="Fundei o Buscapé, vendi para a Naspers/Prosus e hoje invisto. Managing Partner da Headline Brasil, R$ 2,0 bi sob gestão e 127 empresas no portfólio.">
 <link rel="canonical" href="https://romerorodrigues.com/">
 <link rel="alternate" hreflang="pt-BR" href="https://romerorodrigues.com/">
 <link rel="alternate" hreflang="en" href="https://romerorodrigues.com/en">
@@ -21,7 +21,7 @@
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://romerorodrigues.com/">
 <meta property="og:title" content="Romero Rodrigues — Fundador do Buscapé, investidor">
-<meta property="og:description" content="Fundei o Buscapé, vendi para a Naspers/Prosus e hoje invisto. Managing Partner da Headline Brasil, R$ 2,0 bi sob gestão e 125 empresas no portfólio.">
+<meta property="og:description" content="Fundei o Buscapé, vendi para a Naspers/Prosus e hoje invisto. Managing Partner da Headline Brasil, R$ 2,0 bi sob gestão e 127 empresas no portfólio.">
 <meta property="og:image" content="https://romerorodrigues.com/assets/img/og/romero-rodrigues.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -98,9 +98,18 @@ h1, h2, h3 { margin: 0; font-weight: 500; }
 .nav a { color: var(--mute); transition: color .15s; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
 .menu-btn { display: none; background: none; border: 0; font: inherit; font-size: 15px; min-height: 44px; padding: 0 4px; cursor: pointer; color: var(--ink); }
+/* Idioma: EN/PT no cabeçalho, logo depois do menu */
+.nav { margin-left: auto; }
+.lang-switch { margin-left: 28px; font-size: 12px; letter-spacing: .08em; color: var(--mute); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; line-height: 1; transition: color .15s, border-color .15s; }
+.lang-switch:hover { color: var(--ink); border-color: var(--ink); }
+/* Aviso para quem navega em outro idioma: oferece o inglês, sem redirecionar */
+.lang-aviso { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; padding: 10px var(--gut); font-size: 14px; background: var(--ink); color: #fff; }
+.lang-aviso a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.lang-aviso button { background: none; border: 0; color: #fff; font: inherit; font-size: 18px; line-height: 1; cursor: pointer; padding: 4px 8px; }
 
 @media (max-width: 820px) {
-  .menu-btn { display: block; }
+  .menu-btn { display: block; order: 3; }
+  .lang-switch { order: 2; margin-left: auto; margin-right: 14px; }
   .nav {
     position: fixed; inset: calc(69px + env(safe-area-inset-top, 0px)) 0 auto 0;
     flex-direction: column; gap: 0; background: var(--paper);
@@ -249,16 +258,17 @@ a.row:hover { color: var(--signal); }
 /* Tombstones */
 .tombs { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
 .tomb {
-  aspect-ratio: 1 / 1; border: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column;
-  transition: border-color .15s; background: var(--paper); height: 100%;
+  aspect-ratio: 10 / 11; border: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column;
+  transition: border-color .15s; background: var(--paper);
 }
 a.tomb:hover, .tomb:has(a.tomb-site):hover { border-color: var(--ink); }
-.tomb-site { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; color: inherit; }
+.tomb-site { display: flex; flex-direction: column; flex: 1 1 auto; min-height: auto; color: inherit; }  /* card com matéria cresce em vez de sobrepor o texto */
 .tomb-news { display: block; font-size: 12px; line-height: 1.3; color: var(--mute); margin-top: 8px; transition: color .15s; }
-.tomb-news::before { content: "↗ "; }
+.tomb-news span::before { content: "↗ "; }
 .tomb-news:hover { color: var(--ink); text-decoration: underline; }
 .tomb-news small { display: block; font-size: 11px; opacity: .8; }
-.tomb-logo { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; min-height: 0; }
+.tomb-news span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }  /* título em uma linha; o completo fica no title */
+.tomb-logo { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; min-height: 52px; }  /* com matéria no card, o logo não pode encolher até sumir */
 .tomb-logo img { max-height: 44px; max-width: 72%; width: auto; object-fit: contain; }
 .tomb-logo.stack { flex-direction: column; gap: 6px; }
 .tomb-logo.stack .tomb-word { font-size: 20px; }
@@ -270,6 +280,8 @@ a.tomb:hover, .tomb:has(a.tomb-site):hover { border-color: var(--ink); }
 .tomb-foot .val { font-weight: 500; text-align: right; }
 .tomb.big .tomb-foot .val { font-size: 15px; }
 .tomb-foot .yr { color: var(--mute); font-feature-settings: "tnum" 1; }
+.tombs > li { display: flex; }  /* o card ocupa a altura da linha: linha com matéria cresce por igual */
+.tombs > li > .tomb { flex: 1 1 0; min-width: 0; }  /* largura da coluna; a proporção 1:1 só define a altura mínima */
 .tombs li[hidden] { display: none; }
 .note { margin-top: 40px; font-size: 14px; color: var(--mute); max-width: 72ch; }
 
@@ -400,7 +412,7 @@ a.press-row:hover { color: var(--signal); }
 </style>
 </head>
 <body>
-<div class="view" data-route="" data-title="Romero Rodrigues"><header class="site-header"><div class="wrap"><a class="brand" href="/">Romero Rodrigues</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Principal"><a href="/trajetoria">Trajetória</a><a href="/portfolio">Portfólio</a><a href="/ideias">Ideias</a><a href="/midia">Na mídia</a><a href="/#projetos">Projetos</a><a href="/sobre">Sobre</a></nav></div></header><main>
+<div class="view" data-route="" data-title="Romero Rodrigues"><header class="site-header"><div class="wrap"><a class="brand" href="/">Romero Rodrigues</a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav class="nav" id="nav" aria-label="Principal"><a href="/trajetoria">Trajetória</a><a href="/portfolio">Portfólio</a><a href="/ideias">Ideias</a><a href="/midia">Na mídia</a><a href="/#projetos">Projetos</a><a href="/sobre">Sobre</a></nav><a class="lang-switch" href="/en" hreflang="en" lang="en" aria-label="English version">EN</a></div></header><main>
 <section class="hero"><div class="wrap">
   <div class="hero-grid">
     <div>
@@ -435,12 +447,12 @@ a.press-row:hover { color: var(--signal); }
   <div class="wrap">
     <div class="section-head">
       <h2 class="h2">Portfólio</h2>
-      <a class="link" href="/portfolio">Ver as 125 empresas</a>
+      <a class="link" href="/portfolio">Ver as 127 empresas</a>
     </div>
     <p class="lede" style="margin-bottom:56px">Empresas que fundei, em que investi como anjo ou gestor, e de cujos conselhos participei.</p>
   </div>
   <div class="marquee" aria-label="Destaques do portfólio">
-    <div class="marquee-track"><ul><li><a href="https://www.buscape.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/buscape-2026.webp" alt="Buscapé" width="131" height="88"></a></li><li><a href="https://www.pismo.io/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/pismo.webp" alt="Pismo" width="219" height="70"></a></li><li><a href="https://wellhub.com/pt-br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wellhub.webp" alt="Wellhub" width="226" height="44"></a></li><li><a href="https://www.wayfair.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wayfair.webp" alt="Wayfair" width="237" height="55"></a></li><li><a href="https://olist.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/olist.webp" alt="Olist" width="144" height="69"></a></li><li><a href="https://hotmart.com/en" target="_blank" rel="noopener"><img src="/assets/img/logos/web/hotmart.webp" alt="Hotmart" width="240" height="69"></a></li><li><a href="https://headline.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/headline-brasil.webp" alt="Headline Brasil" width="449" height="88"></a></li><li><a href="https://brasil.endeavor.org/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/endeavor-brasil.webp" alt="Endeavor Brasil" width="480" height="77"></a></li><li><a href="https://www.totvs.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/totvs.webp" alt="TOTVS" width="240" height="69"></a></li><li><a href="https://www.vtex.com/en-us" target="_blank" rel="noopener"><img src="/assets/img/logos/web/vtex.webp" alt="VTEX" width="245" height="88"></a></li><li><a href="https://www.ifood.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/movile.webp" alt="Movile" width="237" height="88"></a></li><li><a href="https://www.rappi.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/rappi.webp" alt="Rappi" width="210" height="88"></a></li><li><a href="https://zup.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/zup.webp" alt="Zup" width="205" height="68"></a></li><li><a href="https://jivemaua.com.br:443/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/jive.webp" alt="Jive" width="240" height="28"></a></li><li><a href="https://ascenty.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/ascenty.webp" alt="Ascenty" width="288" height="88"></a></li><li><a href="https://recargapay.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/recargapay.webp" alt="RecargaPay" width="240" height="52"></a></li><li><a href="https://www.prosus.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/naspers-prosus.webp" alt="Naspers / Prosus" width="231" height="60"></a></li><li><a href="https://neogrid.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/neogrid.webp" alt="NeoGrid" width="162" height="44"></a></li><li><a href="https://www.viagogo.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/viagogo.webp" alt="Viagogo" width="313" height="88"></a></li></ul><ul aria-hidden="true"><li><a tabindex="-1" href="https://www.buscape.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/buscape-2026.webp" alt="Buscapé" width="131" height="88"></a></li><li><a tabindex="-1" href="https://www.pismo.io/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/pismo.webp" alt="Pismo" width="219" height="70"></a></li><li><a tabindex="-1" href="https://wellhub.com/pt-br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wellhub.webp" alt="Wellhub" width="226" height="44"></a></li><li><a tabindex="-1" href="https://www.wayfair.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wayfair.webp" alt="Wayfair" width="237" height="55"></a></li><li><a tabindex="-1" href="https://olist.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/olist.webp" alt="Olist" width="144" height="69"></a></li><li><a tabindex="-1" href="https://hotmart.com/en" target="_blank" rel="noopener"><img src="/assets/img/logos/web/hotmart.webp" alt="Hotmart" width="240" height="69"></a></li><li><a tabindex="-1" href="https://headline.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/headline-brasil.webp" alt="Headline Brasil" width="449" height="88"></a></li><li><a tabindex="-1" href="https://brasil.endeavor.org/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/endeavor-brasil.webp" alt="Endeavor Brasil" width="480" height="77"></a></li><li><a tabindex="-1" href="https://www.totvs.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/totvs.webp" alt="TOTVS" width="240" height="69"></a></li><li><a tabindex="-1" href="https://www.vtex.com/en-us" target="_blank" rel="noopener"><img src="/assets/img/logos/web/vtex.webp" alt="VTEX" width="245" height="88"></a></li><li><a tabindex="-1" href="https://www.ifood.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/movile.webp" alt="Movile" width="237" height="88"></a></li><li><a tabindex="-1" href="https://www.rappi.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/rappi.webp" alt="Rappi" width="210" height="88"></a></li><li><a tabindex="-1" href="https://zup.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/zup.webp" alt="Zup" width="205" height="68"></a></li><li><a tabindex="-1" href="https://jivemaua.com.br:443/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/jive.webp" alt="Jive" width="240" height="28"></a></li><li><a tabindex="-1" href="https://ascenty.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/ascenty.webp" alt="Ascenty" width="288" height="88"></a></li><li><a tabindex="-1" href="https://recargapay.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/recargapay.webp" alt="RecargaPay" width="240" height="52"></a></li><li><a tabindex="-1" href="https://www.prosus.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/naspers-prosus.webp" alt="Naspers / Prosus" width="231" height="60"></a></li><li><a tabindex="-1" href="https://neogrid.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/neogrid.webp" alt="NeoGrid" width="162" height="44"></a></li><li><a tabindex="-1" href="https://www.viagogo.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/viagogo.webp" alt="Viagogo" width="313" height="88"></a></li></ul></div>
+    <div class="marquee-track"><ul><li><a href="https://www.abcdaconstrucao.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/abc-da-construcao.webp" alt="ABC da Construção" width="70" height="70"></a></li><li><a href="https://biosphera.network/en/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/biosphera.webp" alt="Biosphera (B&amp;Partners)" width="88" height="88"></a></li><li><img src="/assets/img/logos/web/xp-inc.webp" alt="XP Inc." width="277" height="88"></li><li><a href="https://www.buscape.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/buscape-2026.webp" alt="Buscapé" width="131" height="88"></a></li><li><a href="https://www.pismo.io/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/pismo.webp" alt="Pismo" width="219" height="70"></a></li><li><a href="https://wellhub.com/pt-br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wellhub.webp" alt="Wellhub" width="226" height="44"></a></li><li><a href="https://www.wayfair.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wayfair.webp" alt="Wayfair" width="237" height="55"></a></li><li><a href="https://olist.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/olist.webp" alt="Olist" width="144" height="69"></a></li><li><a href="https://hotmart.com/en" target="_blank" rel="noopener"><img src="/assets/img/logos/web/hotmart.webp" alt="Hotmart" width="240" height="69"></a></li><li><a href="https://headline.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/headline-brasil.webp" alt="Headline Brasil" width="449" height="88"></a></li><li><a href="https://brasil.endeavor.org/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/endeavor-brasil.webp" alt="Endeavor Brasil" width="480" height="77"></a></li><li><a href="https://www.totvs.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/totvs.webp" alt="TOTVS" width="240" height="69"></a></li><li><a href="https://www.vtex.com/en-us" target="_blank" rel="noopener"><img src="/assets/img/logos/web/vtex.webp" alt="VTEX" width="245" height="88"></a></li><li><a href="https://www.ifood.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/movile.webp" alt="Movile" width="237" height="88"></a></li><li><a href="https://www.rappi.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/rappi.webp" alt="Rappi" width="210" height="88"></a></li><li><a href="https://zup.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/zup.webp" alt="Zup" width="205" height="68"></a></li><li><a href="https://jivemaua.com.br:443/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/jive.webp" alt="Jive" width="240" height="28"></a></li><li><a href="https://ascenty.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/ascenty.webp" alt="Ascenty" width="288" height="88"></a></li><li><a href="https://recargapay.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/recargapay.webp" alt="RecargaPay" width="240" height="52"></a></li><li><a href="https://www.prosus.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/naspers-prosus.webp" alt="Naspers / Prosus" width="231" height="60"></a></li><li><a href="https://neogrid.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/neogrid.webp" alt="NeoGrid" width="162" height="44"></a></li><li><a href="https://www.viagogo.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/viagogo.webp" alt="Viagogo" width="313" height="88"></a></li></ul><ul aria-hidden="true"><li><a tabindex="-1" href="https://www.abcdaconstrucao.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/abc-da-construcao.webp" alt="ABC da Construção" width="70" height="70"></a></li><li><a tabindex="-1" href="https://biosphera.network/en/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/biosphera.webp" alt="Biosphera (B&amp;Partners)" width="88" height="88"></a></li><li><img src="/assets/img/logos/web/xp-inc.webp" alt="XP Inc." width="277" height="88"></li><li><a tabindex="-1" href="https://www.buscape.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/buscape-2026.webp" alt="Buscapé" width="131" height="88"></a></li><li><a tabindex="-1" href="https://www.pismo.io/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/pismo.webp" alt="Pismo" width="219" height="70"></a></li><li><a tabindex="-1" href="https://wellhub.com/pt-br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wellhub.webp" alt="Wellhub" width="226" height="44"></a></li><li><a tabindex="-1" href="https://www.wayfair.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/wayfair.webp" alt="Wayfair" width="237" height="55"></a></li><li><a tabindex="-1" href="https://olist.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/olist.webp" alt="Olist" width="144" height="69"></a></li><li><a tabindex="-1" href="https://hotmart.com/en" target="_blank" rel="noopener"><img src="/assets/img/logos/web/hotmart.webp" alt="Hotmart" width="240" height="69"></a></li><li><a tabindex="-1" href="https://headline.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/headline-brasil.webp" alt="Headline Brasil" width="449" height="88"></a></li><li><a tabindex="-1" href="https://brasil.endeavor.org/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/endeavor-brasil.webp" alt="Endeavor Brasil" width="480" height="77"></a></li><li><a tabindex="-1" href="https://www.totvs.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/totvs.webp" alt="TOTVS" width="240" height="69"></a></li><li><a tabindex="-1" href="https://www.vtex.com/en-us" target="_blank" rel="noopener"><img src="/assets/img/logos/web/vtex.webp" alt="VTEX" width="245" height="88"></a></li><li><a tabindex="-1" href="https://www.ifood.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/movile.webp" alt="Movile" width="237" height="88"></a></li><li><a tabindex="-1" href="https://www.rappi.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/rappi.webp" alt="Rappi" width="210" height="88"></a></li><li><a tabindex="-1" href="https://zup.com.br/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/zup.webp" alt="Zup" width="205" height="68"></a></li><li><a tabindex="-1" href="https://jivemaua.com.br:443/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/jive.webp" alt="Jive" width="240" height="28"></a></li><li><a tabindex="-1" href="https://ascenty.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/ascenty.webp" alt="Ascenty" width="288" height="88"></a></li><li><a tabindex="-1" href="https://recargapay.com.br" target="_blank" rel="noopener"><img src="/assets/img/logos/web/recargapay.webp" alt="RecargaPay" width="240" height="52"></a></li><li><a tabindex="-1" href="https://www.prosus.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/naspers-prosus.webp" alt="Naspers / Prosus" width="231" height="60"></a></li><li><a tabindex="-1" href="https://neogrid.com" target="_blank" rel="noopener"><img src="/assets/img/logos/web/neogrid.webp" alt="NeoGrid" width="162" height="44"></a></li><li><a tabindex="-1" href="https://www.viagogo.com/" target="_blank" rel="noopener"><img src="/assets/img/logos/web/viagogo.webp" alt="Viagogo" width="313" height="88"></a></li></ul></div>
   </div>
 </section>
 
@@ -562,6 +574,28 @@ a.press-row:hover { color: var(--signal); }
     menuBtn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
     nav.addEventListener("click", function (e) { if (e.target.tagName === "A") set(false); });
   });
+
+  // Navegador em outro idioma: oferece a versão em inglês, sem redirecionar
+  // (redirecionar esconderia as páginas em português de quem indexa o site)
+  (function () {
+    if ((document.documentElement.lang || "").indexOf("pt") !== 0) return;
+    var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+    if (langs.some(function (l) { return /^pt/i.test(l); })) return;
+    if (navigator.webdriver || /bot|crawl|spider|lighthouse|headless/i.test(navigator.userAgent)) return;
+    try { if (localStorage.getItem("lang-aviso")) return; } catch (e) {}
+    var header = document.querySelector(".view:not([hidden]) .site-header") || document.querySelector(".site-header");
+    var link = header && header.querySelector(".lang-switch");
+    if (!link) return;
+    var bar = document.createElement("div");
+    bar.className = "lang-aviso";
+    bar.lang = "en";
+    bar.innerHTML = '<span>This site is also available in English.</span><a data-ga="lang_aviso">Read in English</a><button type="button" aria-label="Close">×</button>';
+    bar.querySelector("a").href = link.getAttribute("href");
+    function fechar() { try { localStorage.setItem("lang-aviso", "1"); } catch (e) {} }
+    bar.querySelector("a").addEventListener("click", fechar);
+    bar.querySelector("button").addEventListener("click", function () { fechar(); bar.remove(); });
+    header.parentNode.insertBefore(bar, header.nextSibling);
+  })();
 
   function readJSON(id) {
     var el = document.getElementById(id);
