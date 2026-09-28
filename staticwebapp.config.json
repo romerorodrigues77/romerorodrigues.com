@@ -586,14 +586,6 @@
     }
   ],
   "responseOverrides": {
-    "401": {
-      "rewrite": "/404.html",
-      "statusCode": 404
-    },
-    "403": {
-      "rewrite": "/404.html",
-      "statusCode": 404
-    },
     "404": {
       "rewrite": "/404.html",
       "statusCode": 404
