@@ -1,50 +1,69 @@
 #!/usr/bin/env python3
 """IndexNow: avisa Bing, Yandex e outros buscadores das páginas que mudaram.
 
-    python3 scripts/indexnow.py mudancas          # URLs novas, alteradas ou removidas desde o commit anterior
-    python3 scripts/indexnow.py mudancas --desde REF
-    python3 scripts/indexnow.py todas             # todas as URLs do sitemap (primeira vez, ou para reenviar)
-    ... --dry                                     # só mostra o que enviaria
+    python3 scripts/indexnow.py mudancas --antes ARQUIVO   # compara com o sitemap publicado antes do deploy
+    python3 scripts/indexnow.py todas                      # todas as URLs do sitemap (reenvio completo)
+    ... --dry                                              # só mostra o que enviaria
 
-Roda sozinho no deploy do main (.github/workflows). O que mudou sai do sitemap.xml:
-o pages.py só troca o <lastmod> de uma página quando o conteúdo dela muda.
-A chave é pública por definição: o buscador confere que ela está em /<chave>.txt.
-O Google não usa IndexNow; para ele vale o sitemap.
+Roda sozinho no deploy do main (.github/workflows): antes de subir, o workflow salva o
+sitemap.xml que está no ar; depois, este script compara a impressão de cada página
+(o comentário "impressões" do sitemap, que o pages.py gera) e envia só as que mudaram.
+Antes de enviar, espera o site novo estar no ar: o buscador confere a chave em
+/<chave>.txt na hora, e uma chave que ele não achou fica recusada por um tempo.
+A chave é pública por definição. O Google não usa IndexNow; para ele vale o sitemap.
 """
 import argparse
 import json
 import os
 import re
-import subprocess
 import sys
+import time
+import urllib.error
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HOST = "romerorodrigues.com"
-CHAVE = "c36111595dcaafa6ba6d6de772503e2e"
+CHAVE = "7f87ff992566f9cc40697c3df3c9279f"
 API = "https://api.indexnow.org/indexnow"
-LOTE = 10000  # limite do protocolo por pedido
+LOTE = 10000   # limite do protocolo por pedido
+ESPERA = 180   # segundos, no máximo, para o deploy aparecer no ar
 
 
-def urls(sitemap):
-    """{url: lastmod} de um sitemap.xml."""
-    return dict(re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]*)</lastmod>", sitemap))
+def paginas(sitemap):
+    """{url: impressão}. As impressões vêm na mesma ordem das URLs."""
+    locs = re.findall(r"<loc>([^<]+)</loc>", sitemap)
+    m = re.search(r"<!-- impressões: (.*?) -->", sitemap)
+    prints = [p.split("=", 1)[1] for p in m.group(1).split()] if m else []
+    if len(prints) != len(locs):
+        prints = [""] * len(locs)
+    return dict(zip(locs, prints))
 
 
-def sitemap_em(ref):
+def ler(caminho):
     try:
-        return subprocess.run(["git", "show", f"{ref}:sitemap.xml"], cwd=ROOT, check=True,
-                              capture_output=True, text=True).stdout
-    except subprocess.CalledProcessError:
+        return open(caminho, encoding="utf-8").read()
+    except OSError:
         return ""
 
 
-def mudancas(ref):
-    antes = urls(sitemap_em(ref))
-    agora = urls(open(os.path.join(ROOT, "sitemap.xml"), encoding="utf-8").read())
-    novas = [u for u in agora if antes.get(u) != agora[u]]
-    removidas = [u for u in antes if u not in agora]  # o buscador vê o 301 ou o 404 e atualiza
-    return novas + removidas
+def baixar(url):
+    req = urllib.request.Request(url, headers={"Cache-Control": "no-cache"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return r.read().decode("utf-8", "replace")
+
+
+def esperar_no_ar(sitemap_novo):
+    """Espera o sitemap novo e a chave responderem no site publicado."""
+    fim = time.time() + ESPERA
+    while time.time() < fim:
+        try:
+            if (baixar(f"https://{HOST}/{CHAVE}.txt").strip() == CHAVE
+                    and baixar(f"https://{HOST}/sitemap.xml") == sitemap_novo):
+                return True
+        except (urllib.error.URLError, OSError):
+            pass
+        time.sleep(10)
+    return False
 
 
 def enviar(lista):
@@ -60,20 +79,31 @@ def enviar(lista):
 def main():
     ap = argparse.ArgumentParser(description="Avisa os buscadores via IndexNow")
     ap.add_argument("comando", choices=["mudancas", "todas"])
-    ap.add_argument("--desde", default="HEAD^1", help="commit de comparação (padrão: o anterior)")
+    ap.add_argument("--antes", help="sitemap.xml que estava no ar antes do deploy")
     ap.add_argument("--dry", action="store_true")
     a = ap.parse_args()
+    novo = ler(os.path.join(ROOT, "sitemap.xml"))
+    agora = paginas(novo)
     if a.comando == "todas":
-        lista = list(urls(open(os.path.join(ROOT, "sitemap.xml"), encoding="utf-8").read()))
+        lista = list(agora)
     else:
-        lista = mudancas(a.desde)
+        if not a.antes:
+            sys.exit("mudancas precisa de --antes com o sitemap publicado antes do deploy")
+        antes = paginas(ler(a.antes))
+        if not antes:
+            print("IndexNow: não tenho o sitemap anterior; envio todas as páginas")
+        lista = [u for u in agora if not antes or antes.get(u) != agora[u]]
+        lista += [u for u in antes if u not in agora]  # removidas: o buscador vê o 301 ou o 404
     if not lista:
-        print("IndexNow: nada mudou no sitemap")
+        print("IndexNow: nenhuma página mudou")
         return
     for u in lista:
         print("  " + u)
-    if not a.dry:
-        enviar(lista)
+    if a.dry:
+        return
+    if not esperar_no_ar(novo):
+        sys.exit(f"IndexNow: o site novo não apareceu no ar em {ESPERA} s; nada enviado")
+    enviar(lista)
 
 
 if __name__ == "__main__":
