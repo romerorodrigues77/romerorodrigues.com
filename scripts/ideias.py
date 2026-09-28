@@ -378,6 +378,33 @@ def onde(r):
     return r["onde"] or "Blog"
 
 
+# Na /en/ideas o link vai para url_en, que pode estar noutro veículo (NeoFeed -> Substack):
+# a lista mostra o veículo de destino, não o da versão em português.
+VEICULOS = {"linkedin.com": "LinkedIn", "substack.com": "Substack", "techcrunch.com": "TechCrunch",
+            "neofeed.com.br": "NeoFeed", "headline.com": "Headline"}
+
+
+def onde_en(r):
+    if not r["url_en"]:
+        return onde(r)
+    host = re.sub(r"^https?://([^/]+).*", r"\1", r["url_en"]).lower()
+    for dominio, nome in VEICULOS.items():
+        if host == dominio or host.endswith("." + dominio):
+            return nome
+    return onde(r)
+
+
+def so_pt(pub):
+    """Textos cuja versão em inglês já é outra linha da lista: a /en/ideas não repete."""
+    urls = {r["url"] for r in pub if r["url"]}
+    return {id(r) for r in pub if r["url_en"] and r["url_en"] in urls}
+
+
+def publicados_en(pub):
+    fora = so_pt(pub)
+    return [r for r in pub if id(r) not in fora]
+
+
 def url_de(r):
     return f"/ideias/{r['slug']}" if interno(r) else r["url"]
 
@@ -386,23 +413,33 @@ def keep_titles(pub):
     """Títulos e veículos que a versão em inglês mantém como publicados."""
     manter = set()
     for r in pub:
-        manter |= {r["titulo"], r["titulo_en"], onde(r)}
+        manter |= {r["titulo"], r["titulo_en"], onde(r), onde_en(r)}
     return {x for x in manter if x}
 
 
-def ler_label(r, lang="pt"):
-    if interno(r):
+def ler_label(r, lang="pt", veiculo=None):
+    veiculo = veiculo or onde(r)
+    if interno(r) and veiculo == onde(r):
         return "Ler" if lang == "pt" else "Read"
     if lang == "en":
-        return f"Read on {onde(r)}"
-    return f"Ler {'na' if onde(r) in FEMININOS else 'no'} {onde(r)}"
+        return f"Read on {veiculo}"
+    return f"Ler {'na' if veiculo in FEMININOS else 'no'} {veiculo}"
+
+
+def attrs_en(r):
+    """data-en-*: o que a versão em inglês troca na linha (pages.py). Só quando muda algo."""
+    a = f' data-en-href="{esc(r["url_en"])}"' if r["url_en"] else ""
+    if onde_en(r) != onde(r):
+        a += f' data-en-onde="{esc(onde_en(r))}" data-en-ler="{esc(ler_label(r, veiculo=onde_en(r)))}"'
+    return a
 
 
 def en_textos(pub):
     """Datas e rótulos em inglês para o dicionário de tradução. Títulos ficam como publicados."""
-    t = {fmt_date(r["data"]): fmt_date(r["data"], "en") for r in pub}
-    t.update({ler_label(r): ler_label(r, "en") for r in pub})
-    t[total_phrase(pub)] = total_phrase(pub, "en")
+    en = publicados_en(pub)  # só o que aparece na /en/ideas
+    t = {fmt_date(r["data"]): fmt_date(r["data"], "en") for r in en}
+    t.update({ler_label(r, veiculo=onde_en(r)): ler_label(r, "en", onde_en(r)) for r in en})
+    t[total_phrase(pub)] = total_phrase(en, "en")
     return t
 
 
@@ -538,19 +575,19 @@ def artigos(rows):
 # ---------------------------------------------------------------- blocos do site
 
 def render_lista(pub, lang="pt"):
-    linhas = []
+    linhas, fora = [], so_pt(pub)
     for r in pub:
         externo = not interno(r)
         titulo, destino, idioma = r["titulo"], url_de(r), r["idioma"]
-        # data-en-href e data-en ficam no HTML; quem usa é a versão em inglês (pages.py)
-        extra = f' data-en-href="{esc(r["url_en"])}"' if r["url_en"] else ""
+        # data-en-* ficam no HTML; quem usa é a versão em inglês (pages.py)
+        extra = attrs_en(r)
         titulo_en = r["titulo_en"]
         alvo = ' target="_blank" rel="noopener"' if externo else ""
         ler = ler_label(r)
         lang_attr = f' lang="{"pt-BR" if idioma == "pt" else idioma}"'  # a lista EN mistura os dois idiomas
         ttl_en = f' data-en="{esc(titulo_en)}"' if titulo_en else ""
         linhas.append(
-            f'<li data-ano="{esc((r["data"] or "0000")[:4])}">'
+            f'<li data-ano="{esc((r["data"] or "0000")[:4])}"{" data-en-omitir" if id(r) in fora else ""}>'
             f'<a class="press-row" href="{esc(destino)}"{alvo}{extra} data-ga="ideia_item" data-onde="{esc(onde(r))}">'
             f'<time datetime="{esc(r["data"])}">{esc(fmt_date(r["data"], lang))}</time>'
             f'<span class="src">{esc(onde(r))}</span>'
@@ -568,7 +605,7 @@ def render_home(pub):
         alvo = ' target="_blank" rel="noopener"' if externo else ""
         lang_attr = f' lang="{"pt-BR" if r["idioma"] == "pt" else r["idioma"]}"'
         ttl_en = f' data-en="{esc(r["titulo_en"])}"' if r["titulo_en"] else ""
-        extra = f' data-en-href="{esc(r["url_en"])}"' if r["url_en"] else ""
+        extra = attrs_en(r)
         linhas.append(
             f'<li><a class="row" href="{esc(url_de(r))}"{alvo}{extra}>'
             f'<span class="src">{esc(onde(r))}</span>'

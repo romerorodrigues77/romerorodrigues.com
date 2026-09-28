@@ -169,6 +169,8 @@ def seo_block(cfg, route, ctx, lang="pt"):
     rota = rotas(cfg, lang)[route]
     if lang == "en" and "_t" in ctx:
         ctx = {**ctx, "total": ctx["_t"].total}  # o EN tem menos empresas: o que sai por remover_empresas
+    if lang == "en" and "total_ideias_en" in ctx:
+        ctx = {**ctx, "total_ideias": ctx["total_ideias_en"]}  # e menos textos: o que já tem versão em inglês na lista
     med = cfg.get("medicao", {})
     url = cfg["base"] + rota["url"]
     title = fill(rota["title"], ctx)
@@ -310,6 +312,8 @@ def extra_ld(cfg, route, ctx, lang="pt"):
     if route == "ideias":
         ideias, rows = ctx["_ideias"]
         pub = ideias.published(rows)
+        if lang == "en":
+            pub = ideias.publicados_en(pub)
         items = []
         for i, r in enumerate(pub, 1):
             if ideias.interno(r):
@@ -495,6 +499,7 @@ def en_view(cfg, route, view, t, errors):
 
 def versao_en(view):
     """Onde o texto tem versão em inglês (data-en-href), a lista EN usa ela."""
+    view = re.sub(r'<li [^>]*data-en-omitir[^>]*>.*?</li>', "", view, flags=re.S)
     def troca(m):
         tag = m.group(0)
         destino = re.search(r'data-en-href="([^"]+)"', tag).group(1)
@@ -504,6 +509,18 @@ def versao_en(view):
             tag = tag.replace(">", ' target="_blank" rel="noopener">', 1)
         return tag
     view = re.sub(r'<a [^>]*data-en-href="[^"]*"[^>]*>', troca, view)
+
+    def veiculo(m):
+        """A versão em inglês está noutro veículo: a linha mostra o veículo de destino."""
+        tag, corpo = m.group(1), m.group(2)
+        nome = re.search(r'data-en-onde="([^"]*)"', tag).group(1)
+        ler = re.search(r'data-en-ler="([^"]*)"', tag).group(1)
+        tag = re.sub(r'\s*data-en-(?:onde|ler)="[^"]*"', "", tag)
+        tag = re.sub(r'data-onde="[^"]*"', f'data-onde="{nome}"', tag)
+        corpo = re.sub(r'(<span class="src">)[^<]*', rf'\g<1>{nome}', corpo, count=1)
+        corpo = re.sub(r'(<span class="tags">)[^<]*', rf'\g<1>{ler}', corpo, count=1)
+        return tag + corpo + "</a>"
+    view = re.sub(r'(<a [^>]*data-en-onde="[^"]*"[^>]*>)(.*?)</a>', veiculo, view, flags=re.S)
 
     def titulo(m):
         return f'<span class="ttl" lang="en">{m.group(1)}</span>'
@@ -673,6 +690,7 @@ def render(cfg):
     elif ideias.build(i_rows, dry=True)[1]:
         errors.append("index.html desatualizado em relação à data/ideias.xlsx: rode python3 scripts/ideias.py build antes")
     ctx["total_ideias"] = str(len(ideias.published(i_rows)))
+    ctx["total_ideias_en"] = str(len(ideias.publicados_en(ideias.published(i_rows))))
 
     subject = subject_of(cfg, ctx)
     if subject:
