@@ -110,6 +110,21 @@
       "rota": "sobre",
       "tag": "article",
       "contendo": "data-copy=\"bio-pt_mini\""
+    },
+    {
+      "rota": "",
+      "tag": "li",
+      "contendo": "alt=\"XP Inc.\""
+    },
+    {
+      "rota": "",
+      "tag": "li",
+      "contendo": "alt=\"XP Inc.\""
+    },
+    {
+      "rota": "",
+      "tag": "li",
+      "contendo": "fundo-de-venture-capital-da-xp"
     }
   ],
   "remover_marcos": [
