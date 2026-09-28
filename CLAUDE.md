@@ -109,7 +109,9 @@ e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (
 
 ## IndexNow
 
-No deploy do `main`, o workflow roda `python3 scripts/indexnow.py mudancas`: compara o `sitemap.xml` com o do commit
-anterior e avisa Bing e outros buscadores das URLs novas, alteradas ou removidas. A chave fica em `/<chave>.txt` na raiz
-(pública por definição; não apague nem bloqueie). `todas` reenvia o sitemap inteiro; `--dry` só mostra. O Google não usa
-IndexNow: para ele vale o sitemap no Search Console.
+No deploy do `main`, o workflow guarda o `sitemap.xml` que está no ar, sobe o site e roda
+`python3 scripts/indexnow.py mudancas --antes <sitemap guardado>`: compara a impressão de cada página (o comentário
+"impressões" do sitemap) e avisa Bing, Yandex e outros das URLs novas, alteradas ou removidas. Antes de enviar, espera
+o sitemap novo e a chave aparecerem no ar: se o buscador não acha a chave na primeira conferência, recusa a chave por
+um tempo. A chave fica em `/<chave>.txt` na raiz (pública por definição; não apague nem bloqueie). `todas` reenvia o
+sitemap inteiro; `--dry` só mostra. O Google não usa IndexNow: para ele vale o sitemap no Search Console.
