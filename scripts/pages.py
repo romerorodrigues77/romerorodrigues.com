@@ -469,7 +469,7 @@ def remove_element(doc, marker, tag, repl=""):
 
 def recount(view):
     """Refaz os números dos botões de filtro a partir dos itens que sobraram."""
-    cats = [c.split() for c in re.findall(r'<li data-cats="([^"]*)"', view)]
+    cats = [c.split() for c in re.findall(r'<li\b[^>]*\bdata-cats="([^"]*)"', view)]  # o card tem id antes de data-cats
     n = lambda code: len(cats) if code == "all" else sum(code in c for c in cats)
     return re.sub(r'(data-filter="([\w-]+)"[^>]*>[^<]*<sup>)\d+(</sup>)',
                   lambda m: f"{m.group(1)}{n(m.group(2))}{m.group(3)}", view)
