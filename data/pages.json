@@ -62,27 +62,32 @@
     "description": "Cofundador do Buscapé, vendido para a Naspers/Prosus em 2009 num valuation de US$ 374M. Managing Partner da Headline Brasil, com R$ 2,0 bilhões sob gestão e mais de 120 startups investidas.",
     "nationality": {
       "@type": "Country",
-      "name": "Brasil"
+      "name": "Brasil",
+      "sameAs": "https://www.wikidata.org/wiki/Q155"
     },
     "alumniOf": {
       "@type": "CollegeOrUniversity",
-      "name": "Escola Politécnica da Universidade de São Paulo"
+      "name": "Escola Politécnica da Universidade de São Paulo",
+      "sameAs": "https://www.wikidata.org/wiki/Q2600751"
     },
     "worksFor": [
       {
         "@type": "Organization",
         "name": "Headline",
-        "url": "https://headline.com/"
+        "url": "https://headline.com/",
+        "sameAs": "https://www.wikidata.org/wiki/Q117354267"
       },
       {
         "@type": "Organization",
         "name": "XP Inc.",
-        "url": "https://www.xpi.com.br/"
+        "url": "https://www.xpi.com.br/",
+        "sameAs": "https://www.wikidata.org/wiki/Q96186528"
       }
     ],
     "founder": {
       "@type": "Organization",
-      "name": "Buscapé"
+      "name": "Buscapé",
+      "sameAs": "https://www.wikidata.org/wiki/Q5001308"
     },
     "knowsAbout": [
       {

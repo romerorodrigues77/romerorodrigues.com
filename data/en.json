@@ -48,17 +48,20 @@
     "description": "Co-founder of Buscapé, sold to Naspers/Prosus in 2009 at a US$ 374M valuation. Managing Partner of Headline Brazil, with $516m under management and more than 120 startups backed.",
     "nationality": {
       "@type": "Country",
-      "name": "Brazil"
+      "name": "Brazil",
+      "sameAs": "https://www.wikidata.org/wiki/Q155"
     },
     "alumniOf": {
       "@type": "CollegeOrUniversity",
-      "name": "Polytechnic School of the University of São Paulo"
+      "name": "Polytechnic School of the University of São Paulo",
+      "sameAs": "https://www.wikidata.org/wiki/Q2600751"
     },
     "worksFor": [
       {
         "@type": "Organization",
         "name": "Headline",
-        "url": "https://headline.com/"
+        "url": "https://headline.com/",
+        "sameAs": "https://www.wikidata.org/wiki/Q117354267"
       }
     ],
     "knowsAbout": [
