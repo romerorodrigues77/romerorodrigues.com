@@ -55,7 +55,10 @@
     "@type": "Person",
     "@id": "https://romerorodrigues.com/#romero",
     "name": "Romero Rodrigues",
-    "alternateName": "Romero Venâncio Rodrigues Filho",
+    "alternateName": [
+      "Romero Venâncio Rodrigues Filho",
+      "Romero Rodrigues Filho"
+    ],
     "url": "https://romerorodrigues.com/",
     "image": "https://romerorodrigues.com/assets/img/3f0319f5f2.jpg",
     "jobTitle": "Managing Partner",
