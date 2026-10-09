@@ -6,8 +6,8 @@
     ... --dry                                              # só mostra o que enviaria
 
 Roda sozinho no deploy do main (.github/workflows): antes de subir, o workflow salva o
-sitemap.xml que está no ar; depois, este script compara a impressão de cada página
-(o comentário "impressões" do sitemap, que o pages.py gera) e envia só as que mudaram.
+sitemap.xml que está no ar; depois, este script compara o lastmod e a impressão de cada
+página (o comentário "impressões v2" do sitemap, que o pages.py gera) e envia só as que mudaram.
 Antes de enviar, espera o site novo estar no ar: o buscador confere a chave em
 /<chave>.txt na hora, e uma chave que ele não achou fica recusada por um tempo.
 A chave é pública por definição. O Google não usa IndexNow; para ele vale o sitemap.
@@ -30,13 +30,25 @@ ESPERA = 180   # segundos, no máximo, para o deploy aparecer no ar
 
 
 def paginas(sitemap):
-    """{url: impressão}. As impressões vêm na mesma ordem das URLs."""
-    locs = re.findall(r"<loc>([^<]+)</loc>", sitemap)
-    m = re.search(r"<!-- impressões: (.*?) -->", sitemap)
+    """{url: (lastmod, impressão)}. As impressões vêm na mesma ordem das URLs.
+
+    Só vale a impressão do formato atual ("impressões v2", sem CSS e JS); de outro formato
+    ela fica vazia e a comparação usa só o lastmod, para uma troca de formato não parecer
+    mudança em todas as páginas.
+    """
+    urls = re.findall(r"<loc>([^<]+)</loc>(?:<lastmod>([^<]+)</lastmod>)?", sitemap)
+    m = re.search(r"<!-- impressões v2: (.*?) -->", sitemap)
     prints = [p.split("=", 1)[1] for p in m.group(1).split()] if m else []
-    if len(prints) != len(locs):
-        prints = [""] * len(locs)
-    return dict(zip(locs, prints))
+    if len(prints) != len(urls):
+        prints = [""] * len(urls)
+    return {loc: (lastmod, fp) for (loc, lastmod), fp in zip(urls, prints)}
+
+
+def mudou(antes, agora):
+    """Lastmod diferente, ou impressão diferente quando as duas são comparáveis."""
+    if antes[0] != agora[0]:
+        return True
+    return bool(antes[1] and agora[1]) and antes[1] != agora[1]
 
 
 def ler(caminho):
@@ -92,7 +104,7 @@ def main():
         antes = paginas(ler(a.antes))
         if not antes:
             print("IndexNow: não tenho o sitemap anterior; envio todas as páginas")
-        lista = [u for u in agora if not antes or antes.get(u) != agora[u]]
+        lista = [u for u in agora if not antes or u not in antes or mudou(antes[u], agora[u])]
         lista += [u for u in antes if u not in agora]  # removidas: o buscador vê o 301 ou o 404
     if not lista:
         print("IndexNow: nenhuma página mudou")

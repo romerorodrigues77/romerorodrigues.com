@@ -11,7 +11,7 @@ HTML com a fonte e as cores do site, fotografada pelo Chrome em modo headless).
 Não faz parte do build do site.
 
 Gera:
-    assets/img/logos/web/<nome>.webp     logos em WebP, até 88 px de altura (2x os 44 px do card)
+    assets/img/logos/web/<nome>.webp     logos em WebP, até 88 px de altura (2x os 44 px do card; exceções em LOGO_ALTURA_EXCECOES)
     assets/img/web/<foto>-480.webp       fotos em WebP para exibição (480 e 960 px de largura);
     assets/img/web/<foto>-960.webp       os JPG originais continuam nos links "Baixar"
     favicon.ico                          16, 32 e 48 px, recorte redondo do retrato
@@ -35,6 +35,8 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 LOGOS = "assets/img/logos"
 LOGO_ALTURA = 88
+# Logos que a página mostra acima dos 44 px padrão: 2x da altura exibida no CSS
+LOGO_ALTURA_EXCECOES = {"poli-usp.png": 144}  # selo redondo, 72 px na Trajetória
 FOTOS = ["assets/img/3f0319f5f2.jpg", "assets/img/0de76816e4.jpg", "assets/img/44ad558712.jpg",
          "assets/img/4e81b16db7.jpg", "assets/img/01ca4a711b.jpg"]
 FOTO_LARGURAS = (480, 960)
@@ -87,8 +89,9 @@ def logos():
         if not f.endswith(".png"):
             continue
         img = Image.open(path(f"{LOGOS}/{f}")).convert("RGBA")
-        if img.height > LOGO_ALTURA:
-            img = img.resize((round(img.width * LOGO_ALTURA / img.height), LOGO_ALTURA), Image.LANCZOS)
+        altura = LOGO_ALTURA_EXCECOES.get(f, LOGO_ALTURA)
+        if img.height > altura:
+            img = img.resize((round(img.width * altura / img.height), altura), Image.LANCZOS)
         dest = os.path.join(out, f[:-4] + ".webp")
         img.save(dest, "WEBP", quality=90, method=6)
         antes += os.path.getsize(path(f"{LOGOS}/{f}"))
