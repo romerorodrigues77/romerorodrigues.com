@@ -138,7 +138,8 @@ Comportamento de `build`:
    `<!-- SEO:START -->` e `<!-- SEO:END -->` com as tags da home. Crie os
    marcadores no `index.html` na primeira vez, logo após o `<title>`.
 6. Escreve `sitemap.xml` na raiz a partir das rotas em `data/pages.json`, com
-   `lastmod` = data do build. Sem `priority`, sem `changefreq` (o Google ignora
+   `lastmod` = data da última mudança de conteúdo da página (impressão digital
+   sem CSS e JS; ver `datas_modificacao` no `pages.py`). Sem `priority`, sem `changefreq` (o Google ignora
    os dois desde 2023).
 
 Cuidados:

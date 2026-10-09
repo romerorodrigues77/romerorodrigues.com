@@ -42,7 +42,11 @@ TITLE_RE = re.compile(r"<title>.*?</title>", re.S)
 HTML_TAG_RE = re.compile(r'<html lang="pt-BR"[^>]*>')
 VIEW_RE = re.compile(r'<div class="view" data-route="([^"]*)"[^>]*>')
 TOTAL_RE = re.compile(r'<p class="lede">(\d+) empresas\.')  # escrito pelo portfolio.py build
-FINGERPRINTS_RE = re.compile(r"<!-- impressões: (.*?) -->")
+FINGERPRINTS_RE = re.compile(r"<!-- impressões v2: (.*?) -->")
+# Fora da impressão digital: CSS e JavaScript. Mudança de visual não é conteúdo novo e não deve
+# mexer no lastmod nem disparar o IndexNow de todas as páginas (o CSS vai inteiro em cada uma).
+# Os <script> de dados (JSON-LD, tl-data) continuam contando.
+SO_VISUAL_RE = re.compile(r"<style[^>]*>.*?</style>|<script>.*?</script>", re.S)
 LASTMOD_RE = re.compile(r"<loc>(.*?)</loc><lastmod>(.*?)</lastmod>")
 
 DATA_MARCA = "__DATA_MODIFICACAO__"  # vira a data do sitemap depois da impressão digital
@@ -549,6 +553,11 @@ def en_tail(cfg, tail, errors):
     return tail
 
 
+def impressao(page):
+    """Impressão digital do conteúdo da página, sem CSS nem JavaScript (ver SO_VISUAL_RE)."""
+    return hashlib.sha256(SO_VISUAL_RE.sub("", page).encode("utf-8")).hexdigest()[:12]
+
+
 def datas_modificacao(cfg, prints, old):
     """Data por arquivo: a do sitemap anterior enquanto a página não muda, senão hoje.
 
@@ -677,7 +686,7 @@ def sitemap(cfg, prints, datas):
     return "\n".join([
         '<?xml version="1.0" encoding="UTF-8"?>',
         GENERATED,
-        f"<!-- impressões: {stamp} -->",
+        f"<!-- impressões v2: {stamp} -->",
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         *urls,
         "</urlset>",
@@ -772,7 +781,7 @@ def render(cfg):
 
     for arquivo, url, page in artigos_ideias(head, views[""], tail, cfg, ctx):
         pages.append((arquivo, url, page))
-    prints = [(a, u, hashlib.sha256(p.encode("utf-8")).hexdigest()[:12]) for a, u, p in pages]
+    prints = [(a, u, impressao(p)) for a, u, p in pages]
     datas = datas_modificacao(cfg, prints, read(SITEMAP_PATH))
     for arquivo, _, page in pages:
         out[os.path.join(ROOT, arquivo)] = page.replace(DATA_MARCA, datas[arquivo])
