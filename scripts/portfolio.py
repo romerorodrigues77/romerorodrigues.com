@@ -286,7 +286,8 @@ def render_marquee(items):
         attr = ' aria-hidden="true"' if hidden else ""
         tab = ' tabindex="-1"' if hidden else ""
         def li(r):
-            img = logo_img(r["logo"], r["nome"])
+            # abaixo da dobra no celular: não disputa banda com a foto do hero
+            img = logo_img(r["logo"], r["nome"], ' loading="lazy" decoding="async"')
             if r["site"]:
                 img = f'<a{tab} href="{esc(r["site"])}" target="_blank" rel="noopener">{img}</a>'
             return f"<li>{img}</li>"
