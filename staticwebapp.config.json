@@ -543,6 +543,18 @@
       }
     },
     {
+      "route": "/assets/img/logos/web/*",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/assets/img/web/*",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
       "route": "/assets/img/logos/*",
       "headers": {
         "cache-control": "public, max-age=604800"

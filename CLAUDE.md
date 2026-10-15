@@ -34,7 +34,7 @@ O site não serve o PNG: serve o WebP gerado a partir dele em `assets/img/logos/
 
 Se o WebP faltar, o `portfolio.py` avisa (`aviso: nova-empresa.png sem WebP`) e usa o PNG: nada quebra, só fica mais pesado.
 Trocando o logo de uma empresa que já existe, use um nome de arquivo novo (ex.: `pismo-2026.png`) e atualize a planilha:
-os logos têm cache de 1 semana, e com o mesmo nome quem já visitou o site pode continuar vendo o antigo.
+os logos em WebP têm cache de 1 ano (`immutable`), e com o mesmo nome quem já visitou o site continua vendo o antigo.
 
 Um logo por empresa: a Trajetória usa os mesmos arquivos do portfólio. Trocando o logo de uma empresa que aparece
 lá, atualize também o `index.html` (o `"logo"` no JSON `tl-data` e o `<img>` do `.lg`, com `width`/`height` do WebP novo),
@@ -109,8 +109,19 @@ outro idioma vê uma faixa oferecendo o inglês; não há redirecionamento autom
 português de quem indexa o site). No JSON-LD em inglês, as matérias do `subjectOf` que citam a XP saem.
 
 Toda `<img>` precisa de `width` e `height` reais (`pages.py check` acusa). Nos logos do portfólio o `portfolio.py` já põe.
-Logos, fotos em WebP, favicon e imagem Open Graph saem de `python3 scripts/imagens.py` (Pillow; a imagem OG também precisa do
-Google Chrome). Sem argumento gera tudo; `logos`, `fotos`, `icones` ou `og` geram só a etapa pedida.
+Logos, fotos em WebP, favicon, imagem Open Graph e fonte saem de `python3 scripts/imagens.py` (Pillow; a imagem OG também precisa do
+Google Chrome; a fonte, do fontTools). Sem argumento gera tudo; `logos`, `fotos`, `icones`, `og` ou `fonte` geram só a etapa pedida.
+
+### Carregamento
+
+A foto do hero (a `<img>` com `fetchpriority="high"`) ganha um preload no `<head>` gerado pelo `pages.py`, antes do da fonte.
+Cada página gerada leva só o CSS que usa (`css_da_pagina` no `pages.py`): regra cuja classe ou id não aparece no HTML nem no
+JavaScript da página sai. Classe nova posta por script precisa aparecer escrita no script (não monte o nome por concatenação).
+O GA4 só baixa depois do `load`. A fonte servida (`assets/fonts/<hash>.woff2`) é um recorte da original
+`data/fontes/geist-variable.woff2`: só caracteres latinos, pesos 400 a 700 e os recursos que o CSS usa. Caractere fora do recorte
+ou peso fora da faixa? Ajuste `FONTE_FAIXAS`/`FONTE_PESOS` no `imagens.py` (e o `font-weight` do `@font-face`), rode
+`imagens.py fonte` e o build: o nome do arquivo muda com o conteúdo, porque a fonte tem cache de 1 ano.
+Fotos, logos em WebP e fonte têm cache de 1 ano: arquivo trocado precisa de nome novo.
 
 `staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, `/conteudo/*` (o markdown dos textos duplicaria as páginas), este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`

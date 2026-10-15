@@ -46,7 +46,10 @@ FINGERPRINTS_RE = re.compile(r"<!-- impressões v2: (.*?) -->")
 # Fora da impressão digital: CSS e JavaScript. Mudança de visual não é conteúdo novo e não deve
 # mexer no lastmod nem disparar o IndexNow de todas as páginas (o CSS vai inteiro em cada uma).
 # Os <script> de dados (JSON-LD, tl-data) continuam contando.
-SO_VISUAL_RE = re.compile(r"<style[^>]*>.*?</style>|<script>.*?</script>", re.S)
+# Também fora: preloads (fonte, foto do hero) e as regras de prefetch, que só mudam o carregamento.
+SO_VISUAL_RE = re.compile(r"<style[^>]*>.*?</style>|<script>.*?</script>|<script type=\"speculationrules\">.*?</script>\n?"
+                          r"|<link rel=\"preload\"[^>]*>\n?", re.S)
+FONT_PRELOAD_RE = re.compile(r'<link rel="preload" href="[^"]*\.woff2" as="font"[^>]*>')
 LASTMOD_RE = re.compile(r"<loc>(.*?)</loc><lastmod>(.*?)</lastmod>")
 
 DATA_MARCA = "__DATA_MODIFICACAO__"  # vira a data do sitemap depois da impressão digital
@@ -142,16 +145,22 @@ def fill(s, ctx):
 
 
 def ga4(med, base):
-    """Tag do GA4, carregada só no domínio publicado (preview e localhost não contam visita)."""
+    """Tag do GA4, carregada só no domínio publicado (preview e localhost não contam visita).
+
+    O gtag.js (~180 KB) só baixa depois do load, quando o navegador fica ocioso: não disputa
+    banda com a foto do hero nem com a fonte. Eventos disparados antes ficam no dataLayer."""
     tag = med.get("ga4")
     if not tag:
         return []
     host = base.split("//", 1)[1]
     return [
-        f'<script>(function(){{if(location.hostname!=="{host}")return;var s=document.createElement("script");s.async=true;'
-        f's.src="https://www.googletagmanager.com/gtag/js?id={esc(tag)}";document.head.appendChild(s);'
+        f'<script>(function(){{if(location.hostname!=="{host}")return;'
         'window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
-        f'gtag("js",new Date());gtag("config","{esc(tag)}");}})();</script>',
+        f'gtag("js",new Date());gtag("config","{esc(tag)}");'
+        'function l(){var s=document.createElement("script");s.async=true;'
+        f's.src="https://www.googletagmanager.com/gtag/js?id={esc(tag)}";document.head.appendChild(s);}}'
+        'function d(){if(window.requestIdleCallback)requestIdleCallback(l,{timeout:3000});else setTimeout(l,1500);}'
+        'if(document.readyState==="complete")d();else addEventListener("load",d);})();</script>',
     ]
 
 
@@ -367,6 +376,73 @@ def with_head(head, title, seo, route=None):
     return head
 
 
+# ---------------------------------------------------------------- CSS por página
+#
+# O <style> do index.html cobre as 7 views. Cada página gerada leva só as regras cujas classes e
+# ids aparecem nela: no HTML ou no JavaScript (classe posta por script também conta, porque o
+# nome está no texto do script). Na dúvida a regra fica: @font-face, @keyframes, seletor sem
+# classe nem id, e o que estiver dentro de :not(). Não mexe na impressão digital (SO_VISUAL_RE).
+
+STYLE_RE = re.compile(r"<style>(.*?)</style>", re.S)
+TOKEN_CSS_RE = re.compile(r"[A-Za-z_][\w-]*")
+SELETOR_NOME_RE = re.compile(r"[.#](-?[A-Za-z_][\w-]*)")
+NOT_RE = re.compile(r":not\([^()]*\)")
+
+
+def _blocos(css):
+    """[(prelúdio, corpo)] do nível de cima; comentários viram ("", comentário)."""
+    out, i, n = [], 0, len(css)
+    while i < n:
+        if css.startswith("/*", i):
+            j = css.index("*/", i) + 2
+            out.append(("", css[i:j]))
+            i = j
+            continue
+        a = css.find("{", i)
+        if a < 0:
+            out.append(("", css[i:]))
+            break
+        nivel, j = 1, a + 1
+        while nivel:
+            if css.startswith("/*", j):
+                j = css.index("*/", j) + 2
+                continue
+            nivel += {"{": 1, "}": -1}.get(css[j], 0)
+            j += 1
+        out.append((css[i:a], css[a + 1:j - 1]))
+        i = j
+    return out
+
+
+def _seletor_vivo(sel, tokens):
+    return all(n in tokens for n in SELETOR_NOME_RE.findall(NOT_RE.sub("", sel)))
+
+
+def podar_css(css, tokens):
+    out = []
+    for pre, corpo in _blocos(css):
+        cab = pre.strip()
+        if not cab:
+            out.append(pre + corpo if not corpo.startswith("/*") else "")
+        elif cab.startswith(("@media", "@supports")):
+            dentro = podar_css(corpo, tokens)
+            if dentro.strip():
+                out.append(f"{pre}{{{dentro}}}")
+        elif cab.startswith("@"):
+            out.append(f"{pre}{{{corpo}}}")
+        elif any(_seletor_vivo(s, tokens) for s in cab.split(",")):
+            out.append(f"{pre}{{{corpo}}}")
+    return "".join(out)
+
+
+def css_da_pagina(page):
+    m = STYLE_RE.search(page)
+    if not m:
+        return page
+    tokens = set(TOKEN_CSS_RE.findall(page[:m.start()] + page[m.end():]))
+    return page[:m.start(1)] + podar_css(m.group(1), tokens) + page[m.end(1):]
+
+
 # ---------------------------------------------------------------- páginas
 
 def standalone(head, view, tail):
@@ -375,7 +451,25 @@ def standalone(head, view, tail):
     view = view.replace('src="assets/', 'src="/assets/')
     view = view.replace('href="assets/', 'href="/assets/')  # download das fotos: em /en/about o relativo cairia em /en/assets
     view = re.sub(r'srcset="([^"]*)"', lambda m: 'srcset="' + re.sub(r"(^|, )assets/", r"\1/assets/", m.group(1)) + '"', view)
-    return head + view + tail
+    return preload_lcp(head, view) + view + tail
+
+
+def preload_lcp(head, view):
+    """Preload da imagem com fetchpriority="high" (a foto do hero), antes da fonte.
+
+    Sem isso o navegador só descobre a foto depois de ler o CSS embutido no <head>."""
+    img = re.search(r'<img [^>]*fetchpriority="high"[^>]*>', view)
+    if not img:
+        return head
+    attr = dict(re.findall(r'\s([\w-]+)="([^"]*)"', img.group(0)))
+    link = f'<link rel="preload" as="image" href="{attr["src"]}"'
+    if "srcset" in attr:
+        link += f' imagesrcset="{attr["srcset"]}" imagesizes="{attr.get("sizes", "100vw")}"'
+    link += ' fetchpriority="high">'
+    fonte = FONT_PRELOAD_RE.search(head)
+    if not fonte:
+        fail("não encontrei o preload da fonte no <head> do index.html")
+    return head[:fonte.start()] + link + "\n" + head[fonte.start():]
 
 
 def notfound(head, home_view, tail, cfg):
@@ -784,10 +878,10 @@ def render(cfg):
     prints = [(a, u, impressao(p)) for a, u, p in pages]
     datas = datas_modificacao(cfg, prints, read(SITEMAP_PATH))
     for arquivo, _, page in pages:
-        out[os.path.join(ROOT, arquivo)] = page.replace(DATA_MARCA, datas[arquivo])
+        out[os.path.join(ROOT, arquivo)] = css_da_pagina(page.replace(DATA_MARCA, datas[arquivo]))
     # o index.html é o arquivo de autoria, com o mesmo <head> da home
     out[HTML_PATH] = out[HTML_PATH].replace(DATA_MARCA, datas[cfg["rotas"][""]["arquivo"]])
-    out[NOTFOUND_PATH] = notfound(head, views[""], tail, cfg)
+    out[NOTFOUND_PATH] = css_da_pagina(notfound(head, views[""], tail, cfg))
     out[SITEMAP_PATH] = sitemap(cfg, prints, datas)
     return out, errors
 
