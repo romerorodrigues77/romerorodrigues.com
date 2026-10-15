@@ -117,7 +117,7 @@ Google Chrome; a fonte, do fontTools). Sem argumento gera tudo; `logos`, `fotos`
 A foto do hero (a `<img>` com `fetchpriority="high"`) ganha um preload no `<head>` gerado pelo `pages.py`, antes do da fonte.
 Cada página gerada leva só o CSS que usa (`css_da_pagina` no `pages.py`): regra cuja classe ou id não aparece no HTML nem no
 JavaScript da página sai. Classe nova posta por script precisa aparecer escrita no script (não monte o nome por concatenação).
-O GA4 só baixa depois do `load`. A fonte servida (`assets/fonts/<hash>.woff2`) é um recorte da original
+O GA4 carrega async logo no início (adiá-lo para depois do `load` piorou o TBT: ver `ga4()` no `pages.py`). A fonte servida (`assets/fonts/<hash>.woff2`) é um recorte da original
 `data/fontes/geist-variable.woff2`: só caracteres latinos, pesos 400 a 700 e os recursos que o CSS usa. Caractere fora do recorte
 ou peso fora da faixa? Ajuste `FONTE_FAIXAS`/`FONTE_PESOS` no `imagens.py` (e o `font-weight` do `@font-face`), rode
 `imagens.py fonte` e o build: o nome do arquivo muda com o conteúdo, porque a fonte tem cache de 1 ano.
