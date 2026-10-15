@@ -47,6 +47,8 @@ FINGERPRINTS_RE = re.compile(r"<!-- impressões v2: (.*?) -->")
 # mexer no lastmod nem disparar o IndexNow de todas as páginas (o CSS vai inteiro em cada uma).
 # Os <script> de dados (JSON-LD, tl-data) continuam contando.
 # Também fora: preloads (fonte, foto do hero) e as regras de prefetch, que só mudam o carregamento.
+# Mudou esta regex? Suba a versão ("impressões v2" -> v3, aqui e no indexnow.py): com a mesma versão, o
+# IndexNow compara impressões de formatos diferentes e avisa todas as URLs (aconteceu no PR #38).
 SO_VISUAL_RE = re.compile(r"<style[^>]*>.*?</style>|<script>.*?</script>|<script type=\"speculationrules\">.*?</script>\n?"
                           r"|<link rel=\"preload\"[^>]*>\n?", re.S)
 FONT_PRELOAD_RE = re.compile(r'<link rel="preload" href="[^"]*\.woff2" as="font"[^>]*>')
@@ -147,20 +149,18 @@ def fill(s, ctx):
 def ga4(med, base):
     """Tag do GA4, carregada só no domínio publicado (preview e localhost não contam visita).
 
-    O gtag.js (~180 KB) só baixa depois do load, quando o navegador fica ocioso: não disputa
-    banda com a foto do hero nem com a fonte. Eventos disparados antes ficam no dataLayer."""
+    Async e logo no início, de propósito: o Chrome baixa script async com prioridade baixa, atrás
+    da foto do hero (que tem preload), e o gtag.js roda antes de a página ficar interativa.
+    Adiado para depois do load (PR #38), ele rodava ~400 ms no meio da interação (TBT 20 -> 450 ms)."""
     tag = med.get("ga4")
     if not tag:
         return []
     host = base.split("//", 1)[1]
     return [
-        f'<script>(function(){{if(location.hostname!=="{host}")return;'
+        f'<script>(function(){{if(location.hostname!=="{host}")return;var s=document.createElement("script");s.async=true;'
+        f's.src="https://www.googletagmanager.com/gtag/js?id={esc(tag)}";document.head.appendChild(s);'
         'window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};'
-        f'gtag("js",new Date());gtag("config","{esc(tag)}");'
-        'function l(){var s=document.createElement("script");s.async=true;'
-        f's.src="https://www.googletagmanager.com/gtag/js?id={esc(tag)}";document.head.appendChild(s);}}'
-        'function d(){if(window.requestIdleCallback)requestIdleCallback(l,{timeout:3000});else setTimeout(l,1500);}'
-        'if(document.readyState==="complete")d();else addEventListener("load",d);})();</script>',
+        f'gtag("js",new Date());gtag("config","{esc(tag)}");}})();</script>',
     ]
 
 
