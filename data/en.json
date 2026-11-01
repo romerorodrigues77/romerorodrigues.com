@@ -29,7 +29,7 @@
       "arquivo": "en/press.html",
       "url": "/en/press",
       "title": "Romero Rodrigues in the press",
-      "description": "Press coverage since 2009, from The New York Times to Valor: profiles, interviews, investment theses and Headline's deals."
+      "description": "Magazine covers since 2000 and press coverage from The New York Times to Valor: profiles, interviews, investment theses and Headline's deals."
     },
     "sobre": {
       "arquivo": "en/about.html",
@@ -472,6 +472,17 @@
     "Exame · ago 2026": "Exame · Aug 2026",
     "NeoFeed · mar 2026": "NeoFeed · Mar 2026",
     "NeoFeed · abr 2025": "NeoFeed · Apr 2025",
-    "Pipeline Valor · dez 2025": "Pipeline Valor · Dec 2025"
+    "Pipeline Valor · dez 2025": "Pipeline Valor · Dec 2025",
+    "Capas": "Covers",
+    "Nas capas": "On the covers",
+    "Baixar em alta resolução": "Download in high resolution",
+    "Capa anterior": "Previous cover",
+    "Próxima capa": "Next cover",
+    "Capa em alta resolução": "Cover in high resolution",
+    "Fechar": "Close",
+    "Ler a matéria": "Read the article",
+    "Entre os 100": "Among the 100",
+    "Entre os destaques": "Among those featured",
+    "Edição de 20 anos": "20th anniversary issue"
   }
 }

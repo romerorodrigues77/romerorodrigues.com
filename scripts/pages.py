@@ -286,7 +286,7 @@ def subject_of(cfg, ctx):
 
 
 def extra_ld(cfg, route, ctx, lang="pt"):
-    """JSON-LD além do Person: WebSite na home, ProfilePage no sobre, ItemList no portfólio e na mídia."""
+    """JSON-LD além do Person: WebSite na home, ProfilePage no sobre, ItemList no portfólio e na mídia (e a ImageGallery das capas)."""
     base = cfg["base"]
     person = {"@id": cfg["pessoa"]["@id"]}
     website = {"@id": f"{base}/#website"}
@@ -357,10 +357,15 @@ def extra_ld(cfg, route, ctx, lang="pt"):
         items = [{"@type": "ListItem", "position": i, "item": midia.creative_work(r, vehicles, person)}
                  for i, r in enumerate(midia.published(rows), 1)]
         name = "Romero Rodrigues na mídia" if lang == "pt" else "Romero Rodrigues in the press"
-        return [{**pagina, "@type": "CollectionPage", "mainEntity": {"@id": f"{url}#materias"}},
-                {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#materias", "name": name,
-                 "numberOfItems": len(items), "itemListOrder": "https://schema.org/ItemListOrderDescending",
-                 "itemListElement": items}]
+        nodes = [{**pagina, "@type": "CollectionPage", "mainEntity": {"@id": f"{url}#materias"}},
+                 {"@context": "https://schema.org", "@type": "ItemList", "@id": f"{url}#materias", "name": name,
+                  "numberOfItems": len(items), "itemListOrder": "https://schema.org/ItemListOrderDescending",
+                  "itemListElement": items}]
+        galeria = midia.image_gallery(midia.read_capas(), base, url, person, lang)
+        if galeria:
+            nodes[0]["hasPart"] = {"@id": galeria["@id"]}
+            nodes.append(galeria)
+        return nodes
     return [{**pagina, "@type": "WebPage"}]
 
 

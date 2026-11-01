@@ -4,6 +4,7 @@
     python3 scripts/imagens.py           # tudo
     python3 scripts/imagens.py logos     # só os logos (logo novo ou trocado; não precisa do Chrome)
     python3 scripts/imagens.py fotos     # também: icones, og, fonte
+    python3 scripts/imagens.py capas --de "PASTA"   # capas novas ou trocadas, a partir dos originais em alta
 
 Rode quando entrar ou mudar um logo, uma foto, o texto ou o visual; o resultado é commitado.
 Precisa de Pillow, do fontTools (só a etapa fonte: pip3 install fonttools brotli) e do Google Chrome instalado (a imagem Open Graph é uma página
@@ -19,12 +20,19 @@ Gera:
     assets/img/icon/icon-192.png         recorte redondo, fundo transparente
     assets/img/icon/apple-touch-icon.png 180 px, quadrado (o iOS arredonda)
     assets/img/og/romero-rodrigues.jpg   1200x630, usada por todas as rotas
+    assets/img/capas/<slug>-<hash>.jpg   capas de revista e jornal da aba Capas do data/midia.xlsx: o JPEG do download,
+                                         3200 px de altura, a partir do arquivo da coluna Original (só com --de PASTA;
+                                         os originais, de centenas de MB, ficam fora do repositório). O nome muda com o
+                                         conteúdo (cache de 1 ano); o antigo é apagado.
+    assets/img/capas/web/<...>-<w>.webp  as mesmas capas em WebP para exibição (240, 480, 1200 e 1800 px de largura:
+                                         grade, fita da home e visualizador). Depois: midia.py build
     assets/fonts/<hash>.woff2            Geist só com os caracteres latinos e os recursos que o CSS usa,
                                          a partir de data/fontes/geist-variable.woff2 (a original, fora do site);
                                          o nome muda com o conteúdo (cache de 1 ano) e o index.html é atualizado
 """
 import hashlib
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -196,9 +204,61 @@ def fonte():
           + (" (rode o pages.py build)" if antigas else ""))
 
 
+def capas(origem=None):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        import midia
+        lista = [c for c in midia.read_capas() if c["publicar"]]
+    Image.MAX_IMAGE_PIXELS = None  # os originais escaneados passam de 100 megapixels
+    pasta, web = path(midia.CAPAS_DIR), path(midia.CAPAS_WEB)
+    os.makedirs(web, exist_ok=True)
+    for c in lista:
+        if origem:
+            if not c["original"]:
+                print(f"aviso: {c['slug']} sem nome na coluna Original")
+            elif not os.path.exists(os.path.join(origem, c["original"])):
+                sys.exit(f"{c['original']} não está em {origem}")
+            else:
+                img = Image.open(os.path.join(origem, c["original"]))
+                img.draft("RGB", (midia.CAPA_ALTURA, midia.CAPA_ALTURA))  # JPEG: decodifica já reduzido, bem mais rápido
+                img = ImageOps.exif_transpose(img).convert("RGB")
+                if img.height > midia.CAPA_ALTURA:
+                    img = img.resize((round(img.width * midia.CAPA_ALTURA / img.height), midia.CAPA_ALTURA), Image.LANCZOS)
+                tmp = os.path.join(pasta, ".nova.jpg")
+                img.save(tmp, quality=88, optimize=True, progressive=True)
+                with open(tmp, "rb") as f:
+                    nome = f"{c['slug']}-{hashlib.sha256(f.read()).hexdigest()[:10]}"
+                for velho in os.listdir(pasta):
+                    if velho.startswith(c["slug"] + "-") and velho[:-4] != nome and midia.capa_arquivo(c["slug"]) == velho[:-4]:
+                        os.remove(os.path.join(pasta, velho))
+                os.replace(tmp, os.path.join(pasta, nome + ".jpg"))
+        nome = midia.capa_arquivo(c["slug"])
+        if not nome:
+            sys.exit(f"{c['slug']}: falta {midia.CAPAS_DIR}/{c['slug']}-<hash>.jpg. Rode com --de PASTA dos originais")
+        for velho in os.listdir(web):
+            if re.fullmatch(re.escape(c["slug"]) + r"-[0-9a-f]{10}-\d+\.webp", velho) and not velho.startswith(nome + "-"):
+                os.remove(os.path.join(web, velho))
+        img = Image.open(os.path.join(pasta, nome + ".jpg")).convert("RGB")
+        for w in midia.CAPA_LARGURAS:
+            dest = os.path.join(web, f"{nome}-{w}.webp")
+            if not os.path.exists(dest):
+                img.resize((w, round(img.height * w / img.width)), Image.LANCZOS).save(dest, "WEBP", quality=80, method=6)
+        print(f"{nome}.jpg {os.path.getsize(os.path.join(pasta, nome + '.jpg')) // 1024} KB · "
+              + ", ".join(f"{w}: {os.path.getsize(os.path.join(web, f'{nome}-{w}.webp')) // 1024} KB" for w in midia.CAPA_LARGURAS))
+
+
 def main():
-    etapas = {"logos": logos, "fotos": fotos, "icones": icones, "og": og, "fonte": fonte}
-    pedidas = sys.argv[1:] or list(etapas)
+    args = sys.argv[1:]
+    origem = None
+    if "--de" in args:
+        i = args.index("--de")
+        origem = args[i + 1] if i + 1 < len(args) else sys.exit("--de precisa da pasta dos originais")
+        del args[i:i + 2]
+    etapas = {"logos": logos, "fotos": fotos, "icones": icones, "og": og, "fonte": fonte,
+              "capas": lambda: capas(origem)}
+    pedidas = args or list(etapas)
     for nome in pedidas:
         if nome not in etapas:
             sys.exit(f"etapa desconhecida: {nome}. Use: {', '.join(etapas)}")

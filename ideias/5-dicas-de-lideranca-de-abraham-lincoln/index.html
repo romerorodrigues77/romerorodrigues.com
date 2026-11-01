@@ -182,6 +182,9 @@ h1, h2, h3 { margin: 0; font-weight: 500; }
 .tomb-logo img { max-height: 44px; max-width: 72%; width: auto; object-fit: contain; }
 /* Buscapé: o logo é inclinado, quase quadrado, e fica pequeno na altura padrão */
 .marquee img[src*="/buscape-"] { height: 52px; }
+/* Capas: grade da /midia, fita da home e visualizador. As capas ficam apoiadas pela base, como numa estante */
+.capas { padding-bottom: clamp(56px, 8vw, 112px); }
+@keyframes cvb-in { from { opacity: 0; } }
 /* Portfólio: Saídas / Acima de US$ 1 bi à esquerda, ordenação à direita */
 .port-tools .press-order:first-child { margin-left: 0; }
 .press-group { margin-bottom: clamp(56px, 7vw, 96px); }
@@ -501,6 +504,79 @@ h1, h2, h3 { margin: 0; font-weight: 500; }
     if (a.dataset.categoria) p.categoria = a.dataset.categoria;
     window.gtag("event", a.dataset.ga, p);
   });
+
+  // Capas da /midia: o visualizador abre pelo clique na grade ou pelo endereço /midia#capa-<slug>.
+  // Lê tudo da grade (o <span hidden> de cada capa); sem JavaScript, o link abre o JPEG.
+  (function () {
+    var box = document.querySelector("[data-capas-box]");
+    if (!box || typeof box.showModal !== "function") return;
+    var capas = Array.prototype.slice.call(document.querySelectorAll("a[data-capa]"));
+    var stage = box.firstChild, img = document.createElement("img"), atual = 0, x0 = null;
+    img.sizes = "(max-width: 860px) 100vw, 70vw";
+    stage.insertBefore(img, stage.firstChild);
+    function f(nome) { return box.querySelector('[data-f="' + nome + '"]'); }
+    function k(a, nome) { var e = a.querySelector('[data-k="' + nome + '"]'); return e ? e.textContent : ""; }
+    function pre(i) { var a = capas[(i + capas.length) % capas.length], p = new Image(); p.sizes = img.sizes; p.srcset = a.dataset.zoom; }
+    function mostra(i, novo) {
+      atual = (i + capas.length) % capas.length;
+      var a = capas[atual], miniatura = a.querySelector("img");
+      img.setAttribute("aria-busy", "true");
+      img.onload = function () { img.removeAttribute("aria-busy"); };
+      img.width = miniatura.getAttribute("width"); img.height = miniatura.getAttribute("height");
+      img.alt = miniatura.alt;
+      img.srcset = a.dataset.zoom;
+      f("count").textContent = String(atual + 1).padStart(2, "0") + " / " + capas.length;
+      f("data").textContent = k(a, "data");
+      f("veic").textContent = a.dataset.veiculo;
+      f("cham").textContent = "“" + k(a, "cham") + "”";
+      f("nota").textContent = k(a, "nota");
+      f("nota").hidden = !k(a, "nota");
+      f("spec").textContent = k(a, "spec");
+      f("cred").textContent = k(a, "cred");
+      var down = f("down");
+      down.href = a.href; down.setAttribute("download", a.dataset.baixar); down.dataset.veiculo = a.dataset.veiculo;
+      f("mat").hidden = !a.dataset.materia;
+      if (a.dataset.materia) f("mat").href = a.dataset.materia;
+      history[novo ? "pushState" : "replaceState"](null, "", "#" + a.id);
+      pre(atual + 1); pre(atual - 1);
+    }
+    function abre(i, novo) {
+      mostra(i, novo !== false && !box.open);
+      if (!box.open) { box.showModal(); document.documentElement.style.overflow = "hidden"; }
+    }
+    function alvo() {
+      var m = location.hash.match(/^#capa-/) && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      return m ? capas.indexOf(m) : -1;
+    }
+    capas.forEach(function (a, i) {
+      a.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault();
+        abre(i);
+      });
+    });
+    box.addEventListener("close", function () {
+      document.documentElement.style.overflow = "";
+      history.replaceState(null, "", location.pathname + location.search + "#capas");
+      capas[atual].focus();
+    });
+    f("fechar").addEventListener("click", function () { box.close(); });
+    box.querySelectorAll("[data-nav]").forEach(function (b) {
+      b.addEventListener("click", function () { mostra(atual + Number(b.dataset.nav)); });
+    });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); mostra(atual + (e.key === "ArrowLeft" ? -1 : 1)); }
+    });
+    stage.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) mostra(atual + (dx < 0 ? 1 : -1));
+    });
+    window.addEventListener("hashchange", function () { var i = alvo(); if (i >= 0) abre(i); else if (box.open) box.close(); });
+    if (alvo() >= 0) abre(alvo(), false);
+  })();
 
   // Lista de ideias: mostra as primeiras e revela o resto no clique
   document.querySelectorAll("[data-mais]").forEach(function (lista) {

@@ -33,7 +33,7 @@
 <script>(function(){if(location.hostname!=="romerorodrigues.com")return;var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-1B9M6H97C7";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag("js",new Date());gtag("config","G-1B9M6H97C7");})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://romerorodrigues.com/#romero","name":"Romero Rodrigues","alternateName":["Romero Venâncio Rodrigues Filho","Romero Rodrigues Filho"],"url":"https://romerorodrigues.com/","image":"https://romerorodrigues.com/assets/img/3f0319f5f2.jpg","jobTitle":"Managing Partner","description":"Co-founder of Buscapé, sold to Naspers/Prosus in 2009 at a US$ 374M valuation. Managing Partner of Headline Brazil, with $516m under management and more than 120 startups backed.","nationality":{"@type":"Country","name":"Brazil","sameAs":"https://www.wikidata.org/wiki/Q155"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Polytechnic School of the University of São Paulo","sameAs":"https://www.wikidata.org/wiki/Q2600751"},"worksFor":[{"@type":"Organization","name":"Headline","url":"https://headline.com/","sameAs":"https://www.wikidata.org/wiki/Q117354267"}],"founder":{"@type":"Organization","name":"Buscapé","sameAs":"https://www.wikidata.org/wiki/Q5001308"},"knowsAbout":[{"@type":"Thing","name":"Venture capital","sameAs":"https://www.wikidata.org/wiki/Q219409"},{"@type":"Thing","name":"Startups","sameAs":"https://www.wikidata.org/wiki/Q129238"},{"@type":"Thing","name":"E-commerce","sameAs":"https://www.wikidata.org/wiki/Q484847"},{"@type":"Thing","name":"Artificial intelligence","sameAs":"https://www.wikidata.org/wiki/Q11660"}],"sameAs":["https://www.linkedin.com/in/romero/","https://x.com/romerorodrigues","https://www.instagram.com/romerorodrigues/","https://www.youtube.com/@romerorodrigues","https://www.tiktok.com/@romero.rodrigues","https://substack.com/@romerorodrigues","https://headline.com/team/romero-rodrigues/","https://en.wikipedia.org/wiki/Romero_Rodrigues","https://www.wikidata.org/wiki/Q7363167","https://www.crunchbase.com/person/romero-rodrigues","https://pitchbook.com/profiles/investor/233806-06"],"subjectOf":[{"@type":"NewsArticle","headline":"How VC Headline notched a 30% stake in Brazil’s biggest startup acquisition in 5 years","url":"https://fortune.com/2023/07/25/headline-brazil-pismo-visa/","datePublished":"2023-07-25","inLanguage":"en","publisher":{"@type":"Organization","name":"Fortune","url":"https://fortune.com"}},{"@type":"NewsArticle","headline":"Da criação do Buscapé ao fundo bilionário: conheça a trajetória completa de Romero Rodrigues","url":"https://www.infomoney.com.br/negocios/da-criacao-do-buscape-ao-fundo-bilionario-conheca-a-trajetoria-completa-de-romero-rodrigues/","datePublished":"2020-07-04","inLanguage":"pt-BR","publisher":{"@type":"Organization","name":"InfoMoney","url":"https://www.infomoney.com.br"}},{"@type":"CreativeWork","name":"Romero Rodrigues: de empreendedor a descobridor de unicórnios","url":"https://neofeed.com.br/startups/romero-rodrigues-de-empreendedor-a-descobridor-de-unicornios/","datePublished":"2019-09-23","inLanguage":"pt-BR","publisher":{"@type":"Organization","name":"NeoFeed","url":"https://neofeed.com.br"}},{"@type":"NewsArticle","headline":"Redpoint Joint Venture in Brazil Adds Romero Rodrigues, a Top Entrepreneur","url":"https://www.nytimes.com/2015/11/11/business/dealbook/redpoint-joint-venture-in-brazil-adds-romero-rodrigues-a-top-entrepreneur.html","datePublished":"2015-11-10","inLanguage":"en","publisher":{"@type":"Organization","name":"New York Times","url":"https://www.nytimes.com"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://romerorodrigues.com/#website","url":"https://romerorodrigues.com/","name":"Romero Rodrigues","inLanguage":["pt-BR","en"],"publisher":{"@id":"https://romerorodrigues.com/#romero"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@id":"https://romerorodrigues.com/en#pagina","url":"https://romerorodrigues.com/en","name":"Romero Rodrigues — Buscapé founder, investor","inLanguage":"en","isPartOf":{"@id":"https://romerorodrigues.com/#website"},"about":{"@id":"https://romerorodrigues.com/#romero"},"dateModified":"2026-10-14","@type":"WebPage"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@id":"https://romerorodrigues.com/en#pagina","url":"https://romerorodrigues.com/en","name":"Romero Rodrigues — Buscapé founder, investor","inLanguage":"en","isPartOf":{"@id":"https://romerorodrigues.com/#website"},"about":{"@id":"https://romerorodrigues.com/#romero"},"dateModified":"2026-10-30","@type":"WebPage"}</script>
 <!-- SEO:END -->
 <style>
 @font-face {
@@ -258,6 +258,25 @@ a.row:hover { color: var(--signal); }
 .wordmarks-list { display: flex; flex-wrap: wrap; gap: 12px clamp(24px, 3.2vw, 44px); }
 .wordmarks-list span { font-size: clamp(14px, 1.35vw, 18px); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
 .row .ttl small { display: block; font-size: 15px; color: var(--mute); letter-spacing: 0; margin-top: 6px; }
+/* Capas: grade da /midia, fita da home e visualizador. As capas ficam apoiadas pela base, como numa estante */
+.capas { padding-bottom: clamp(56px, 8vw, 112px); }
+.cv { display: flex; flex-direction: column; gap: 12px; color: var(--mute); text-decoration: none; transition: color .2s; }
+.cv-img { display: block; background: var(--soft); box-shadow: 0 0 0 1px var(--line); transition: box-shadow .2s; }
+.cv-img img { display: block; width: 100%; height: auto; }
+.cv-cap { font-size: 13px; line-height: 1.35; min-height: 2.7em; }
+.cv-ano { color: var(--ink); font-variant-numeric: tabular-nums; margin-right: 2px; }
+.cv:hover, .cv:focus-visible { color: var(--ink); outline: none; }
+.cv:hover .cv-img, .cv:focus-visible .cv-img { box-shadow: 0 0 0 1px var(--ink); }
+.cv-fita { margin-bottom: clamp(32px, 5vw, 48px); }
+.cv-fita-head { display: flex; gap: 24px; align-items: baseline; font-size: 13px; color: var(--mute); margin-bottom: 14px; }
+.cv-fita-head a { transition: color .15s; }
+.cv-fita-head a:hover { color: var(--ink); }
+.cv-fita ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 112px));
+  gap: clamp(12px, 1.6vw, 20px); align-items: end; }
+.cv-fita .cv { gap: 8px; }
+.cv-fita .cv-cap { font-size: 12px; min-height: 0; }
+.cv-fita .cv-veic { display: none; }
+@keyframes cvb-in { from { opacity: 0; } }
 /* Portfólio: Saídas / Acima de US$ 1 bi à esquerda, ordenação à direita */
 .port-tools .press-order:first-child { margin-left: 0; }
 .press-group { margin-bottom: clamp(56px, 7vw, 96px); }
@@ -283,6 +302,12 @@ a.row:hover { color: var(--signal); }
 .foot-grid a:hover { color: var(--ink); }
 .legal { margin-top: 56px; font-size: 13px; color: var(--mute); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 760px) {
+  .cv-fita ul { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); }
+  .cv-fita ul::-webkit-scrollbar { display: none; }
+  .cv-fita li { flex: 0 0 30%; scroll-snap-align: start; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -351,6 +376,7 @@ a.row:hover { color: var(--signal); }
     <a class="link" href="/en/press">See all press coverage</a>
   </div>
   <!-- MIDIA:FAIXA --><a class="wordmarks" href="/en/press" data-ga="midia_faixa"><span class="wordmarks-label">Covered by</span><span class="wordmarks-list"><span>New York Times</span><span>Fortune</span><span>Valor</span><span>Folha de S.Paulo</span><span>Estadão</span><span>TechCrunch</span><span>NeoFeed</span><span>Exame</span><span>InfoMoney</span><span>Brazil Journal</span></span></a><!-- /MIDIA:FAIXA -->
+  <!-- MIDIA:CAPAS_HOME --><div class="cv-fita"><div class="cv-fita-head"><span>On the covers</span><a href="/en/press#capas" data-ga="capas_home">See all 18 covers, 2000–2022 <span aria-hidden="true">→</span></a></div><ul><li><a class="cv" data-veiculo="Pequenas Empresas &amp; Grandes Negócios" href="/en/press#capa-2006-06-pequenas-empresas-grandes-negocios" data-ga="capa_home" data-posicao="1"><span class="cv-img"><img src="/assets/img/capas/web/2006-06-pequenas-empresas-grandes-negocios-db9f252700-480.webp" srcset="/assets/img/capas/web/2006-06-pequenas-empresas-grandes-negocios-db9f252700-240.webp 240w, /assets/img/capas/web/2006-06-pequenas-empresas-grandes-negocios-db9f252700-480.webp 480w" sizes="112px" alt="Cover: Pequenas Empresas &amp; Grandes Negócios, Jun 2006. “Jovens milionários”" width="2457" height="3200" loading="lazy" decoding="async"></span><span class="cv-cap"><span class="cv-ano">2006</span> <span class="cv-veic">Pequenas Empresas &amp; Grandes Negócios</span></span></a></li><li><a class="cv" data-veiculo="IstoÉ Dinheiro" href="/en/press#capa-2009-10-istoe-dinheiro" data-ga="capa_home" data-posicao="2"><span class="cv-img"><img src="/assets/img/capas/web/2009-10-istoe-dinheiro-57e502e25e-480.webp" srcset="/assets/img/capas/web/2009-10-istoe-dinheiro-57e502e25e-240.webp 240w, /assets/img/capas/web/2009-10-istoe-dinheiro-57e502e25e-480.webp 480w" sizes="112px" alt="Cover: IstoÉ Dinheiro, Oct 2009. “Como fazer R$ 100 virar R$ 600 milhões”" width="2411" height="3200" loading="lazy" decoding="async"></span><span class="cv-cap"><span class="cv-ano">2009</span> <span class="cv-veic">IstoÉ Dinheiro</span></span></a></li><li><a class="cv" data-veiculo="Época" href="/en/press#capa-2009-12-epoca" data-ga="capa_home" data-posicao="3"><span class="cv-img"><img src="/assets/img/capas/web/2009-12-epoca-fce0c554a4-480.webp" srcset="/assets/img/capas/web/2009-12-epoca-fce0c554a4-240.webp 240w, /assets/img/capas/web/2009-12-epoca-fce0c554a4-480.webp 480w" sizes="112px" alt="Cover: Época, Dec 2009. “Os 100 brasileiros mais influentes em 2009”" width="2442" height="3200" loading="lazy" decoding="async"></span><span class="cv-cap"><span class="cv-ano">2009</span> <span class="cv-veic">Época</span></span></a></li><li><a class="cv" data-veiculo="IstoÉ Dinheiro" href="/en/press#capa-2012-02-istoe-dinheiro" data-ga="capa_home" data-posicao="4"><span class="cv-img"><img src="/assets/img/capas/web/2012-02-istoe-dinheiro-6ea106d98c-480.webp" srcset="/assets/img/capas/web/2012-02-istoe-dinheiro-6ea106d98c-240.webp 240w, /assets/img/capas/web/2012-02-istoe-dinheiro-6ea106d98c-480.webp 480w" sizes="112px" alt="Cover: IstoÉ Dinheiro, Feb 2012. “Inteligência artificial dá lucro”" width="2417" height="3200" loading="lazy" decoding="async"></span><span class="cv-cap"><span class="cv-ano">2012</span> <span class="cv-veic">IstoÉ Dinheiro</span></span></a></li><li><a class="cv" data-veiculo="The President" href="/en/press#capa-2017-03-the-president" data-ga="capa_home" data-posicao="5"><span class="cv-img"><img src="/assets/img/capas/web/2017-03-the-president-1291431417-480.webp" srcset="/assets/img/capas/web/2017-03-the-president-1291431417-240.webp 240w, /assets/img/capas/web/2017-03-the-president-1291431417-480.webp 480w" sizes="112px" alt="Cover: The President, Mar 2017. “De olho na inovação”" width="2485" height="3200" loading="lazy" decoding="async"></span><span class="cv-cap"><span class="cv-ano">2017</span> <span class="cv-veic">The President</span></span></a></li><li><a class="cv" data-veiculo="Poder" href="/en/press#capa-2022-poder" data-ga="capa_home" data-posicao="6"><span class="cv-img"><img src="/assets/img/capas/web/2022-poder-4edafcefed-480.webp" srcset="/assets/img/capas/web/2022-poder-4edafcefed-240.webp 240w, /assets/img/capas/web/2022-poder-4edafcefed-480.webp 480w" sizes="112px" alt="Cover: Poder, 2022. “A receita do bolo”" width="2409" height="3200" loading="lazy" decoding="async"></span><span class="cv-cap"><span class="cv-ano">2022</span> <span class="cv-veic">Poder</span></span></a></li></ul></div><!-- /MIDIA:CAPAS_HOME -->
   <!-- MIDIA:DESTAQUES --><ul class="rows"><li><a class="row" href="https://fortune.com/2023/07/25/headline-brazil-pismo-visa/" target="_blank" rel="noopener" data-ga="midia_destaque" data-veiculo="Fortune" data-posicao="1"><span class="src"><span>Fortune</span> · <time datetime="2023-07-25">Jul 2023</time> · <span>subscribers</span></span><span class="ttl" lang="en">How VC Headline notched a 30% stake in Brazil’s biggest startup acquisition in 5 years</span><span class="go">Read</span></a></li><li><a class="row" href="https://www.nytimes.com/2015/11/11/business/dealbook/redpoint-joint-venture-in-brazil-adds-romero-rodrigues-a-top-entrepreneur.html" target="_blank" rel="noopener" data-ga="midia_destaque" data-veiculo="New York Times" data-posicao="3"><span class="src"><span>New York Times</span> · <time datetime="2015-11-10">Nov 2015</time> · <span>subscribers</span></span><span class="ttl" lang="en">Redpoint Joint Venture in Brazil Adds Romero Rodrigues, a Top Entrepreneur</span><span class="go">Read</span></a></li><li><a class="row" href="https://www1.folha.uol.com.br/fsp/dinheiro/fi0410200916.htm" target="_blank" rel="noopener" data-ga="midia_destaque" data-veiculo="Folha de S.Paulo" data-posicao="4"><span class="src"><span>Folha de S.Paulo</span> · <time datetime="2009-10-04">Oct 2009</time> · <span>subscribers</span></span><span class="ttl" lang="pt-BR">Após venda ao Naspers, BuscaPé mira o exterior</span><span class="go">Read</span></a></li></ul><!-- /MIDIA:DESTAQUES -->
 </div></section>
 
@@ -652,6 +678,79 @@ a.row:hover { color: var(--signal); }
     if (a.dataset.categoria) p.categoria = a.dataset.categoria;
     window.gtag("event", a.dataset.ga, p);
   });
+
+  // Capas da /midia: o visualizador abre pelo clique na grade ou pelo endereço /midia#capa-<slug>.
+  // Lê tudo da grade (o <span hidden> de cada capa); sem JavaScript, o link abre o JPEG.
+  (function () {
+    var box = document.querySelector("[data-capas-box]");
+    if (!box || typeof box.showModal !== "function") return;
+    var capas = Array.prototype.slice.call(document.querySelectorAll("a[data-capa]"));
+    var stage = box.firstChild, img = document.createElement("img"), atual = 0, x0 = null;
+    img.sizes = "(max-width: 860px) 100vw, 70vw";
+    stage.insertBefore(img, stage.firstChild);
+    function f(nome) { return box.querySelector('[data-f="' + nome + '"]'); }
+    function k(a, nome) { var e = a.querySelector('[data-k="' + nome + '"]'); return e ? e.textContent : ""; }
+    function pre(i) { var a = capas[(i + capas.length) % capas.length], p = new Image(); p.sizes = img.sizes; p.srcset = a.dataset.zoom; }
+    function mostra(i, novo) {
+      atual = (i + capas.length) % capas.length;
+      var a = capas[atual], miniatura = a.querySelector("img");
+      img.setAttribute("aria-busy", "true");
+      img.onload = function () { img.removeAttribute("aria-busy"); };
+      img.width = miniatura.getAttribute("width"); img.height = miniatura.getAttribute("height");
+      img.alt = miniatura.alt;
+      img.srcset = a.dataset.zoom;
+      f("count").textContent = String(atual + 1).padStart(2, "0") + " / " + capas.length;
+      f("data").textContent = k(a, "data");
+      f("veic").textContent = a.dataset.veiculo;
+      f("cham").textContent = "“" + k(a, "cham") + "”";
+      f("nota").textContent = k(a, "nota");
+      f("nota").hidden = !k(a, "nota");
+      f("spec").textContent = k(a, "spec");
+      f("cred").textContent = k(a, "cred");
+      var down = f("down");
+      down.href = a.href; down.setAttribute("download", a.dataset.baixar); down.dataset.veiculo = a.dataset.veiculo;
+      f("mat").hidden = !a.dataset.materia;
+      if (a.dataset.materia) f("mat").href = a.dataset.materia;
+      history[novo ? "pushState" : "replaceState"](null, "", "#" + a.id);
+      pre(atual + 1); pre(atual - 1);
+    }
+    function abre(i, novo) {
+      mostra(i, novo !== false && !box.open);
+      if (!box.open) { box.showModal(); document.documentElement.style.overflow = "hidden"; }
+    }
+    function alvo() {
+      var m = location.hash.match(/^#capa-/) && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      return m ? capas.indexOf(m) : -1;
+    }
+    capas.forEach(function (a, i) {
+      a.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault();
+        abre(i);
+      });
+    });
+    box.addEventListener("close", function () {
+      document.documentElement.style.overflow = "";
+      history.replaceState(null, "", location.pathname + location.search + "#capas");
+      capas[atual].focus();
+    });
+    f("fechar").addEventListener("click", function () { box.close(); });
+    box.querySelectorAll("[data-nav]").forEach(function (b) {
+      b.addEventListener("click", function () { mostra(atual + Number(b.dataset.nav)); });
+    });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); mostra(atual + (e.key === "ArrowLeft" ? -1 : 1)); }
+    });
+    stage.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) mostra(atual + (dx < 0 ? 1 : -1));
+    });
+    window.addEventListener("hashchange", function () { var i = alvo(); if (i >= 0) abre(i); else if (box.open) box.close(); });
+    if (alvo() >= 0) abre(alvo(), false);
+  })();
 
   // Lista de ideias: mostra as primeiras e revela o resto no clique
   document.querySelectorAll("[data-mais]").forEach(function (lista) {
