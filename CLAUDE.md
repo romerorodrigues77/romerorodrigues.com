@@ -79,6 +79,21 @@ Categoria é o que a peça prova: `perfil`, `tese`, `movimento` ou `portfolio`. 
 e entram no JSON-LD como `author`; os demais, como `about`. `subjectOf` (no máximo 5) põe a matéria no nó Person de todas
 as páginas. Título fica como o veículo publicou, e o inglês o mantém: só as datas e o total são traduzidos, a partir dos dados.
 A regra de o inglês tirar o que é da XP tem exceção na `/en/press`: cobertura de imprensa é registro histórico.
+
+### Capas
+
+A aba Capas da mesma planilha vira a grade Capas da `/midia` (bloco `MIDIA:CAPAS`, com o visualizador `<dialog>`)
+e a fita de capas da home (`MIDIA:CAPAS_HOME`, as marcadas de 1 a 6 na coluna Home). Cada capa tem endereço próprio,
+`/midia#capa-<data>-<veículo>` (o slug sai da Data e do Veículo), que abre o visualizador nela. Os originais escaneados
+(centenas de MB) ficam fora do repositório; a coluna Original guarda o nome do arquivo. Capa nova ou trocada:
+
+    python3 scripts/imagens.py capas --de "PASTA DOS ORIGINAIS"   # JPEG de 3.200 px para download + WebP de 240 a 1800 px
+    python3 scripts/midia.py build
+    python3 scripts/pages.py build
+
+O JPEG fica em `assets/img/capas/<slug>-<hash>.jpg` e os WebP em `assets/img/capas/web/`, com cache de 1 ano: o hash
+muda com o conteúdo e o `imagens.py` apaga o arquivo antigo. Chamada fica como impressa (não se traduz); Nota é texto
+seu e precisa de tradução em `data/en.json`. A `/midia` também ganha uma `ImageGallery` no JSON-LD, uma `ImageObject` por capa.
 Ideias, na home, é o que Romero escreve; Na mídia é o que escrevem sobre ele.
 
 ## Páginas reais e SEO
