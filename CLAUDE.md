@@ -3,6 +3,9 @@
 Site estático publicado no Azure Static Web Apps a partir da raiz do repositório. O `index.html` é o arquivo de autoria;
 as páginas publicadas são geradas por `scripts/pages.py` (ver abaixo).
 
+Acessos (GitHub, Azure, DNS, Search Console, GA4, Bing): leia [ACESSOS-E-CONFIGURACOES.md](ACESSOS-E-CONFIGURACOES.md)
+antes de investigar e atualize-o com data e evidência após descobertas. Resumo para outros agentes: [AGENTS.md](AGENTS.md).
+
 ## Portfólio
 
 A fonte da verdade das empresas do portfólio é `data/portfolio.xlsx` (aba Empresas; instruções na aba Como usar).
@@ -138,7 +141,7 @@ ou peso fora da faixa? Ajuste `FONTE_FAIXAS`/`FONTE_PESOS` no `imagens.py` (e o 
 `imagens.py fonte` e o build: o nome do arquivo muda com o conteúdo, porque a fonte tem cache de 1 ano.
 Fotos, logos em WebP e fonte têm cache de 1 ano: arquivo trocado precisa de nome novo.
 
-`staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, `/conteudo/*` (o markdown dos textos duplicaria as páginas), este arquivo e `SEO-IMPLEMENTATION.md` no site publicado,
+`staticwebapp.config.json` bloqueia `/data/*`, `/scripts/*`, `/conteudo/*` (o markdown dos textos duplicaria as páginas), este arquivo, `SEO-IMPLEMENTATION.md`, `AGENTS.md` e `ACESSOS-E-CONFIGURACOES.md` no site publicado,
 exigindo um papel que ninguém tem (`allowedRoles: ["bloqueado"]`); o 401/403 vira `404.html` com status 404 no `responseOverrides`
 (só `statusCode: 404` não basta: o Azure entrega o arquivo junto),
 e faz o rewrite de `/` → `/home.html` e `/trajetoria` → `/trajetoria.html` (idem as outras rotas; rota nova precisa de linha nova lá).

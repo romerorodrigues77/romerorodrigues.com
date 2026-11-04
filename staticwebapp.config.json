@@ -25,6 +25,18 @@
       ]
     },
     {
+      "route": "/AGENTS.md",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
+      "route": "/ACESSOS-E-CONFIGURACOES.md",
+      "allowedRoles": [
+        "bloqueado"
+      ]
+    },
+    {
       "route": "/conteudo/*",
       "allowedRoles": [
         "bloqueado"
